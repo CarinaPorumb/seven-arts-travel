@@ -12,18 +12,10 @@ import ro.itschool.enums.Movement;
 import ro.itschool.service.UserService;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
-
 
 @Component
 public class RunAtStartup {
-
-    final Role roleUserAdmin = new Role("ROLE_ADMIN");
-    final Role roleUserContributor = new Role("ROLE_CONTRIBUTOR");
-    final Role roleUserUser = new Role("ROLE_USER");
-    final Set<Role> roles = new HashSet<>();
 
     @Autowired
     private UserService userService;
@@ -37,11 +29,13 @@ public class RunAtStartup {
 
     }
 
-    public void saveAdmin(){
+    public void saveAdmin() {
         User user = new User();
         user.setUsername("Admin");
         user.setPassword("Admin");
         user.setRandomToken("randomToken");
+        final Role roleUserAdmin = new Role("ROLE_ADMIN");
+        final Set<Role> roles = new HashSet<>();
         roles.add(roleUserAdmin);
         user.setRoles(roles);
         user.setEnabled(true);
@@ -63,7 +57,6 @@ public class RunAtStartup {
         location.setYear(1547);
         location.setUser(user);
 
-        Set<Location> locations2 = new HashSet<>();
         Location location2 = new Location();
         location.setName("Notre Dame de Paris");
         location.setCategory(Category.Architecture);
@@ -79,13 +72,14 @@ public class RunAtStartup {
         userService.saveUser(user);
     }
 
-    public void saveContributor(){
+    public void saveContributor() {
         User user = new User();
         user.setUsername("Contributor");
         user.setPassword("Contributor");
         user.setRandomToken("randomToken");
-        roles.add(roleUserContributor);
-        user.setRoles(roles);
+        final Set<Role> roleUserContributor = new HashSet<>();
+        roleUserContributor.add(new Role("ROLE_CONTRIBUTOR"));
+        user.setRoles(roleUserContributor);
         user.setEnabled(true);
         user.setAccountNonExpired(true);
         user.setAccountNonLocked(true);
@@ -105,7 +99,6 @@ public class RunAtStartup {
         location.setYear(2022);
         location.setUser(user);
 
-        Set<Location> locations2 = new HashSet<>();
         Location location2 = new Location();
         location.setName("The Thinker");
         location.setCategory(Category.Sculpture);
@@ -120,13 +113,14 @@ public class RunAtStartup {
         userService.saveUser(user);
     }
 
-    public void saveUser(){
+    public void saveUser() {
         User user = new User();
         user.setUsername("User");
         user.setPassword("User");
         user.setRandomToken("randomToken");
-        roles.add(roleUserUser);
-        user.setRoles(roles);
+        final Set<Role> roleUserUser = new HashSet<>();
+        roleUserUser.add(new Role("ROLE_USER"));
+        user.setRoles(roleUserUser);
         user.setEnabled(true);
         user.setAccountNonExpired(true);
         user.setAccountNonLocked(true);
@@ -146,7 +140,6 @@ public class RunAtStartup {
         location.setYear(1138);
         location.setUser(user);
 
-        Set<Location> locations2 = new HashSet<>();
         Location location2 = new Location();
         location.setName("The Louvre Museum");
         location.setCategory(Category.Painting);
