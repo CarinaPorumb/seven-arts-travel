@@ -1,12 +1,12 @@
 package ro.itschool.entity;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import ro.itschool.enums.Category;
 import ro.itschool.enums.Movement;
 
-import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.UUID;

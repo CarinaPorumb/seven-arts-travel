@@ -23,10 +23,8 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public void deleteByName(String name) throws LocationNotFound {
-        final Optional<Location> location = Optional.ofNullable(locationRepository.findByName(name));
-        if (location.isPresent())
-            locationRepository.deleteByName(name);
-        else throw new LocationNotFound("Location not found!");
+        Optional.ofNullable(locationRepository.findByName(name)).orElseThrow(LocationNotFound::new);
+        locationRepository.deleteByName(name);
     }
 
     @Override
@@ -41,10 +39,8 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public Location findByName(String name) throws LocationNotFound {
-        final Optional<Location> location = Optional.ofNullable(locationRepository.findByName(name));
-        if (location.isPresent())
-            return locationRepository.findByName(name);
-        else throw new LocationNotFound("Location not found!");
+        return Optional.ofNullable(locationRepository.findByName(name)).orElseThrow(LocationNotFound::new);
+
     }
 
     @Override

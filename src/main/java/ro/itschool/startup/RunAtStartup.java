@@ -10,7 +10,6 @@ import ro.itschool.entity.User;
 import ro.itschool.enums.Category;
 import ro.itschool.enums.Movement;
 import ro.itschool.service.UserService;
-
 import java.util.HashSet;
 import java.util.Set;
 

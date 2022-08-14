@@ -86,6 +86,7 @@ public class UserServiceImpl implements UserService {
                 role.setId(roleByName.getId());
             }
         });
+        userRepository.save(user);
     }
 
     @Override
