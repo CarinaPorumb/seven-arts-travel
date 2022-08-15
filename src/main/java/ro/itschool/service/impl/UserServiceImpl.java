@@ -87,6 +87,17 @@ public class UserServiceImpl implements UserService {
             }
         });
         userRepository.save(user);
+
+
+        //add location to user, de folosit la paintings
+//        final User user1 = userRepository.save(user);
+//        if (receivedUser.getLocations() != null)
+//            receivedUser.getLocations()
+//                    .forEach(location -> {
+//                        location.setUser(user1);
+//                        locationRepository.save(location);
+//                    });
+//        return user1;
     }
 
     @Override

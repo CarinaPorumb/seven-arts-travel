@@ -40,15 +40,11 @@ public class LocationServiceImpl implements LocationService {
     @Override
     public Location findByName(String name) throws LocationNotFound {
         return Optional.ofNullable(locationRepository.findByName(name)).orElseThrow(LocationNotFound::new);
-
     }
 
     @Override
-    public List<Location> getAllLocationByUserId(Integer userId) throws UserNotFound {
-        final Optional<List<Location>> location = Optional.ofNullable(locationRepository.findByUserId(userId));
-        if (location.isPresent())
-            return locationRepository.findByUserId(userId);
-        else throw new UserNotFound("UserId not found!");
+    public List<Location> getAllLocationsByUserId(Integer userId) throws UserNotFound {
+        return Optional.ofNullable(locationRepository.findByUserId(userId)).orElseThrow(UserNotFound::new);
     }
 
 }

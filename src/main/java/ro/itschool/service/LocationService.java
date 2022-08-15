@@ -16,6 +16,6 @@ public interface LocationService {
 
     Location findByName(String name) throws LocationNotFound;
 
-    List<Location> getAllLocationByUserId(Integer userId) throws UserNotFound;
+    List<Location> getAllLocationsByUserId(Integer userId) throws UserNotFound;
 
 }
