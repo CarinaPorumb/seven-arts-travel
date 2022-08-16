@@ -11,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ro.itschool.entity.Role;
 import ro.itschool.entity.User;
-import ro.itschool.repository.LocationRepository;
 import ro.itschool.repository.RoleRepository;
 import ro.itschool.repository.UserRepository;
 import ro.itschool.service.UserService;
@@ -32,8 +31,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     EmailSender emailSender;
 
-    @Autowired
-    LocationRepository locationRepository;
+//    @Autowired
+//    LocationRepository locationRepository;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {

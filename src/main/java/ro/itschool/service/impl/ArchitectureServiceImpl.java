@@ -6,7 +6,6 @@ import ro.itschool.entity.Architecture;
 import ro.itschool.exception.ArchitectureNotFound;
 import ro.itschool.exception.UserNotFound;
 import ro.itschool.repository.ArchitectureRepository;
-import ro.itschool.repository.UserRepository;
 import ro.itschool.service.ArchitectureService;
 
 import java.util.List;
@@ -18,8 +17,6 @@ public class ArchitectureServiceImpl implements ArchitectureService {
     @Autowired
     private ArchitectureRepository architectureRepository;
 
-    @Autowired
-    private UserRepository userRepository;
 
     @Override
     public void deleteByName(String name) throws ArchitectureNotFound {
@@ -34,16 +31,16 @@ public class ArchitectureServiceImpl implements ArchitectureService {
 
     @Override
     public List<Architecture> getAllArchitectures() {
-        return null;
+        return architectureRepository.findAll();
     }
 
     @Override
     public Architecture findByName(String name) throws ArchitectureNotFound {
-        return null;
+        return Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
     }
 
     @Override
     public List<Architecture> getAllArchitecturesByUserId(Integer userId) throws UserNotFound {
-        return null;
+        return Optional.ofNullable(architectureRepository.findByUserId(userId)).orElseThrow(UserNotFound::new);
     }
 }

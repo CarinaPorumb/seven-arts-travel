@@ -6,7 +6,7 @@ import ro.itschool.enums.Style;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-
+@ToString
 public class Music implements Serializable {
 
     @Serial
@@ -26,14 +26,12 @@ public class Music implements Serializable {
 
     private String name;
 
-    private String author;
-
     @Enumerated(EnumType.STRING)
     private Style movement;
 
     private Boolean isTemporary;
 
-    private LocalDateTime year;
+    private LocalDate year;
 
     private String location;
 

@@ -17,7 +17,7 @@ public class IndexController {
     @RequestMapping(value = {"/index"})
     public String index (Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("locations", userService.findUserByUserName(auth.getName()).getLocations());
+        model.addAttribute("user", userService.findUserByUserName(auth.getName()));
         return "index";
     }
 }
