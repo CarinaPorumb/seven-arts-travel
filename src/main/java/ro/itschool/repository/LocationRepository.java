@@ -23,5 +23,4 @@ public interface LocationRepository extends JpaRepository<Location, UUID> {
             nativeQuery = true)
     List<Location> findByUserId(Integer userId);
 
-
 }
