@@ -31,7 +31,7 @@ public class Music implements Serializable {
 
     private Boolean isTemporary;
 
-    private LocalDate year;
+    private LocalDate eventTime;
 
     private String location;
 

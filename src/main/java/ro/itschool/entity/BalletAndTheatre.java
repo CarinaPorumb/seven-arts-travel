@@ -15,7 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @ToString
-public class Cinema implements Serializable {
+public class BalletAndTheatre implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1905122041950251207L;
@@ -26,12 +26,14 @@ public class Cinema implements Serializable {
 
     private String name;
 
+    private String author;
+
     @Enumerated(EnumType.STRING)
     private Style movement;
 
     private Boolean isTemporary;
 
-    private LocalDate year;
+    private LocalDate eventTime;
 
     private String location;
 
@@ -39,5 +41,4 @@ public class Cinema implements Serializable {
     @JoinColumn(name = "user_id")
     @ToString.Exclude
     private User user;
-
 }

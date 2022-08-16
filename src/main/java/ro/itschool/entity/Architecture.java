@@ -6,6 +6,7 @@ import ro.itschool.enums.Style;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -32,7 +33,7 @@ public class Architecture implements Serializable {
 
     private Boolean isTemporary;
 
-    private Integer year;
+    private LocalDate year;
 
     private String location;
 
