@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ro.itschool.exception.UserNotFound;
 import ro.itschool.service.UserService;
 
 @Controller
@@ -15,7 +16,7 @@ public class IndexController {
     private UserService userService;
 
     @RequestMapping(value = {"/index"})
-    public String index (Model model){
+    public String index (Model model) throws UserNotFound {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("user", userService.findUserByUserName(auth.getName()));
         return "index";

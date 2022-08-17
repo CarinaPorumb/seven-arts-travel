@@ -102,7 +102,7 @@ public class RunAtStartup {
         user.setAccountNonExpired(true);
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);
-        user.setEmail("admin1@yahoo.com");
+        user.setEmail("admin1@gmail.com");
         user.setFullName("Admin1");
         user.setPasswordConfirm("Admin");
         user.setRandomTokenEmail("randomToken");
@@ -121,7 +121,7 @@ public class RunAtStartup {
         user.setAccountNonExpired(true);
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);
-        user.setEmail("contributor@yahoo.com");
+        user.setEmail("contributor@gmail.com");
         user.setFullName("Contributor1");
         user.setPasswordConfirm("Contributor");
         user.setRandomTokenEmail("randomToken");
@@ -140,7 +140,7 @@ public class RunAtStartup {
         user.setAccountNonExpired(true);
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);
-        user.setEmail("user@yahoo.com");
+        user.setEmail("user@gmail.com");
         user.setFullName("User");
         user.setPasswordConfirm("User");
         user.setRandomTokenEmail("randomToken");

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ro.itschool.entity.User;
+import ro.itschool.exception.TokenNotFound;
 import ro.itschool.repository.UserRepository;
 import ro.itschool.service.UserService;
 import java.util.Optional;
@@ -14,12 +15,11 @@ public class ActivationController {
 
     @Autowired
     UserService userService;
-
     @Autowired
     UserRepository userRepository;
 
     @GetMapping(value = "/activation/{randomToken}")
-    public String registerForm(@PathVariable String randomToken, Model model){
+    public String registerForm(@PathVariable String randomToken, Model model) throws TokenNotFound {
         final Optional<User> userByRandomToken = Optional.ofNullable(userService.findUserByRandomToken(randomToken));
         if (userByRandomToken.isPresent()) {
             model.addAttribute("user", userByRandomToken.get());
@@ -29,7 +29,7 @@ public class ActivationController {
     }
 
     @PostMapping(value = "/activation/{randomToken}")
-    public String registerUser(@ModelAttribute("user") @RequestBody User user){
+    public String registerUser(@ModelAttribute("user") @RequestBody User user) throws TokenNotFound {
         final User user1 = userService.findUserByRandomToken(user.getRandomToken());
         user1.setEnabled(true);
         userRepository.save(user1);

@@ -11,6 +11,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ro.itschool.entity.Role;
 import ro.itschool.entity.User;
+import ro.itschool.exception.EmailNotFound;
+import ro.itschool.exception.TokenNotFound;
+import ro.itschool.exception.UserNotFound;
 import ro.itschool.repository.RoleRepository;
 import ro.itschool.repository.UserRepository;
 import ro.itschool.service.UserService;
@@ -22,8 +25,10 @@ import java.util.*;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    RoleRepository roleRepository;
 
     @Autowired
     EmailBodyService emailBodyService;
@@ -31,28 +36,20 @@ public class UserServiceImpl implements UserService {
     @Autowired
     EmailSender emailSender;
 
-//    @Autowired
-//    LocationRepository locationRepository;
 
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
+    @Override
+    public User findUserByEmail(String email) throws EmailNotFound {
+        return Optional.ofNullable(userRepository.findByEmail(email)).orElseThrow(EmailNotFound::new);
     }
 
     @Override
-    public User findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public User findUserByUserName(String username) throws UserNotFound {
+        return Optional.ofNullable(userRepository.findByUsernameIgnoreCase(username)).orElseThrow(UserNotFound::new);
     }
 
     @Override
-    public User findUserByUserName(String username) {
-        return userRepository.findByUsernameIgnoreCase(username);
-    }
-
-    @Override
-    public User findUserByRandomToken(String randomToken) {
-        return userRepository.findByRandomToken(randomToken);
+    public User findUserByRandomToken(String randomToken) throws TokenNotFound {
+        return Optional.ofNullable(userRepository.findByRandomToken(randomToken)).orElseThrow(TokenNotFound::new);
     }
 
     @Override
@@ -67,7 +64,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteById(Integer id) {
+    public void deleteById(Integer id) throws UserNotFound {
+        Optional.of(userRepository.findById(id)).orElseThrow(UserNotFound::new);
         userRepository.deleteById(id);
     }
 
@@ -86,18 +84,17 @@ public class UserServiceImpl implements UserService {
             }
         });
         userRepository.save(user);
-
-
-        //add location to user, de folosit la paintings
-//        final User user1 = userRepository.save(user);
-//        if (receivedUser.getLocations() != null)
-//            receivedUser.getLocations()
-//                    .forEach(location -> {
-//                        location.setUser(user1);
-//                        locationRepository.save(location);
-//                    });
-//        return user1;
     }
+
+
+//  public User addLocationToUser(User receivedUser) {
+//    User user = new User(receivedUser);
+//        if (receivedUser.getArchitectures() != null)
+//                receivedUser.getArchitectures()
+//                .forEach(architecture -> {architecture.setUser(user);
+//                architectureRepository.save(architecture);
+//                });
+//                return user;
 
     @Override
     public void updateUser(User user) {

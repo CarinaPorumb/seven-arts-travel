@@ -2,17 +2,61 @@ package ro.itschool.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import ro.itschool.service.ArchitectureService;
-import ro.itschool.service.UserService;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import ro.itschool.entity.Architecture;
+import ro.itschool.entity.User;
+import ro.itschool.exception.ArchitectureNotFound;
+import ro.itschool.repository.ArchitectureRepository;
+
+import java.util.Collections;
+import java.util.Optional;
 
 @Controller
 public class ArchitectureController {
 
     @Autowired
-    UserService userService;
+    ArchitectureRepository architectureRepository;
 
-    @Autowired
-    ArchitectureService architectureService;
+    @GetMapping("/architecture")
+    public String getArchitectures(Model model) {
+        model.addAttribute("architectures", architectureRepository.findAll());
+        return "allArchitectures";
+    }
 
+    @GetMapping("/saveArchitecture")
+    public String saveArchitecture1(Model model) {
+        model.addAttribute("architectureObject", new Architecture());
+        return "saveArchitecture";
+    }
+
+    @PostMapping("/saveArchitecture")
+    public String saveArchitecture2(@ModelAttribute Architecture architecture, Model model) {
+        model.addAttribute("architectureObject", architecture);
+        architectureRepository.save(architecture);
+        return "redirect:/architecture";
+    }
+
+    @GetMapping("/updateArchitecture/{name}")
+    public String updateArchitecture(@PathVariable String name) throws ArchitectureNotFound {
+        Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
+        return "updateArchitecture";
+    }
+
+    @DeleteMapping("/deleteArchitecture/{name}")
+    public String deleteArchitecture(@PathVariable String name) throws ArchitectureNotFound {
+        Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
+        architectureRepository.deleteByName(name);
+        return "redirect:/architecture";
+    }
+
+    //?
+    @PostMapping("/addArchitectureToUser")
+    public String addArchitectureToUser(@ModelAttribute Architecture architecture, User user, Model model) {
+        model.addAttribute("architectureObject", architecture);
+        user.setArchitectureSet(Collections.singleton(architecture));
+        architectureRepository.save(architecture);
+        return "redirect:/architecture";
+    }
 
 }

@@ -9,7 +9,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ro.itschool.entity.Role;
 import ro.itschool.entity.User;
+import ro.itschool.exception.UserNotFound;
 import ro.itschool.service.UserService;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -23,7 +25,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.findUserByUserName(username);
+        User user;
+        try {
+            user = userService.findUserByUserName(username);
+        } catch (UserNotFound e) {
+            throw new RuntimeException(e);
+        }
         List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
         return new User(user.getUsername(), user.getPassword(), user.isEnabled(), user.isAccountNonExpired(),
                 user.isCredentialsNonExpired(), user.isAccountNonLocked(), authorities);
