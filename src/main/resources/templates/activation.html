@@ -74,13 +74,11 @@
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
 
-            <h4 class="text-center">Press the buton below to activate your account</h4>
+            <h4 class="text-center">Press the button below to activate your account</h4>
             <div class="card-body">
                 <form th:action="@{'/activation/'+${randomToken}}" th:object="${user}" method="POST">
                     <div class="box-footer text-center">
-                        <button type="submit" class="btn btn-primary">
-                            Activate
-                        </button>
+                        <button type="submit" class="btn btn-primary">Activate</button>
                     </div>
                 </form>
             </div>

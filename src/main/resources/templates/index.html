@@ -1,75 +1,214 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>E-wallet</title>
+    <title>Seven Arts Travel</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
-    <link th:href="@{/css/sidenav.css}" rel="stylesheet"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"/>
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"/>
+    <!-- MDB -->
+    <link rel="stylesheet" href="css/mdb.min.css"/>
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="css/style.css"/>
     <link th:href="@{/css/topnav.css}" rel="stylesheet"/>
+
+    <style>
+     <style>
+      /* Carousel styling */
+      #introCarousel,
+      .carousel-inner,
+      .carousel-item,
+      .carousel-item.active {
+        height: 100vh;
+      }
+      .carousel-item:nth-child(1) {
+        background-image: url('https://paginarium.ro/wp-content/uploads/2020/04/969697_244529032338694_772005203_n.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
+
+      .carousel-item:nth-child(2) {
+        background-image: url('https://drivemagazine.ro/media-library/image.jpg?id=28838532&width=800&quality=80');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
+
+      .carousel-item:nth-child(3) {
+        background-image: url('https://collectionapi.metmuseum.org/api/collection/v1/iiif/486757/1004909/restricted');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
+
+            .carousel-item:nth-child(4) {
+        background-image: url('https://mdbootstrap.com/img/Photos/Others/images/79.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
+       .carousel-item:nth-child(5) {
+        background-image: url('https://mdbootstrap.com/img/Photos/Others/images/80.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
+
+      .carousel-item:nth-child(6) {
+        background-image: url('https://mdbootstrap.com/img/Photos/Others/images/81.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
+
+      .carousel-item:nth-child(7) {
+        background-image: url('https://mdbootstrap.com/img/Photos/Others/images/82.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
+      .carousel-item:nth-child(8) {
+        background-image: url('https://mdbootstrap.com/img/Photos/Others/images/83.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
+
+
+      /* Height for devices larger than 576px */
+      @media (min-width: 992px) {
+        #introCarousel {
+          margin-top: -58.59px;
+        }
+      }
+
+
+    </style>
 
 </head>
 <body>
 
 <div th:replace="fragments/navs.html :: topnav"></div>
 
-<div class="row">
-    <div class="col-md-2">
-        <div th:replace="fragments/navs.html :: sidenav"></div>
-    </div>
+<div class="container">
 
-    <div class="col-md-9">
-        <div>
-            <div class="container">
-                <div th:switch="${locations}">
-                    <div class="col-md-10">
-                        <div th:case="*">
-                            <table class="table table-striped table-responsive-md">
-                                <thead>
-                                <tr>
-                                    <th> Name</th>
-                                    <th> Category</th>
-                                    <th> Movement</th>
-                                    <th> Year</th>
-                                    <th> Country</th>
-                                    <th> Is Temporary</th>
-                                    <th><span class="fa-solid fa-triangle-exclamation"></span>Delete</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="location: ${locations}">
-                                    <td><span th:text="${location.name}"> Name </span></td>
-                                    <td><span th:text="${location.category}"> Category </span></td>
-                                    <td><span th:text="${location.movement}"> Movement </span></td>
-                                    <td><span th:text="${location.year}"> Year </span></td>
-                                    <td><span th:text="${location.country}"> Country </span></td>
-                                    <td><span th:unless="${location.isTemporary}"
-                                              class="fa-solid fa-square-xmark"></span>
-                                        <span th:if="${location.isTemporary}"
-                                              class="fa-solid fa-square-check"></span>
-                                    </td>
-                                    <td><a th:href="@{'/location/delete/' + ${location.name}}"
-                                           class="fa-solid fa-trash"></a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+    <div id="carouselExampleCaptions" class="carousel slide" data-mdb-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-mdb-interval="2000">
+                <img src="https://paginarium.ro/wp-content/uploads/2020/04/969697_244529032338694_772005203_n.jpg" class="d-block w-100"/>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>7 Arts Travel</h5>
+                    <p>Welcome to Seven Arts Travel.</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-mdb-interval="2000">
+                <img src="https://www.travelblissnow.com/wp-content/uploads/2021/07/Loire-Chambord.jpg" class="d-block w-100"/>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Architecture</h5>
+                    <p>The most beautiful castles in the world.</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-mdb-interval="2000">
+                <img src="https://c4.wallpaperflare.com/wallpaper/908/676/888/sweeden-stockholm-museum-gustav-iii-s-antikmuseum-wallpaper-preview.jpg" class="d-block w-100"/>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Sculpture</h5>
+                    <p>And sculptures.</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-mdb-interval="2000">
+                <img src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp" class="d-block w-100"/>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Painting</h5>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-mdb-interval="2000">
+                <img src="https://www.discovergermany.com/wp-content/uploads/2020/01/1-STGALLENSTIFT_DSF8411_FISCHER_klein.jpg" class="d-block w-100"/>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Literature</h5>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-mdb-interval="2000">
+                <img src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp" class="d-block w-100"/>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Music</h5>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-mdb-interval="2000">
+                <img src="https://www.gannett-cdn.com/authoring/2017/10/13/NOKL/ghnewsok-OK-5567877-4048f733.jpeg?width=660&height=484&fit=crop&format=pjpg&auto=webp" class="d-block w-100"/>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Ballet</h5>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-mdb-interval="2000">
+                <img src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp" class="d-block w-100"/>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Cinema</h5>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
+        <button class="carousel-control-prev" data-mdb-target="#carouselExampleInterval" type="button" data-mdb-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" data-mdb-target="#carouselExampleInterval" type="button" data-mdb-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+    <!--                -->
+    <!--                <div th:switch="${architectures}">-->
+    <!--                    <div class="col-md-10">-->
+    <!--                        <div th:case="*">-->
+    <!--                            <table class="table table-striped table-responsive-md">-->
+    <!--                                <thead>-->
+    <!--                                <tr>-->
+    <!--                                    <th> Name</th>-->
+    <!--                                    <th> Author</th>-->
+    <!--                                    <th> Movement</th>-->
+    <!--                                    <th> Location</th>-->
+    <!--                                    <th> Year</th>-->
+    <!--                                    <th> Is Temporary</th>-->
+    <!--                                    <th><span class="fa-solid fa-triangle-exclamation"></span>Delete</th>-->
+    <!--                                </tr>-->
+    <!--                                </thead>-->
+    <!--                                <tbody>-->
+    <!--                                <tr th:each="architecture: ${architectures}">-->
+    <!--                                    <td><span th:text="${architecture.name}"> Name </span></td>-->
+    <!--                                    <td><span th:text="${architecture.author}"> Author </span></td>-->
+    <!--                                    <td><span th:text="${architecture.movement}"> Movement </span></td>-->
+    <!--                                    <td><span th:text="${architecture.location}"> Location </span></td>-->
+    <!--                                    <td><span th:text="${architecture.year}"> Year </span></td>-->
+    <!--                                    <td><span th:unless="${architecture.isTemporary}"-->
+    <!--                                              class="fa-solid fa-square-xmark"></span>-->
+    <!--                                        <span th:if="${architecture.isTemporary}"-->
+    <!--                                              class="fa-solid fa-square-check"></span>-->
+    <!--                                    </td>-->
+    <!--                                    <td><a th:href="@{'/architecture/delete/' + ${architecture.name}}"-->
+    <!--                                           class="fa-solid fa-trash"></a>-->
+    <!--                                    </td>-->
+    <!--                                </tr>-->
+    <!--                                </tbody>-->
+    <!--                            </table>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+</div>
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-
 </body>
 </html>
