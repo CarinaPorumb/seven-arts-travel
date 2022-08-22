@@ -24,9 +24,6 @@ public interface UserService {
     void deleteById(Integer id) throws UserNotFound;
 
     void saveUser(User u);
-
-
-
     void updateUser(User user);
 
     List<User> searchUser(String keyword);

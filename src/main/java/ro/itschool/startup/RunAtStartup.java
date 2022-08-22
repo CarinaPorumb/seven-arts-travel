@@ -37,13 +37,13 @@ public class RunAtStartup {
     public void contextRefreshedEvent() {
 
         saveAdmin();
-//        saveContributor();
+        saveContributor();
         saveUser();
         saveArchitecture();
-//        saveMusic();
+        saveMusic();
 //        savePainting();
 //        saveLiterature();
-//        saveSculpture();
+        saveSculpture();
 //        saveCinema();
 //        saveBalletAndTheatre();
 
@@ -107,24 +107,24 @@ public class RunAtStartup {
         userService.saveUser(user);
     }
 
-//    public void saveContributor() {
-//        User user = new User();
-//        user.setUsername("Contributor");
-//        user.setPassword("Contributor");
-//        user.setRandomToken("randomToken");
-//        final Set<Role> roleUserContributor = new HashSet<>();
-//        roleUserContributor.add(new Role("ROLE_CONTRIBUTOR"));
-//        user.setRoles(roleUserContributor);
-//        user.setEnabled(true);
-//        user.setAccountNonExpired(true);
-//        user.setAccountNonLocked(true);
-//        user.setCredentialsNonExpired(true);
-//        user.setEmail("contributor1@gmail.com");
-//        user.setFullName("Contributor1");
-//        user.setPasswordConfirm("Contributor");
-//        user.setRandomTokenEmail("randomToken");
-//        userService.saveUser(user);
-//    }
+    public void saveContributor() {
+        User user = new User();
+        user.setUsername("Contributor");
+        user.setPassword("Contributor");
+        user.setRandomToken("randomToken");
+        final Set<Role> roleUserContributor = new HashSet<>();
+        roleUserContributor.add(new Role("ROLE_CONTRIBUTOR"));
+        user.setRoles(roleUserContributor);
+        user.setEnabled(true);
+        user.setAccountNonExpired(true);
+        user.setAccountNonLocked(true);
+        user.setCredentialsNonExpired(true);
+        user.setEmail("contributor1@gmail.com");
+        user.setFullName("Contributor1");
+        user.setPasswordConfirm("Contributor");
+        user.setRandomTokenEmail("randomToken");
+        userService.saveUser(user);
+    }
 
     public void saveUser() {
         User user = new User();
@@ -145,27 +145,27 @@ public class RunAtStartup {
         userService.saveUser(user);
     }
 
-//    public void saveMusic() {
-//        Set<Music> musics = new HashSet<>();
-//        Music music = new Music();
-//        music.setName("George Enescu International Festival");
-//        music.setMovement(Style.CONTEMPORARY);
-//        music.setLocation("Romanian Athenaeum, 050204, Bucharest, Romania");
-//        music.setIsTemporary(true);
-//        music.setEventTime(LocalDate.of(2022, 9, 4));
-//
-//        Music music2 = new Music();
-//        music2.setName("Vienna New Year's Concert");
-//        music2.setMovement(Style.ROMANTICISM);
-//        music2.setLocation("Golden Hall of the Vienna State Opera, Austria");
-//        music2.setIsTemporary(true);
-//        music2.setEventTime(LocalDate.of(2023, 1, 1));
-//
-//        musicService.save(music);
-//        musicService.save(music2);
-//        musics.add(music);
-//        musics.add(music2);
-//    }
+    public void saveMusic() {
+        Set<Music> musics = new HashSet<>();
+        Music music = new Music();
+        music.setName("George Enescu International Festival");
+        music.setMovement(Style.CONTEMPORARY);
+        music.setLocation("Romanian Athenaeum, 050204, Bucharest, Romania");
+        music.setIsTemporary(false);
+        music.setEventTime(LocalDate.of(2022, 9, 4));
+
+        Music music2 = new Music();
+        music2.setName("Vienna New Year's Concert");
+        music2.setMovement(Style.ROMANTICISM);
+        music2.setLocation("Golden Hall of the Vienna State Opera, Austria");
+        music2.setIsTemporary(true);
+        music2.setEventTime(LocalDate.of(2023, 1, 1));
+
+        musicService.save(music);
+        musicService.save(music2);
+        musics.add(music);
+        musics.add(music2);
+    }
 //
 //    public void savePainting() {
 //        Set<Painting> paintings = new HashSet<>();
@@ -210,30 +210,30 @@ public class RunAtStartup {
 //        literatures.add(literature);
 //        literatures.add(literature2);
 //    }
-//
-//    public void saveSculpture() {
-//        Set<Sculpture> sculptures = new HashSet<>();
-//        Sculpture sculpture = new Sculpture();
-//        sculpture.setName("The Thinker");
-//        sculpture.setAuthor("Auguste Rodin");
-//        sculpture.setLocation("77 Rue de Varenne, 75007 Paris, France");
-//        sculpture.setMovement(Style.REALISM);
-//        sculpture.setIsTemporary(false);
-//        sculpture.setYear(LocalDate.ofEpochDay(1902));
-//
-//        Sculpture sculpture2 = new Sculpture();
-//        sculpture2.setName("Bird in Space");
-//        sculpture2.setAuthor("Constantin Brancusi");
-//        sculpture2.setLocation("1000 5th Ave, New York, 10028, USA");
-//        sculpture2.setMovement(Style.MODERNISM);
-//        sculpture2.setIsTemporary(false);
-//        sculpture2.setYear(LocalDate.ofEpochDay(1923));
-//
-//        sculptureService.save(sculpture);
-//        sculptureService.save(sculpture2);
-//        sculptures.add(sculpture);
-//        sculptures.add(sculpture2);
-//    }
+
+    public void saveSculpture() {
+        Set<Sculpture> sculptures = new HashSet<>();
+        Sculpture sculpture = new Sculpture();
+        sculpture.setName("The Thinker");
+        sculpture.setAuthor("Auguste Rodin");
+        sculpture.setLocation("77 Rue de Varenne, 75007 Paris, France");
+        sculpture.setMovement(Style.REALISM);
+        sculpture.setIsTemporary(false);
+        sculpture.setYear(LocalDate.ofEpochDay(1902));
+
+        Sculpture sculpture2 = new Sculpture();
+        sculpture2.setName("Bird in Space");
+        sculpture2.setAuthor("Constantin Brancusi");
+        sculpture2.setLocation("1000 5th Ave, New York, 10028, USA");
+        sculpture2.setMovement(Style.MODERNISM);
+        sculpture2.setIsTemporary(false);
+        sculpture2.setYear(LocalDate.ofEpochDay(1923));
+
+        sculptureService.save(sculpture);
+        sculptureService.save(sculpture2);
+        sculptures.add(sculpture);
+        sculptures.add(sculpture2);
+    }
 //
 //    public void saveCinema() {
 //        Set<Cinema> cinemas = new HashSet<>();

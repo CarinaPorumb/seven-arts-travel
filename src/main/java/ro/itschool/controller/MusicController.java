@@ -8,6 +8,7 @@ import ro.itschool.entity.Music;
 import ro.itschool.entity.User;
 import ro.itschool.exception.MusicNotFound;
 import ro.itschool.repository.MusicRepository;
+import ro.itschool.service.MusicService;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -18,10 +19,13 @@ public class MusicController {
     @Autowired
     MusicRepository musicRepository;
 
+    @Autowired
+    MusicService musicService;
+
     @GetMapping("/music")
-    public String getMusicList(Model model) {
-        model.addAttribute("musicList", musicRepository.findAll());
-        return "musicList";
+    public String getMusicList(Model model, String keyword) {
+        model.addAttribute("musicList", musicRepository.searchMusic(keyword));
+        return "/music";
     }
 
     @GetMapping("/saveMusic")

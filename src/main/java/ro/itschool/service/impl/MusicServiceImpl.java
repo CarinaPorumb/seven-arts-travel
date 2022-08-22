@@ -43,4 +43,9 @@ public class MusicServiceImpl implements MusicService {
     public List<Music> getAllMusicsByUserId(Integer userId) throws UserNotFound {
         return Optional.ofNullable(musicRepository.findByUserId(userId)).orElseThrow(UserNotFound::new);
     }
+
+
+    public List<Music> searchMusic(String keyword) {
+        return musicRepository.searchMusic(keyword);
+    }
 }
