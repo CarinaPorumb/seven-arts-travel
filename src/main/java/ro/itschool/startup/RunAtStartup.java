@@ -41,27 +41,71 @@ public class RunAtStartup {
         saveUser();
         saveArchitecture();
         saveMusic();
-//        savePainting();
-//        saveLiterature();
+        savePainting();
+        saveLiterature();
         saveSculpture();
-//        saveCinema();
-//        saveBalletAndTheatre();
+        saveCinema();
+        saveBalletAndTheatre();
 
     }
 
-//    public void saveBalletAndTheatre() {
-//        Set<BalletAndTheatre> balletAndTheatreSet = new HashSet<>();
-//        BalletAndTheatre balletAndTheatre = new BalletAndTheatre();
-//        balletAndTheatre.setName("Swan Lake");
-//        balletAndTheatre.setAuthor("English National Ballet");
-//        balletAndTheatre.setLocation("London Coliseum, St Martin's Ln, London, UK");
-//        balletAndTheatre.setMovement(Style.ROMANTICISM);
-//        balletAndTheatre.setEventTime(LocalDate.of(2022, 9, 28));
-//        balletAndTheatre.setIsTemporary(true);
-//
-//        balletAndTheatreService.save(balletAndTheatre);
-//        balletAndTheatreSet.add(balletAndTheatre);
-//    }
+
+    public void saveAdmin() {
+        User user = new User();
+        user.setUsername("Admin");
+        user.setPassword("Admin");
+        user.setRandomToken("randomToken");
+        final Role roleUserAdmin = new Role("ROLE_ADMIN");
+        final Set<Role> roles = new HashSet<>();
+        roles.add(roleUserAdmin);
+        user.setRoles(roles);
+        user.setEnabled(true);
+        user.setAccountNonExpired(true);
+        user.setAccountNonLocked(true);
+        user.setCredentialsNonExpired(true);
+        user.setEmail("admin1@gmail.com");
+        user.setFullName("Admin1");
+        user.setPasswordConfirm("Admin");
+        user.setRandomTokenEmail("randomToken");
+        userService.saveUser(user);
+    }
+    public void saveContributor() {
+        User user = new User();
+        user.setUsername("Contributor");
+        user.setPassword("Contributor");
+        user.setRandomToken("randomToken");
+        final Set<Role> roleUserContributor = new HashSet<>();
+        roleUserContributor.add(new Role("ROLE_CONTRIBUTOR"));
+        user.setRoles(roleUserContributor);
+        user.setEnabled(true);
+        user.setAccountNonExpired(true);
+        user.setAccountNonLocked(true);
+        user.setCredentialsNonExpired(true);
+        user.setEmail("contributor1@gmail.com");
+        user.setFullName("Contributor1");
+        user.setPasswordConfirm("Contributor");
+        user.setRandomTokenEmail("randomToken");
+        userService.saveUser(user);
+    }
+    public void saveUser() {
+        User user = new User();
+        user.setUsername("User");
+        user.setPassword("User");
+        user.setRandomToken("randomToken");
+        final Set<Role> roleUserUser = new HashSet<>();
+        roleUserUser.add(new Role("ROLE_USER"));
+        user.setRoles(roleUserUser);
+        user.setEnabled(true);
+        user.setAccountNonExpired(true);
+        user.setAccountNonLocked(true);
+        user.setCredentialsNonExpired(true);
+        user.setEmail("user1@gmail.com");
+        user.setFullName("User");
+        user.setPasswordConfirm("User");
+        user.setRandomTokenEmail("randomToken");
+        userService.saveUser(user);
+    }
+
 
     public void saveArchitecture() {
         Set<Architecture> architectures = new HashSet<>();
@@ -87,64 +131,6 @@ public class RunAtStartup {
         architectures.add(architecture2);
     }
 
-    public void saveAdmin() {
-        User user = new User();
-        user.setUsername("Admin");
-        user.setPassword("Admin");
-        user.setRandomToken("randomToken");
-        final Role roleUserAdmin = new Role("ROLE_ADMIN");
-        final Set<Role> roles = new HashSet<>();
-        roles.add(roleUserAdmin);
-        user.setRoles(roles);
-        user.setEnabled(true);
-        user.setAccountNonExpired(true);
-        user.setAccountNonLocked(true);
-        user.setCredentialsNonExpired(true);
-        user.setEmail("admin1@gmail.com");
-        user.setFullName("Admin1");
-        user.setPasswordConfirm("Admin");
-        user.setRandomTokenEmail("randomToken");
-        userService.saveUser(user);
-    }
-
-    public void saveContributor() {
-        User user = new User();
-        user.setUsername("Contributor");
-        user.setPassword("Contributor");
-        user.setRandomToken("randomToken");
-        final Set<Role> roleUserContributor = new HashSet<>();
-        roleUserContributor.add(new Role("ROLE_CONTRIBUTOR"));
-        user.setRoles(roleUserContributor);
-        user.setEnabled(true);
-        user.setAccountNonExpired(true);
-        user.setAccountNonLocked(true);
-        user.setCredentialsNonExpired(true);
-        user.setEmail("contributor1@gmail.com");
-        user.setFullName("Contributor1");
-        user.setPasswordConfirm("Contributor");
-        user.setRandomTokenEmail("randomToken");
-        userService.saveUser(user);
-    }
-
-    public void saveUser() {
-        User user = new User();
-        user.setUsername("User");
-        user.setPassword("User");
-        user.setRandomToken("randomToken");
-        final Set<Role> roleUserUser = new HashSet<>();
-        roleUserUser.add(new Role("ROLE_USER"));
-        user.setRoles(roleUserUser);
-        user.setEnabled(true);
-        user.setAccountNonExpired(true);
-        user.setAccountNonLocked(true);
-        user.setCredentialsNonExpired(true);
-        user.setEmail("user1@gmail.com");
-        user.setFullName("User");
-        user.setPasswordConfirm("User");
-        user.setRandomTokenEmail("randomToken");
-        userService.saveUser(user);
-    }
-
     public void saveMusic() {
         Set<Music> musics = new HashSet<>();
         Music music = new Music();
@@ -166,50 +152,50 @@ public class RunAtStartup {
         musics.add(music);
         musics.add(music2);
     }
-//
-//    public void savePainting() {
-//        Set<Painting> paintings = new HashSet<>();
-//        Painting painting = new Painting();
-//        painting.setName("L'Annonciade Museum");
-//        painting.setMovement(Style.MODERNISM);
-//        painting.setLocation("Georges Grammont, 83990 Saint-Tropez, France");
-//        painting.setIsTemporary(false);
-//        painting.setYear(LocalDate.ofEpochDay(1922));
-//
-//        Painting painting2 = new Painting();
-//        painting2.setName("The Louvre Museum");
-//        painting2.setMovement(Style.RENAISSANCE);
-//        painting2.setLocation("Rue de Rivoli, 75001 Paris, France");
-//        painting2.setIsTemporary(false);
-//        painting2.setYear(LocalDate.ofEpochDay(1793));
-//
-//        paintingService.save(painting);
-//        paintingService.save(painting2);
-//        paintings.add(painting);
-//        paintings.add(painting2);
-//    }
-//
-//    public void saveLiterature() {
-//        Set<Literature> literatures = new HashSet<>();
-//        Literature literature = new Literature();
-//        literature.setName("Livraria Lello & Irmão");
-//        literature.setLocation("R. das Carmelitas 144, 4050-161 Porto, Portugal");
-//        literature.setMovement(Style.ARTNOUVEAU);
-//        literature.setIsTemporary(false);
-//        literature.setYear(LocalDate.ofEpochDay(1906));
-//
-//        Literature literature2 = new Literature();
-//        literature2.setName("Strahov Library");
-//        literature2.setLocation("Strahovské nádvoří 132/1, 118 00 Praha, Czech Republic");
-//        literature2.setMovement(Style.GOTHIC);
-//        literature2.setIsTemporary(false);
-//        literature2.setYear(LocalDate.ofEpochDay(1138));
-//
-//        literatureService.save(literature);
-//        literatureService.save(literature2);
-//        literatures.add(literature);
-//        literatures.add(literature2);
-//    }
+
+    public void savePainting() {
+        Set<Painting> paintings = new HashSet<>();
+        Painting painting = new Painting();
+        painting.setName("L'Annonciade Museum");
+        painting.setMovement(Style.MODERNISM);
+        painting.setLocation("Georges Grammont, 83990 Saint-Tropez, France");
+        painting.setIsTemporary(false);
+        painting.setYear(LocalDate.ofEpochDay(1922));
+
+        Painting painting2 = new Painting();
+        painting2.setName("The Louvre Museum");
+        painting2.setMovement(Style.RENAISSANCE);
+        painting2.setLocation("Rue de Rivoli, 75001 Paris, France");
+        painting2.setIsTemporary(false);
+        painting2.setYear(LocalDate.ofEpochDay(1793));
+
+        paintingService.save(painting);
+        paintingService.save(painting2);
+        paintings.add(painting);
+        paintings.add(painting2);
+    }
+
+    public void saveLiterature() {
+        Set<Literature> literatures = new HashSet<>();
+        Literature literature = new Literature();
+        literature.setName("Livraria Lello & Irmão");
+        literature.setLocation("R. das Carmelitas 144, 4050-161 Porto, Portugal");
+        literature.setMovement(Style.ARTNOUVEAU);
+        literature.setIsTemporary(false);
+        literature.setYear(LocalDate.ofEpochDay(1906));
+
+        Literature literature2 = new Literature();
+        literature2.setName("Strahov Library");
+        literature2.setLocation("Strahovské nádvoří 132/1, 118 00 Praha, Czech Republic");
+        literature2.setMovement(Style.GOTHIC);
+        literature2.setIsTemporary(false);
+        literature2.setYear(LocalDate.ofEpochDay(1138));
+
+        literatureService.save(literature);
+        literatureService.save(literature2);
+        literatures.add(literature);
+        literatures.add(literature2);
+    }
 
     public void saveSculpture() {
         Set<Sculpture> sculptures = new HashSet<>();
@@ -234,50 +220,41 @@ public class RunAtStartup {
         sculptures.add(sculpture);
         sculptures.add(sculpture2);
     }
-//
-//    public void saveCinema() {
-//        Set<Cinema> cinemas = new HashSet<>();
-//        Cinema cinema = new Cinema();
-//        cinema.setName("Cannes Film Festival");
-//        cinema.setLocation("Palace of Festivals and Congresses of Cannes, France");
-//        cinema.setMovement(Style.CONTEMPORARY);
-//        cinema.setYear(LocalDate.of(2023, 5, 16));
-//        cinema.setIsTemporary(true);
-//
-//        Cinema cinema2 = new Cinema();
-//        cinema2.setName("The National Museum of Cinema");
-//        cinema2.setLocation("Via Montebello, 20, 10124 Torino, Italy");
-//        cinema2.setMovement(Style.CONTEMPORARY);
-//        cinema2.setYear(LocalDate.ofEpochDay(1958));
-//        cinema2.setIsTemporary(false);
-//
-//        cinemaService.save(cinema);
-//        cinemaService.save(cinema2);
-//        cinemas.add(cinema);
-//        cinemas.add(cinema2);
-//    }
+
+    public void saveBalletAndTheatre() {
+        Set<BalletAndTheatre> balletAndTheatreSet = new HashSet<>();
+        BalletAndTheatre balletAndTheatre = new BalletAndTheatre();
+        balletAndTheatre.setName("Swan Lake");
+        balletAndTheatre.setAuthor("English National Ballet");
+        balletAndTheatre.setLocation("London Coliseum, St Martin's Ln, London, UK");
+        balletAndTheatre.setMovement(Style.ROMANTICISM);
+        balletAndTheatre.setEventTime(LocalDate.of(2022, 9, 28));
+        balletAndTheatre.setIsTemporary(true);
+
+        balletAndTheatreService.save(balletAndTheatre);
+        balletAndTheatreSet.add(balletAndTheatre);
+    }
+
+    public void saveCinema() {
+        Set<Cinema> cinemas = new HashSet<>();
+        Cinema cinema = new Cinema();
+        cinema.setName("Cannes Film Festival");
+        cinema.setLocation("Palace of Festivals and Congresses of Cannes, France");
+        cinema.setMovement(Style.CONTEMPORARY);
+        cinema.setYear(LocalDate.of(2023, 5, 16));
+        cinema.setIsTemporary(true);
+
+        Cinema cinema2 = new Cinema();
+        cinema2.setName("The National Museum of Cinema");
+        cinema2.setLocation("Via Montebello, 20, 10124 Torino, Italy");
+        cinema2.setMovement(Style.CONTEMPORARY);
+        cinema2.setYear(LocalDate.ofEpochDay(1958));
+        cinema2.setIsTemporary(false);
+
+        cinemaService.save(cinema);
+        cinemaService.save(cinema2);
+        cinemas.add(cinema);
+        cinemas.add(cinema2);
+    }
 }
 
-
-//        Set<Location> locations = new HashSet<>();
-//        Location location = new Location();
-//        location.setName("Strahov Library");
-//        location.setCategory(Category.Literature);
-//        location.setMovement(Style.Gothic);
-//        location.setIsTemporary(true);
-//        location.setCountry("Czech Republic");
-//        location.setYear(1138);
-//        location.setUser(user);
-//
-//        Location location2 = new Location();
-//        location2.setName("The Louvre Museum");
-//        location2.setCategory(Category.Painting);
-//        location2.setMovement(Style.Renaissance);
-//        location2.setIsTemporary(false);
-//        location2.setCountry("France");
-//        location2.setYear(1793);
-//        location2.setUser(user);
-//
-//        locations.add(location);
-//        locations.add(location2);
-//        user.setLocations(locations);

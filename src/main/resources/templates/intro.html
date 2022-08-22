@@ -267,7 +267,7 @@ button:hover {
   padding: 16px;
 }
 
-/* The Modal (background) */
+/* The Modal1 (background) */
 .modal1 {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -325,6 +325,7 @@ hr {
   }
 }
 
+
     </style>
 
     <nav class="navbar navbar-expand-lg navbar-dark d-none d-lg-block" style="z-index: 2000;">
@@ -368,8 +369,11 @@ hr {
                                 <div>
                                     <button onclick="document.getElementById('id01').style.display='block'"
                                             style="width:auto;"
-                                            class="btn btn-outline-light btn-lg m-2">Login
-                                    </button>
+                                            class="btn btn-outline-light btn-lg m-2">Login</button>
+                                    <button onclick="document.getElementById('id02').style.display='block'"
+                                            style="width:auto;"
+                                            class="btn btn-outline-light btn-lg m-2">Register</button>
+
                                     <div id="id01" class="modal">
                                         <form class="modal-content animate" action="/login-modal" method="post">
 
@@ -386,67 +390,64 @@ hr {
 
                                             <div class="container" style="background-color:#f1f1f1">
                                                 <button type="button"
-                                                        onclick="document.getElementById('id01').style.display='none'"
+                                                        onclick="document.getElementById('id02').style.display='none'"
                                                         class="cancelbtn">Cancel
                                                 </button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
-<!--                                <div>-->
-<!--                                    <button onclick="document.getElementById('id02').style.display='block'"-->
-<!--                                            style="width:auto;"-->
-<!--                                            class="btn btn-outline-light btn-lg m-2">Sign Up-->
-<!--                                    </button>-->
-<!--                                    <div id="id02" class="modal1">-->
-<!--                                        <form class="modal-content" action="/register" th:action="@{/register}"-->
-<!--                                              th:object="${user}" method="post">-->
-<!--                                            <div class="container">-->
-<!--                                                <h1>Sign Up</h1>-->
-<!--                                                <hr>-->
-<!--                                                <label for="fullName"><b>Name</b></label>-->
-<!--                                                <input type="text" th:field="*{fullName}" id="fullName"-->
-<!--                                                       placeholder="Name" required>-->
 
-<!--                                                <label for="username"><b>Username</b></label>-->
-<!--                                                <input type="text" th:field="*{username}" id="username2"-->
-<!--                                                       placeholder="Username" required>-->
+                                <div>
+                                    <div id="id02" class="modal1">
+                                        <form class="modal-content" th:action="@{/register}" th:object="${user}"
+                                              method="post">
+                                            <div class="container">
+                                                <h1>Sign Up</h1>
+                                                <hr>
+                                                <label for="fullName"><b>Name</b></label>
+                                                <input type="text" th:field="*{fullName}" id="fullName"
+                                                       placeholder="Name" required>
 
-<!--                                                <label for="email"><b>Email</b></label>-->
-<!--                                                <input type="email" th:field="*{email}" id="email" placeholder="Email"-->
-<!--                                                       name="email" required minlength="5">-->
+                                                <label for="username"><b>Username</b></label>
+                                                <input type="text" th:field="*{username}" id="username2"
+                                                       placeholder="Username" required>
 
-<!--                                                <label for="password1"><b>Password</b></label>-->
-<!--                                                <input type="password" th:field="*{password}" id="password1"-->
-<!--                                                       placeholder="Password" name="password1" required minlength="4">-->
+                                                <label for="email"><b>Email</b></label>
+                                                <input type="email" th:field="*{email}" id="email" placeholder="Email"
+                                                       name="email" required minlength="5">
 
-<!--                                                <label for="passwordConfirm"><b>Repeat Password</b></label>-->
-<!--                                                <input type="password" th:field="*{passwordConfirm}"-->
-<!--                                                       id="passwordConfirm"-->
-<!--                                                       placeholder="Repeat Password" name="passwordConfirm" required-->
-<!--                                                       minlength="4">-->
+                                                <label for="password1"><b>Password</b></label>
+                                                <input type="password" th:field="*{password}" id="password1"
+                                                       placeholder="Password" name="password1" required minlength="4">
 
-<!--                                                <div th:if="${user.password != user.passwordConfirm}"-->
-<!--                                                     class="alert alert-danger" role="alert">-->
-<!--                                                    <p class="error">Passwords do not match!</p>-->
-<!--                                                </div>-->
-<!--                                                <div>-->
-<!--                                                    <input type="hidden" th:field="*{accountNonExpired}"/>-->
-<!--                                                    <input type="hidden" th:field="*{accountNonLocked}"/>-->
-<!--                                                    <input type="hidden" th:field="*{credentialsNonExpired}"/>-->
-<!--                                                    <input type="hidden" th:field="*{enabled}"/>-->
-<!--                                                </div>-->
-<!--                                                <div class="clearfix">-->
-<!--                                                    <button type="button"-->
-<!--                                                            onclick="document.getElementById('id02').style.display='none'"-->
-<!--                                                            class="cancelbtn">Cancel-->
-<!--                                                    </button>-->
-<!--                                                    <button type="submit">Sign Up</button>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </form>-->
-<!--                                    </div>-->
-<!--                                </div>-->
+                                                <label for="passwordConfirm"><b>Repeat Password</b></label>
+                                                <input type="password" th:field="*{passwordConfirm}"
+                                                       id="passwordConfirm"
+                                                       placeholder="Repeat Password" name="passwordConfirm" required
+                                                       minlength="4">
+
+                                                <div th:if="${user.password != user.passwordConfirm}"
+                                                     class="alert alert-danger" role="alert">
+                                                    <p class="error">Passwords do not match!</p>
+                                                </div>
+                                                <div>
+                                                    <input type="hidden" th:field="*{accountNonExpired}"/>
+                                                    <input type="hidden" th:field="*{accountNonLocked}"/>
+                                                    <input type="hidden" th:field="*{credentialsNonExpired}"/>
+                                                    <input type="hidden" th:field="*{enabled}"/>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <button type="button"
+                                                            onclick="document.getElementById('id02').style.display='none'"
+                                                            class="cancelbtn">Cancel
+                                                    </button>
+                                                    <button type="submit">Sign Up</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -603,9 +604,7 @@ hr {
     })
   });
 
-<script>
-// Get the modal
-var modal = document.getElementById('id01');
+
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -614,8 +613,7 @@ window.onclick = function(event) {
     }
 }
 
-// Get the modal
-var modal1 = document.getElementById('id02');
+
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -623,6 +621,7 @@ window.onclick = function(event) {
         modal1.style.display = "none";
     }
 }
+
 
 </script>
 
