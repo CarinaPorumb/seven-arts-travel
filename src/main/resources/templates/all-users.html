@@ -1,5 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
       xsi:schemaLocation="http://www.thymeleaf.org ">
 <head>
     <title>All Users</title>
@@ -60,8 +61,8 @@
                                 <tr>
                                     <th> ID</th>
                                     <th> Name</th>
-                                    <th> Email</th>
                                     <th> Username</th>
+                                    <th> Email</th>
                                     <th> Roles</th>
                                     <th> Delete</th>
                                 </tr>
@@ -70,10 +71,9 @@
                                 <tr th:each="user: ${users}">
                                     <td><span th:text="${user.id}"> Id </span></td>
                                     <td><span th:text="${user.fullName}"> Name </span></td>
-                                    <td><span th:text="${user.email}"> Email </span></td>
                                     <td><span th:text="${user.username}"> Username </span></td>
+                                    <td><span th:text="${user.email}"> Email </span></td>
                                     <td>
-
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox"
                                                    id="flexSwitchCheckCheckedDisabled" checked disabled>
@@ -100,7 +100,6 @@
                                                    for="addAdminRole">ROLE_ADMIN</label>
                                         </div>
                                     </td>
-
                                     <td>
                                         <a th:href="@{/delete/{id}(id=${user.id})}"
                                            class="fa fa-trash"></a>

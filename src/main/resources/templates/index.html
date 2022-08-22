@@ -17,196 +17,125 @@
     <link rel="stylesheet" href="css/style.css"/>
     <link th:href="@{/css/topnav.css}" rel="stylesheet"/>
 
-    <style>
-     <style>
-      /* Carousel styling */
-      #introCarousel,
-      .carousel-inner,
-      .carousel-item,
-      .carousel-item.active {
-        height: 100vh;
-      }
-      .carousel-item:nth-child(1) {
-        background-image: url('https://paginarium.ro/wp-content/uploads/2020/04/969697_244529032338694_772005203_n.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-      }
-
-      .carousel-item:nth-child(2) {
-        background-image: url('https://drivemagazine.ro/media-library/image.jpg?id=28838532&width=800&quality=80');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-      }
-
-      .carousel-item:nth-child(3) {
-        background-image: url('https://collectionapi.metmuseum.org/api/collection/v1/iiif/486757/1004909/restricted');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-      }
-
-            .carousel-item:nth-child(4) {
-        background-image: url('https://mdbootstrap.com/img/Photos/Others/images/79.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-      }
-       .carousel-item:nth-child(5) {
-        background-image: url('https://mdbootstrap.com/img/Photos/Others/images/80.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-      }
-
-      .carousel-item:nth-child(6) {
-        background-image: url('https://mdbootstrap.com/img/Photos/Others/images/81.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-      }
-
-      .carousel-item:nth-child(7) {
-        background-image: url('https://mdbootstrap.com/img/Photos/Others/images/82.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-      }
-      .carousel-item:nth-child(8) {
-        background-image: url('https://mdbootstrap.com/img/Photos/Others/images/83.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-      }
-
-
-      /* Height for devices larger than 576px */
-      @media (min-width: 992px) {
-        #introCarousel {
-          margin-top: -58.59px;
-        }
-      }
-
-
-    </style>
-
 </head>
 <body>
 
 <div th:replace="fragments/navs.html :: topnav"></div>
+<!--Section: Content-->
+<br>
+<section>
+    <div class="row">
+        <div class="col-md-6 gx-5 mb-4">
+            <br> <br>
+            <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/hN_q-_nGv4U"
+                        title="Ludovico Einaudi Experience" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-md-6 gx-5 mb-4">
+            <h4><strong>Ludovico Einaudi - Experience</strong></h4>
+            <p class="text-muted">
+                I was spending my summer holidays in a small village, in the heart of the Swiss Alps,
+                where I had a wooden room that I used as a studio.
+            </p>
+            <p><strong>Experience was born in that situation.</strong></p>
+            <p class="text-muted">
+                The music is structured around the rotation of four chords that are repeated like a mantra
+                creating a king of trance and elevation effect as if the music had the power to lift you off the ground.
+            </p>
+            <p><strong>That was my intention.</strong></p>
+            <p class="text-muted">
+                <i>Ludovico Einaudi</i></p>
+        </div>
+    </div>
+</section>
 
-<div class="container">
 
-    <div id="carouselExampleCaptions" class="carousel slide" data-mdb-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-mdb-interval="2000">
-                <img src="https://paginarium.ro/wp-content/uploads/2020/04/969697_244529032338694_772005203_n.jpg" class="d-block w-100"/>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>7 Arts Travel</h5>
-                    <p>Welcome to Seven Arts Travel.</p>
+<hr class="my-5"/>
+
+<!--Section: Content-->
+<section class="text-center">
+    <h4 class="mb-5"><strong>Facilis consequatur eligendi</strong></h4>
+
+    <div class="row">
+        <div class="col-lg-4 col-md-12 mb-4">
+            <div class="card">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="https://www.liveatshoalcreek.com/wp-content/uploads/2021/02/iStock-1190200652.jpg.webp"
+                         class="img-fluid"/>
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
                 </div>
-            </div>
-            <div class="carousel-item" data-mdb-interval="2000">
-                <img src="https://www.travelblissnow.com/wp-content/uploads/2021/07/Loire-Chambord.jpg" class="d-block w-100"/>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Architecture</h5>
-                    <p>The most beautiful castles in the world.</p>
-                </div>
-            </div>
-            <div class="carousel-item" data-mdb-interval="2000">
-                <img src="https://c4.wallpaperflare.com/wallpaper/908/676/888/sweeden-stockholm-museum-gustav-iii-s-antikmuseum-wallpaper-preview.jpg" class="d-block w-100"/>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Sculpture</h5>
-                    <p>And sculptures.</p>
-                </div>
-            </div>
-            <div class="carousel-item" data-mdb-interval="2000">
-                <img src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp" class="d-block w-100"/>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Painting</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                </div>
-            </div>
-            <div class="carousel-item" data-mdb-interval="2000">
-                <img src="https://www.discovergermany.com/wp-content/uploads/2020/01/1-STGALLENSTIFT_DSF8411_FISCHER_klein.jpg" class="d-block w-100"/>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Literature</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                </div>
-            </div>
-            <div class="carousel-item" data-mdb-interval="2000">
-                <img src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp" class="d-block w-100"/>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Music</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                </div>
-            </div>
-            <div class="carousel-item" data-mdb-interval="2000">
-                <img src="https://www.gannett-cdn.com/authoring/2017/10/13/NOKL/ghnewsok-OK-5567877-4048f733.jpeg?width=660&height=484&fit=crop&format=pjpg&auto=webp" class="d-block w-100"/>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Ballet</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                </div>
-            </div>
-            <div class="carousel-item" data-mdb-interval="2000">
-                <img src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp" class="d-block w-100"/>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Cinema</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                <div class="card-body">
+                    <h5 class="card-title">Famous painters quotes</h5>
+                    <p class="card-text">
+                       <q>Painting is poetry that is seen rather than felt, and poetry is painting that is felt rather
+                        than seen.</q> &nbsp; <i>Leonardo da Vinci</i></p>
+
+                    <p class="card-text">
+                        <q>If I could say it in words there would be no reason to paint.</q>&nbsp;<i>Damien Hirst</i></p>
+
+                    <p class="card-text">
+                        <q>Art is a line around your thoughts.</q>&nbsp;<i>Gustav Klimt</i></p>
+
+                    <p class="card-text">
+                        <q>Painting is just another way of keeping a diary.</q>&nbsp;<i>Pablo Picasso</i></p>
+
+                    <p class="card-text">
+                        <q>The idea is more important than the object.</q>&nbsp;<i>Damien Hirst</i></p>
+
+                    <p class="card-text">
+                        <q>Art is never finished, only abandoned.</q>&nbsp;<i>Leonardo Da Vinci</i></p>
+
+                    <a href="#!" class="btn btn-primary">Button</a>
                 </div>
             </div>
         </div>
 
-        <button class="carousel-control-prev" data-mdb-target="#carouselExampleInterval" type="button" data-mdb-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" data-mdb-target="#carouselExampleInterval" type="button" data-mdb-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="https://assets.penguinrandomhouse.com/wp-content/uploads/2020/02/04102424/Hd-2048X2048-TheImportanceofDiscoveringYourVoiceAsAWriter.jpg" class="img-fluid"/>
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Famous writers quotes</h5>
+                    <p class="card-text">
+                        Some quick example text to build on the card title and make up the bulk of the
+                        card's content.
+                    </p>
+                    <a href="#!" class="btn btn-primary">Button</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="https://www.artmajeur.com/medias/hd/r/a/radu-bercan/artwork/13405976_dsc05184af.jpg" class="img-fluid"/>
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Famous architects quotes</h5>
+                    <p class="card-text">
+                        Some quick example text to build on the card title and make up the bulk of the
+                        card's content.
+                    </p>
+                    <a href="#!" class="btn btn-primary">Button</a>
+                </div>
+            </div>
+        </div>
     </div>
+</section>
 
-
-    <!--                -->
-    <!--                <div th:switch="${architectures}">-->
-    <!--                    <div class="col-md-10">-->
-    <!--                        <div th:case="*">-->
-    <!--                            <table class="table table-striped table-responsive-md">-->
-    <!--                                <thead>-->
-    <!--                                <tr>-->
-    <!--                                    <th> Name</th>-->
-    <!--                                    <th> Author</th>-->
-    <!--                                    <th> Movement</th>-->
-    <!--                                    <th> Location</th>-->
-    <!--                                    <th> Year</th>-->
-    <!--                                    <th> Is Temporary</th>-->
-    <!--                                    <th><span class="fa-solid fa-triangle-exclamation"></span>Delete</th>-->
-    <!--                                </tr>-->
-    <!--                                </thead>-->
-    <!--                                <tbody>-->
-    <!--                                <tr th:each="architecture: ${architectures}">-->
-    <!--                                    <td><span th:text="${architecture.name}"> Name </span></td>-->
-    <!--                                    <td><span th:text="${architecture.author}"> Author </span></td>-->
-    <!--                                    <td><span th:text="${architecture.movement}"> Movement </span></td>-->
-    <!--                                    <td><span th:text="${architecture.location}"> Location </span></td>-->
-    <!--                                    <td><span th:text="${architecture.year}"> Year </span></td>-->
-    <!--                                    <td><span th:unless="${architecture.isTemporary}"-->
-    <!--                                              class="fa-solid fa-square-xmark"></span>-->
-    <!--                                        <span th:if="${architecture.isTemporary}"-->
-    <!--                                              class="fa-solid fa-square-check"></span>-->
-    <!--                                    </td>-->
-    <!--                                    <td><a th:href="@{'/architecture/delete/' + ${architecture.name}}"-->
-    <!--                                           class="fa-solid fa-trash"></a>-->
-    <!--                                    </td>-->
-    <!--                                </tr>-->
-    <!--                                </tbody>-->
-    <!--                            </table>-->
-    <!--                        </div>-->
-    <!--                    </div>-->
-    <!--                </div>-->
-</div>
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>

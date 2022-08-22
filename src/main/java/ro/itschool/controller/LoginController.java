@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
-    @RequestMapping(value = {"/login", "/"})
+    @RequestMapping(value = {"/login-modal"})
     public String login() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
-            return "login";
+            return "intro";
         }
         return "redirect:/index";
     }
@@ -22,6 +22,6 @@ public class LoginController {
     @RequestMapping("/login-error")
     public String loginError(Model model) {
         model.addAttribute("loginError", true);
-        return "login.html";
+        return "login";
     }
 }
