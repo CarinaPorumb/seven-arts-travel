@@ -19,7 +19,7 @@ public class RegisterController {
     @Autowired
     UserService userService;
 
-    @GetMapping(value = "/register")
+    @GetMapping(value = "/modals/register")
     public String registerForm(Model model) {
         User user = new User();
         user.setEnabled(false);
@@ -31,7 +31,7 @@ public class RegisterController {
         return "register";
     }
 
-    @PostMapping(value = "/register")
+    @PostMapping(value = "/modals/register")
     public String registerUser(@ModelAttribute("user") @RequestBody User user) {
         if (user.getPassword().equals(user.getPasswordConfirm())) {
             user.setRoles(Collections.singleton(new Role("ROLE_USER")));

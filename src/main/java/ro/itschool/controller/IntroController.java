@@ -17,7 +17,7 @@ public class IntroController {
         user.setCredentialsNonExpired(true);
         model.addAttribute("user", user);
 
-        return "intro.html";
+        return "intro";
     }
 }
 

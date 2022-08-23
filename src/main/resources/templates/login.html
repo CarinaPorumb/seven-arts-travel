@@ -1,0 +1,21 @@
+<form action="#" th:action="@{/modals/login}" method="get" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container">
+        <label for="username"><b>Username</b></label>
+        <input type="text" id="username" placeholder="username" name="username" required>
+
+        <label for="password"><b>Password</b></label>
+        <input type="password" id="password" placeholder="password" name="password" required>
+
+        <div class="col text-center">
+            <button type="submit">Login</button>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button"
+                    onclick="document.getElementById('login').style.display='none'"
+                    class="cancelbtn">Cancel
+            </button>
+        </div>
+    </div>
+</form>
+
