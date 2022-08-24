@@ -8,6 +8,6 @@ public class LogoutController {
 
     @RequestMapping(value = {"/logout"})
     public String logout(){
-        return "intro.html";
+        return "/intro";
     }
 }

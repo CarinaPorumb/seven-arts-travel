@@ -37,16 +37,16 @@ public class RunAtStartup {
     public void contextRefreshedEvent() {
 
         saveAdmin();
-//        saveContributor();
-//        saveUser();
+        saveContributor();
+        saveUser();
 
-//        saveArchitecture();
-//        saveSculpture();
-//        saveBalletAndTheatre();
-//        savePainting();
+        saveArchitecture();
+        saveSculpture();
+        saveBalletAndTheatre();
+        savePainting();
         saveMusic();
-//        saveLiterature();
-//        saveCinema();
+        saveLiterature();
+        saveCinema();
 
     }
 

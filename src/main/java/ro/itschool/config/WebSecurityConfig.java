@@ -27,7 +27,7 @@ public class WebSecurityConfig {
                 .defaultSuccessUrl("/index")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/intro")
                 .and()
                 .sessionManagement()
                 .maximumSessions(1);

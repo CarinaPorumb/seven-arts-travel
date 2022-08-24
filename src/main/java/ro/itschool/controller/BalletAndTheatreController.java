@@ -1,5 +1,9 @@
 package ro.itschool.controller;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +15,10 @@ import ro.itschool.repository.BalletAndTheatreRepository;
 
 import java.util.Collections;
 import java.util.Optional;
-
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Controller
 public class BalletAndTheatreController {
 
