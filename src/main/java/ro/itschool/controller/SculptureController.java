@@ -19,9 +19,9 @@ public class SculptureController {
     SculptureRepository sculptureRepository;
 
     @GetMapping("/sculpture")
-    public String getSculptures(Model model) {
-        model.addAttribute("sculptures", sculptureRepository.findAll());
-        return "allSculptures";
+    public String getSculptures(Model model, String keyword) {
+        model.addAttribute("sculptures", sculptureRepository.searchSculpture(keyword));
+        return "/sculpture";
     }
 
     @GetMapping("/saveSculpture")

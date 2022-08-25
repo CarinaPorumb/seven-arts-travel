@@ -15,6 +15,7 @@ import ro.itschool.repository.BalletAndTheatreRepository;
 
 import java.util.Collections;
 import java.util.Optional;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -25,10 +26,10 @@ public class BalletAndTheatreController {
     @Autowired
     BalletAndTheatreRepository balletAndTheatreRepository;
 
-    @GetMapping("/balletAndTheatre")
-    public String getBalletAndTheatreList(Model model) {
-        model.addAttribute("balletAndTheatreList", balletAndTheatreRepository.findAll());
-        return "balletAndTheatreList";
+    @GetMapping("/ballet-theatre")
+    public String getBalletAndTheatreList(Model model, String keyword) {
+        model.addAttribute("balletAndTheatreList", balletAndTheatreRepository.searchBalletAndTheatre(keyword));
+        return "/ballet-theatre";
     }
 
     @GetMapping("/saveBalletAndTheatre")

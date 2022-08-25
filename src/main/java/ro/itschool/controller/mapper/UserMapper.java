@@ -8,10 +8,10 @@ public class UserMapper {
 
     public static UserDTO convertToDTO(User user) {
         UserDTO userDTO = new UserDTO();
-        userDTO.setId(user.getId());
-        userDTO.setUsername(user.getUsername());
-        userDTO.setEmail(user.getEmail());
-        userDTO.setFullName(user.getFullName());
+        userDTO.setIdUserDTO(user.getId());
+        userDTO.setUsernameDTO(user.getUsername());
+        userDTO.setEmailDTO(user.getEmail());
+        userDTO.setFullNameDTO(user.getFullName());
 
         userDTO.setRoles(user.getRoles().stream()
                 .map(Role::getName)
@@ -34,15 +34,18 @@ public class UserMapper {
                 .toList());
 
         userDTO.setMusicDTOList(user.getMusicSet().stream()
-                .map(music -> new MusicDTO(music.getName(), music.getMovement(),music.getIsTemporary(), music.getEventTime(), music.getLocation()))
+                .map(music -> new MusicDTO(music.getName(), music.getMovement(), music.getIsTemporary(), music.getEventTime(), music.getLocation()))
                 .toList());
 
         userDTO.setPaintingDTOList(user.getPaintings().stream()
-                .map(painting -> new PaintingDTO(painting.getName(), painting.getAuthor(), painting.getMovement(),painting.getIsTemporary(), painting.getYear(), painting.getLocation()))
+                .map(painting -> new PaintingDTO(painting.getName(), painting.getAuthor(), painting.getMovement(), painting.getIsTemporary(), painting.getYear(), painting.getLocation()))
+                .toList());
+
+        userDTO.setSculptureDTOList(user.getSculptures().stream()
+                .map(sculpture -> new SculptureDTO(sculpture.getName(), sculpture.getAuthor(), sculpture.getMovement(), sculpture.getIsTemporary(), sculpture.getYear(), sculpture.getLocation()))
                 .toList());
 
         return userDTO;
-
 
     }
 }

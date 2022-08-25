@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Music</title>
+    <title>Content</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -12,20 +12,26 @@
     <link th:href="@{/css/topnav.css}" rel="stylesheet"/>
 
     <style>
-.container{
-    margin-top:0px;
+* {box-sizing: border-box;}
+
+body {
+margin: 0;
+font-family: Times New Roman", Times, serif;
 }
-.btn:hover{
-    color:white;
+
+body {
+height: 100%;
+margin: 0;
+background-color: #FFFAF0;
+
+#musicList {
+  font-family: Times New Roman", Times, serif;
+  border-collapse: collapse;
+  width: 100%;
 }
-.input-text:focus{
-    box-shadow: 0px 0px 0px;
-    border-color:#343a40!important;
-    outline: 0px;
-}
-.form-control {
-    border: 1px solid #343a40!important;
-}
+
+
+
 
 
     </style>
@@ -35,14 +41,13 @@
 <div th:replace="fragments/navs.html :: topnav"></div>
 <div class="col-md-2">
 </div>
-
 <div class="container my-2">
     <div class="card ">
         <div class="card-body">
             <div th:switch="${musicList}" class="container my-5">
                 <div class="col-md-10">
                     <div class="search-container">
-                        <form th:action="@{/music}" method="get">
+                        <form th:action="@{/content}" method="get">
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="input-group mb-3">
@@ -64,26 +69,27 @@
                             <tr>
                                 <th> Name</th>
                                 <th> Location</th>
+                                <th> Event Time</th>
                                 <th> Movement</th>
                                 <th> Is Temporary</th>
-                                <th> Event Time</th>
                                 <th> Update</th>
                                 <th> Delete</th>
                             </tr>
+
                             </thead>
                             <tbody>
                             <tr th:each="music: ${musicList}">
                                 <td><span th:text="${music.name}"> Name </span></td>
                                 <td><span th:text="${music.location}"> Location </span></td>
+                                <td><span th:text="${music.eventTime}"> Event Time </span></td>
                                 <td><span th:text="${music.movement}"> Movement </span></td>
-                                <td><span th:text="${music.eventTime}"> Event Time  </span></td>
                                 <td><span th:text="${music.isTemporary}"> Is Temporary </span>
                                     <span th:if="${music.isTemporary == 'true'}"></span>
                                     <span th:unless="${music.isTemporary != 'true'}"></span>
                                 </td>
                                 <td>
                                     <a th:href="@{/updateMusic/{name}(id=${music.name})}"
-                                       class="fa fa-trash"></a>
+                                       class="fa fa-edit"></a>
                                 </td>
                                 <td>
                                     <a th:href="@{/deleteMusic/{name}(id=${music.name})}"
@@ -98,39 +104,8 @@
         </div>
     </div>
 
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card">
-            <tr th:each="music : ${musicList}">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-                    <div class="card-body">
-                        <h5 class="card-title">Music</h5>
-                        <div>
-                            <div class="card-body">
-                                <h5 class="card-title" th:value="${music.name}"
-                                    th:text="${music.name}"></h5>
-                                <p class="card-text" th:text="${music.location}"></p>
-                                <p class="card-text" th:text="${music.movement}"></p>
-                                <p class="card-text" th:text="${music.eventTime}"></p>
-                                <p class="card-text" th:text="${music.isTemporary}">
-                                    <span th:if="${music.isTemporary == 'true'}"></span>
-                                    <span th:unless="${music.isTemporary != 'true'}"></span></p>
-                                <button class="btn btn-primary form-control" type="submit">Add</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </tr>
-        </div>
-    </div>
 
 
-    <div th:text="${musicList.get(1).name}"></div>
-    <div th:text="${musicList[0].name}"></div>
-
-</div>
-</div>
-</div>
-</div>
 </div>
 </body>
 </html>

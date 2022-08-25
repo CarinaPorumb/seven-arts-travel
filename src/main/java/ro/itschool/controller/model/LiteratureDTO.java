@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ro.itschool.enums.Style;
 
-import java.time.LocalDate;
 @Setter
 @Getter
 @NoArgsConstructor
@@ -24,7 +23,7 @@ public class LiteratureDTO {
 
     private Boolean isTemporary;
 
-    private LocalDate year;
+    private Integer year;
 
     private String location;
 

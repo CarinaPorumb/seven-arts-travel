@@ -19,9 +19,9 @@ public class LiteratureController {
     LiteratureRepository literatureRepository;
 
     @GetMapping("/literature")
-    public String getLiteratures(Model model) {
-        model.addAttribute("literatures", literatureRepository.findAll());
-        return "allLiteratures";
+    public String getLiteratures(Model model, String keyword) {
+        model.addAttribute("literatures", literatureRepository.searchLiterature(keyword));
+        return "/literature";
     }
 
     @GetMapping("/saveLiterature")

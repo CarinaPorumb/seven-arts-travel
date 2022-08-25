@@ -28,6 +28,12 @@ public class MusicController {
         return "/music";
     }
 
+    @GetMapping("/musicByName{name}")
+    public String getMusicByName(Model model, String name) throws MusicNotFound {
+        Optional.ofNullable(musicRepository.findByName(name)).orElseThrow(MusicNotFound::new);
+        return "/music";
+    }
+
     @GetMapping("/saveMusic")
     public String saveMusic1(Model model) {
         model.addAttribute("musicObject", new Music());
@@ -62,4 +68,6 @@ public class MusicController {
         musicRepository.save(music);
         return "redirect:/music";
     }
+
 }
+

@@ -12,7 +12,7 @@ import ro.itschool.enums.Style;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaintingDTO {
+public class SculptureDTO {
 
     private String name;
 
@@ -26,5 +26,4 @@ public class PaintingDTO {
     private Integer year;
 
     private String location;
-
 }

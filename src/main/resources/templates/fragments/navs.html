@@ -16,12 +16,12 @@
                         <a class="nav-link active dropdown-toggle" aria-current="page" id="navbarDropdown" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false">Seven Arts</a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Architecture</a></li>
-                            <li><a class="dropdown-item" href="#">Sculpture</a></li>
-                            <li><a class="dropdown-item" href="#">Painting</a></li>
-                            <li><a class="dropdown-item" href="#">Ballet & Theatre</a></li>
+                            <li><a class="dropdown-item" href="/architecture">Architecture</a></li>
+                            <li><a class="dropdown-item" href="/sculpture">Sculpture</a></li>
+                            <li><a class="dropdown-item" href="/painting">Painting</a></li>
+                            <li><a class="dropdown-item" href="/ballet-theatre">Ballet & Theatre</a></li>
                             <li><a class="dropdown-item" href="/music">Music</a></li>
-                            <li><a class="dropdown-item" href="#">Literature</a></li>
+                            <li><a class="dropdown-item" href="/literature">Literature</a></li>
                             <li><a class="dropdown-item" href="#">Cinema</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -45,12 +45,7 @@
                     </div>
                     <div sec:authorize="hasRole('ROLE_ADMIN')">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Content</a>
-                        </li>
-                    </div>
-                    <div sec:authorize="hasRole('ROLE_CONTRIBUTOR')">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Content</a>
+                            <a class="nav-link" href="/content">Content</a>
                         </li>
                     </div>
                     <li class="nav-item">

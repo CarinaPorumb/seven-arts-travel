@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
-    @RequestMapping(value = {"/login"})
+    @RequestMapping(value = {"/login", "/"})
     public String login() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
-            return "intro";
+            return "login";
         }
-        return "redirect:index";
+        return "redirect:/index";
     }
 
     @RequestMapping("/login-error")
     public String loginError(Model model) {
         model.addAttribute("loginError", true);
-        return "intro";
+        return "login.html";
     }
 }

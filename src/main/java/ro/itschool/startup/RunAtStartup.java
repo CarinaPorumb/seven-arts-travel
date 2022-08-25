@@ -9,6 +9,7 @@ import ro.itschool.enums.Style;
 import ro.itschool.service.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -109,6 +110,7 @@ public class RunAtStartup {
         userService.saveUser(user);
     }
 
+
     public void saveArchitecture() {
         Set<Architecture> architectures = new HashSet<>();
         Architecture architecture = new Architecture();
@@ -116,7 +118,7 @@ public class RunAtStartup {
         architecture.setMovement(Style.RENAISSANCE);
         architecture.setLocation("Chateau, 41250 Chambord, France");
         architecture.setAuthor("Domenico da Cortona");
-        architecture.setYear(LocalDate.ofEpochDay(1547));
+        architecture.setYear(1547);
         architecture.setIsTemporary(false);
 
         Architecture architecture2 = new Architecture();
@@ -124,7 +126,7 @@ public class RunAtStartup {
         architecture2.setMovement(Style.GOTHIC);
         architecture2.setLocation("Parvis Notre-Dame 75004 Paris, France");
         architecture2.setAuthor("Jean de Chelles");
-        architecture2.setYear(LocalDate.ofEpochDay(1345));
+        architecture2.setYear(1345);
         architecture2.setIsTemporary(false);
 
         architectureService.save(architecture);
@@ -141,7 +143,7 @@ public class RunAtStartup {
         sculpture.setLocation("77 Rue de Varenne, 75007 Paris, France");
         sculpture.setMovement(Style.REALISM);
         sculpture.setIsTemporary(false);
-        sculpture.setYear(LocalDate.ofEpochDay(1902));
+        sculpture.setYear(1902);
 
         Sculpture sculpture2 = new Sculpture();
         sculpture2.setName("Bird in Space");
@@ -149,7 +151,7 @@ public class RunAtStartup {
         sculpture2.setLocation("1000 5th Ave, New York, 10028, USA");
         sculpture2.setMovement(Style.MODERNISM);
         sculpture2.setIsTemporary(false);
-        sculpture2.setYear(LocalDate.ofEpochDay(1923));
+        sculpture2.setYear(1923);
 
         sculptureService.save(sculpture);
         sculptureService.save(sculpture2);
@@ -164,14 +166,14 @@ public class RunAtStartup {
         painting.setMovement(Style.MODERNISM);
         painting.setLocation("Georges Grammont, 83990 Saint-Tropez, France");
         painting.setIsTemporary(false);
-        painting.setYear(LocalDate.ofEpochDay(1922));
+        painting.setYear(1922);
 
         Painting painting2 = new Painting();
         painting2.setName("The Louvre Museum");
         painting2.setMovement(Style.RENAISSANCE);
         painting2.setLocation("Rue de Rivoli, 75001 Paris, France");
         painting2.setIsTemporary(false);
-        painting2.setYear(LocalDate.ofEpochDay(1793));
+        painting2.setYear(1793);
 
         paintingService.save(painting);
         paintingService.save(painting2);
@@ -186,15 +188,14 @@ public class RunAtStartup {
         music.setMovement(Style.CONTEMPORARY);
         music.setLocation("Romanian Athenaeum, 050204, Bucharest, Romania");
         music.setIsTemporary(false);
-        music.setEventTime(LocalDate.of(2022, 9, 4));
+        music.setEventTime(LocalDateTime.of(2022, 9, 4, 20, 0));
 
         Music music2 = new Music();
         music2.setName("Vienna New Year's Concert");
         music2.setMovement(Style.ROMANTICISM);
         music2.setLocation("Golden Hall of the Vienna State Opera, Austria");
         music2.setIsTemporary(true);
-        music2.setEventTime(LocalDate.of(2023, 1, 1));
-
+        music2.setEventTime(LocalDateTime.of(2023, 1, 1, 11, 15));
         musicService.save(music);
         musicService.save(music2);
         musics.add(music);
@@ -208,9 +209,8 @@ public class RunAtStartup {
         balletAndTheatre.setAuthor("English National Ballet");
         balletAndTheatre.setLocation("London Coliseum, St Martin's Ln, London, UK");
         balletAndTheatre.setMovement(Style.ROMANTICISM);
-        balletAndTheatre.setEventTime(LocalDate.of(2022, 9, 28));
+        balletAndTheatre.setEventTime(LocalDateTime.of(2022, 9, 28, 20, 0));
         balletAndTheatre.setIsTemporary(true);
-
         balletAndTheatreService.save(balletAndTheatre);
         balletAndTheatreSet.add(balletAndTheatre);
     }
@@ -222,14 +222,14 @@ public class RunAtStartup {
         literature.setLocation("R. das Carmelitas 144, 4050-161 Porto, Portugal");
         literature.setMovement(Style.ARTNOUVEAU);
         literature.setIsTemporary(false);
-        literature.setYear(LocalDate.ofEpochDay(1906));
+        literature.setYear(1906);
 
         Literature literature2 = new Literature();
         literature2.setName("Strahov Library");
         literature2.setLocation("Strahovské nádvoří 132/1, 118 00 Praha, Czech Republic");
         literature2.setMovement(Style.GOTHIC);
         literature2.setIsTemporary(false);
-        literature2.setYear(LocalDate.ofEpochDay(1138));
+        literature2.setYear(1138);
 
         literatureService.save(literature);
         literatureService.save(literature2);
@@ -250,7 +250,7 @@ public class RunAtStartup {
         cinema2.setName("The National Museum of Cinema");
         cinema2.setLocation("Via Montebello, 20, 10124 Torino, Italy");
         cinema2.setMovement(Style.CONTEMPORARY);
-        cinema2.setYear(LocalDate.ofEpochDay(1958));
+        cinema2.setYear(LocalDate.of(1958, 1, 1));
         cinema2.setIsTemporary(false);
 
         cinemaService.save(cinema);

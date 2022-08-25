@@ -6,7 +6,7 @@ import ro.itschool.enums.Style;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -33,7 +33,7 @@ public class BalletAndTheatre implements Serializable {
 
     private Boolean isTemporary;
 
-    private LocalDate eventTime;
+    private LocalDateTime eventTime;
 
     private String location;
 

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ro.itschool.enums.Style;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -23,7 +23,7 @@ public class MusicDTO {
 
     private Boolean isTemporary;
 
-    private LocalDate eventTime;
+    private LocalDateTime eventTime;
 
     private String location;
 

@@ -3,6 +3,7 @@ package ro.itschool.repository;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ro.itschool.entity.BalletAndTheatre;
 import ro.itschool.exception.BalletAndTheatreNotFound;
@@ -23,4 +24,11 @@ public interface BalletAndTheatreRepository extends JpaRepository<BalletAndTheat
             value = "SELECT * FROM BalletAndTheatre WHERE user_id = ?",
             nativeQuery = true)
     List<BalletAndTheatre> findByUserId(Integer userId);
+
+
+    @Query(
+            value = "SELECT * FROM ballet_and_theatre b WHERE b.name LIKE %:keyword% OR b.author OR b.location LIKE %:keyword% OR b.movement LIKE %:keyword% " +
+                    "OR b.is_temporary LIKE %:keyword% OR b.id LIKE %:keyword% OR b.user_id LIKE %:keyword% OR b.event_time LIKE %:keyword%",
+            nativeQuery = true)
+    List<BalletAndTheatre> searchBalletAndTheatre(@Param("keyword") String keyword);
 }

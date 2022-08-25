@@ -20,7 +20,7 @@
             var count = div.textContent * 1 - 1;
             div.textContent = count;
             if (count <= 0) {
-                window.location.replace("http://localhost:8080/intro");
+                window.location.replace("http://localhost:8080/login");
             }
         }, 1000);
     </script>
@@ -34,7 +34,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <div class="card-body">
                 <div class="box-footer text-center">
-                    <meta http-equiv="refresh" content="http://localhost:8080/intro"/>
+                    <meta http-equiv="refresh" content="http://localhost:8080/login"/>
                     <div class="alert alert-success" role="alert">
                         <p class="font-weight-bold">Your account was activated.</p>
                         <div> You will be redirected in <span id="counter">3</span> seconds</div>

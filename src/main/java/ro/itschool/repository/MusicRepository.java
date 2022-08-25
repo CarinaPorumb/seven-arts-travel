@@ -29,7 +29,7 @@ public interface MusicRepository extends JpaRepository<Music, UUID> {
 
     @Query(
             value = "SELECT * FROM music m WHERE m.name LIKE %:keyword% OR m.location LIKE %:keyword% OR m.movement LIKE %:keyword% " +
-                    "OR m.id LIKE %:keyword% OR m.user_id LIKE %:keyword% OR m.event_time LIKE %:keyword%",
+                    "OR m.is_temporary LIKE %:keyword% OR m.id LIKE %:keyword% OR m.user_id LIKE %:keyword% OR m.event_time LIKE %:keyword%",
             nativeQuery = true)
     List<Music> searchMusic(@Param("keyword") String keyword);
 

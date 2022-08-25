@@ -19,9 +19,9 @@ public class PaintingController {
     PaintingRepository paintingRepository;
 
     @GetMapping("/painting")
-    public String getAllPaintings(Model model) {
-        model.addAttribute("paintings", paintingRepository.findAll());
-        return "allPaintings";
+    public String getAllPaintings(Model model, String keyword) {
+        model.addAttribute("paintings", paintingRepository.searchPaintings(keyword));
+        return "/painting";
     }
 
     @GetMapping("/savePainting")

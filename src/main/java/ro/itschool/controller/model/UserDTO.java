@@ -14,10 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 public class UserDTO {
 
-    private Integer id;
-    private String username;
-    private String fullName;
-    private String email;
+    private Integer idUserDTO;
+    private String usernameDTO;
+    private String fullNameDTO;
+    private String emailDTO;
 
     private List<String> roles = new ArrayList<>();
     private List<ArchitectureDTO> architectureDTOList = new ArrayList<>();
@@ -26,4 +26,7 @@ public class UserDTO {
     private List<LiteratureDTO> literatureDTOList = new ArrayList<>();
     private List<MusicDTO> musicDTOList = new ArrayList<>();
     private List<PaintingDTO> paintingDTOList = new ArrayList<>();
+    private List<SculptureDTO> sculptureDTOList = new ArrayList<>();
+
+
 }

@@ -38,7 +38,7 @@ public class RegisterController {
             userService.saveUser(user);
             return "register-success";
         } else {
-            return "/intro";
+            return "/register";
         }
     }
 

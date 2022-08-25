@@ -19,10 +19,11 @@ public class ArchitectureController {
     ArchitectureRepository architectureRepository;
 
     @GetMapping("/architecture")
-    public String getArchitectures(Model model) {
-        model.addAttribute("architectures", architectureRepository.findAll());
-        return "allArchitectures";
+    public String getArchitectures(Model model, String keyword) {
+        model.addAttribute("architectures", architectureRepository.searchArchitecture(keyword));
+        return "/architecture";
     }
+
 
     @GetMapping("/saveArchitecture")
     public String saveArchitecture1(Model model) {
