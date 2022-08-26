@@ -8,6 +8,7 @@ import ro.itschool.entity.Cinema;
 import ro.itschool.entity.User;
 import ro.itschool.exception.CinemaNotFound;
 import ro.itschool.repository.CinemaRepository;
+import ro.itschool.service.CinemaService;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -17,11 +18,13 @@ public class CinemaController {
 
     @Autowired
     CinemaRepository cinemaRepository;
+    @Autowired
+    CinemaService cinemaService;
 
     @GetMapping("/cinema")
-    public String getCinemas(Model model) {
-        model.addAttribute("cinemas", cinemaRepository.findAll());
-        return "allCinemas";
+    public String getCinemas(Model model, String keyword) {
+        model.addAttribute("cinemas", cinemaRepository.searchCinema(keyword));
+        return "/cinema";
     }
 
     @GetMapping("/saveCinema")
@@ -43,12 +46,18 @@ public class CinemaController {
         return "updateCinema";
     }
 
-    @DeleteMapping("/deleteCinema/{name}")
-    public String deleteCinema(@PathVariable String name) throws CinemaNotFound {
-        Optional.ofNullable(cinemaRepository.findByName(name)).orElseThrow(CinemaNotFound::new);
-        cinemaRepository.deleteByName(name);
+    @RequestMapping(value = "/cinema/delete/{name}")
+    public String deleteCinema(@PathVariable String name) {
+//        Optional.ofNullable(cinemaService.deleteByName(name)).orElseThrow(CinemaNotFound::new);
+//        return "redirect:/cinema";
+        try {
+            cinemaService.deleteByName(name);
+        } catch (CinemaNotFound e) {
+            return e.getMessage();
+        }
         return "redirect:/cinema";
     }
+
 
     //?
     @PostMapping("/addCinemaToUser")

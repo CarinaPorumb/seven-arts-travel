@@ -5,16 +5,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import ro.itschool.controller.model.UserDTO;
 import ro.itschool.entity.Role;
 import ro.itschool.entity.User;
 import ro.itschool.repository.RoleRepository;
 import ro.itschool.repository.UserRepository;
 import ro.itschool.service.UserService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -41,13 +40,13 @@ public class UserController {
     }
 
     @DeleteMapping(path = "/delete/{id}")
-    public String deleteUserById(Model model, @PathVariable("id") Integer id) {
+    public String deleteUserById(Model model, @PathVariable("id") long id) {
         userRepository.deleteById(id);
         return "redirect:/index";
     }
 
     @RequestMapping("/add-admin-role/{id}")
-    public String addAdminRoleToUser(@PathVariable("id") Integer id) {
+    public String addAdminRoleToUser(@PathVariable("id") Long id) {
         final Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             final Role role = roleRepository.findByName("ROLE_ADMIN");
@@ -59,7 +58,7 @@ public class UserController {
     }
 
     @RequestMapping("/remove-admin-role/{id}")
-    public String removeAdminRoleFromUser(@PathVariable("id") Integer id) {
+    public String removeAdminRoleFromUser(@PathVariable("id") Long id) {
         String username = getCurrentUserDetails();
         final Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
@@ -80,11 +79,11 @@ public class UserController {
         return loggedInUser.getName();
     }
 
-//    //POSTMAN GET ALL USERS
-//    @GetMapping("/users/postman")
-//    @ResponseBody
-//    public List<UserDTO> getAllUsersForPostman() {
-//        return userService.findAll();
-//    }
+    //POSTMAN GET ALL USERS
+    @GetMapping("/users/postman")
+    @ResponseBody
+    public List<UserDTO> getAllUsersForPostman() {
+        return userService.findAll();
+    }
 
 }

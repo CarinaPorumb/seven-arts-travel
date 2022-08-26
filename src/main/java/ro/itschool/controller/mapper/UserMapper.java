@@ -26,7 +26,7 @@ public class UserMapper {
                 .toList());
 
         userDTO.setCinemaDTOList(user.getCinemas().stream()
-                .map(cinema -> new CinemaDTO(cinema.getName(), cinema.getMovement(), cinema.getIsTemporary(), cinema.getYear(), cinema.getLocation()))
+                .map(cinema -> new CinemaDTO(cinema.getName(), cinema.getMovement(), cinema.getIsTemporary(), cinema.getEventTime(), cinema.getLocation()))
                 .toList());
 
         userDTO.setLiteratureDTOList(user.getLiteratureSet().stream()

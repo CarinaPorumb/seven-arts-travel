@@ -27,7 +27,6 @@ public class RegisterController {
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);
         model.addAttribute("user", user);
-
         return "register";
     }
 
@@ -38,7 +37,7 @@ public class RegisterController {
             userService.saveUser(user);
             return "register-success";
         } else {
-            return "/register";
+            return "register";
         }
     }
 

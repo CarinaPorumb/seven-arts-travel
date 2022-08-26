@@ -5,17 +5,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ro.itschool.entity.Role;
 import ro.itschool.entity.User;
-import ro.itschool.exception.UserNotFound;
 import ro.itschool.service.UserService;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -23,18 +18,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserService userService;
 
-
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = null;
-        try {
-            user = userService.findUserByUserName(username);
-        } catch (UserNotFound e) {
-            throw new RuntimeException(e);
-        }
+    public UserDetails loadUserByUsername(String username) {
+        User user = userService.findUserByUserName(username);
         List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
-        return new User(user.getUsername(), user.getPassword(), user.isEnabled(), user.isAccountNonExpired(),
-                user.isCredentialsNonExpired(), user.isAccountNonLocked(), authorities);
+        return new User(user.getUsername(), user.getPassword(),
+                user.isEnabled(), user.isAccountNonExpired(), user.isCredentialsNonExpired(), user.isAccountNonLocked(), authorities);
     }
 
     private List<GrantedAuthority> getUserAuthority(Set<Role> userRoles) {

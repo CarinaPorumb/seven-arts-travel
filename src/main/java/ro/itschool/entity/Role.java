@@ -1,5 +1,8 @@
 package ro.itschool.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,11 +11,12 @@ import lombok.Setter;
 
 import java.util.Set;
 
+@Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "id")
 public class Role {
 
     @Id
@@ -24,6 +28,7 @@ public class Role {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
     private Set<User> users;
 
     public Role(String name) {

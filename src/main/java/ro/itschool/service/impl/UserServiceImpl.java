@@ -9,11 +9,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import ro.itschool.controller.mapper.UserMapper;
+import ro.itschool.controller.model.UserDTO;
 import ro.itschool.entity.Role;
 import ro.itschool.entity.User;
 import ro.itschool.exception.EmailNotFound;
 import ro.itschool.exception.TokenNotFound;
-import ro.itschool.exception.UserNotFound;
 import ro.itschool.repository.RoleRepository;
 import ro.itschool.repository.UserRepository;
 import ro.itschool.service.UserService;
@@ -37,40 +38,32 @@ public class UserServiceImpl implements UserService {
     EmailSender emailSender;
 
 
-    @Override
     public User findUserByEmail(String email) throws EmailNotFound {
         return Optional.ofNullable(userRepository.findByEmail(email)).orElseThrow(EmailNotFound::new);
     }
 
-    @Override
-    public User findUserByUserName(String username) throws UserNotFound {
-        return Optional.ofNullable(userRepository.findByUsernameIgnoreCase(username)).orElseThrow(UserNotFound::new);
+    public User findUserByUserName(String username) {
+        return userRepository.findByUsernameIgnoreCase(username);
     }
 
-    @Override
     public User findUserByRandomToken(String randomToken) throws TokenNotFound {
         return Optional.ofNullable(userRepository.findByRandomToken(randomToken)).orElseThrow(TokenNotFound::new);
     }
 
-    @Override
     public boolean findUserByUserNameAndPassword(String userName, String password) {
         final Optional<User> user = Optional.ofNullable(userRepository.findByUsernameIgnoreCase(userName));
         return user.filter(user1 -> BCrypt.checkpw(password, user1.getPassword())).isPresent();
     }
 
-    @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public List<UserDTO> findAll() {
+        return userRepository.findAll().stream().map(UserMapper::convertToDTO).toList();
     }
 
-    @Override
-    public void deleteById(Integer id) throws UserNotFound {
-        Optional.of(userRepository.findById(id)).orElseThrow(UserNotFound::new);
+    public void deleteById(long id) {
         userRepository.deleteById(id);
     }
 
-    @Override
-    public void saveUser(User receivedUser) {
+    public User saveUser(User receivedUser) {
         User user = new User(receivedUser);
         user.setPassword(new BCryptPasswordEncoder().encode(receivedUser.getPassword()));
         user.setRandomToken(UUID.randomUUID().toString());
@@ -84,19 +77,9 @@ public class UserServiceImpl implements UserService {
             }
         });
         userRepository.save(user);
+        return user;
     }
 
-
-//  public User addLocationToUser(User receivedUser) {
-//    User user = new User(receivedUser);
-//        if (receivedUser.getArchitectures() != null)
-//                receivedUser.getArchitectures()
-//                .forEach(architecture -> {architecture.setUser(user);
-//                architectureRepository.save(architecture);
-//                });
-//                return user;
-
-    @Override
     public void updateUser(User user) {
         List<GrantedAuthority> actualAuthorities = getUserAuthority(user.getRoles());
         Authentication newAuth = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), actualAuthorities);
@@ -105,15 +88,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> searchUser(String keyword) {
-        return userRepository.searchUser(keyword);
+    public List<UserDTO> searchUser(String keyword) {
+        return userRepository.searchUser(keyword).stream().map(UserMapper::convertToDTO).toList();
     }
-
-
-//    @Override
-//    public List<UserDTO> searchUser(String keyword) {
-//        return userRepository.searchUser(keyword).stream().map(UserMapper::convertToDTO).toList();
-//    }
 
     private List<GrantedAuthority> getUserAuthority(Set<Role> userRoles) {
         Set<GrantedAuthority> roles = new HashSet<>();

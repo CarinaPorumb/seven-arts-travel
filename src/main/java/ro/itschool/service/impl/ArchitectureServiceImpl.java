@@ -9,7 +9,6 @@ import ro.itschool.repository.ArchitectureRepository;
 import ro.itschool.service.ArchitectureService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ArchitectureServiceImpl implements ArchitectureService {
@@ -18,11 +17,12 @@ public class ArchitectureServiceImpl implements ArchitectureService {
     private ArchitectureRepository architectureRepository;
 
 
-    @Override
     public void deleteByName(String name) throws ArchitectureNotFound {
-        Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
+        Architecture architecture = architectureRepository.findByName(name);
         architectureRepository.deleteByName(name);
     }
+//     Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
+//        architectureRepository.deleteByName(name);
 
     @Override
     public void save(Architecture architecture) {
@@ -36,11 +36,15 @@ public class ArchitectureServiceImpl implements ArchitectureService {
 
     @Override
     public Architecture findByName(String name) throws ArchitectureNotFound {
-        return Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
+        return architectureRepository.findByName(name);
     }
+
+//    return Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
 
     @Override
     public List<Architecture> getAllArchitecturesByUserId(Integer userId) throws UserNotFound {
-        return Optional.ofNullable(architectureRepository.findByUserId(userId)).orElseThrow(UserNotFound::new);
+        return architectureRepository.findByUserId(userId);
     }
+
+//      return Optional.ofNullable(architectureRepository.findByUserId(userId)).orElseThrow(UserNotFound::new);
 }

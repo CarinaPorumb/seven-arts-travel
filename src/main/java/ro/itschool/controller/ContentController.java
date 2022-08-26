@@ -19,7 +19,7 @@ public class ContentController {
     @GetMapping("/content")
     public String getMusicList(Model model, String keyword) {
         model.addAttribute("musicList", musicRepository.searchMusic(keyword));
-        model.addAttribute("musicList", architectureRepository.searchArchitecture(keyword));
-        return "/content";
+        model.addAttribute("architectures", architectureRepository.searchArchitecture(keyword));
+        return "content";
     }
 }

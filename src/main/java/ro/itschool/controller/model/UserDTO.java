@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserDTO {
 
-    private Integer idUserDTO;
+    private Long idUserDTO;
     private String usernameDTO;
     private String fullNameDTO;
     private String emailDTO;
@@ -27,6 +27,5 @@ public class UserDTO {
     private List<MusicDTO> musicDTOList = new ArrayList<>();
     private List<PaintingDTO> paintingDTOList = new ArrayList<>();
     private List<SculptureDTO> sculptureDTOList = new ArrayList<>();
-
 
 }

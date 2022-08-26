@@ -23,11 +23,12 @@ import java.util.Set;
 public class User implements UserDetails {
 
     @Serial
-    private static final Long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -112,7 +113,7 @@ public class User implements UserDetails {
         this.authorities = authorities;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -120,6 +121,5 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.authorities;
     }
-
 
 }

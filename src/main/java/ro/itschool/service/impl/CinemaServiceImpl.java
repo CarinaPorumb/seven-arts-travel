@@ -19,9 +19,17 @@ public class CinemaServiceImpl implements CinemaService {
 
     @Override
     public void deleteByName(String name) throws CinemaNotFound {
+        Cinema cinema = cinemaRepository.findByName(name);
         Optional.ofNullable(cinemaRepository.findByName(name)).orElseThrow(CinemaNotFound::new);
         cinemaRepository.deleteByName(name);
     }
+
+//    public void deleteByIban(String iban) throws AmountNotEmptyException {
+//        BankAccount bankAccount = accountRepository.findByIban(iban);
+//        if (bankAccount != null && bankAccount.getAmount().intValue() > 0)
+//            throw new AmountNotEmptyException("Please transfer all your money before account deletion");
+//        accountRepository.deleteByIban(iban);
+//    }
 
     @Override
     public void save(Cinema cinema) {

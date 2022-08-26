@@ -18,12 +18,11 @@ public class ArchitectureController {
     @Autowired
     ArchitectureRepository architectureRepository;
 
-    @GetMapping("/architecture")
+    @GetMapping("/all-architecture-list")
     public String getArchitectures(Model model, String keyword) {
         model.addAttribute("architectures", architectureRepository.searchArchitecture(keyword));
         return "/architecture";
     }
-
 
     @GetMapping("/saveArchitecture")
     public String saveArchitecture1(Model model) {
@@ -35,20 +34,20 @@ public class ArchitectureController {
     public String saveArchitecture2(@ModelAttribute Architecture architecture, Model model) {
         model.addAttribute("architectureObject", architecture);
         architectureRepository.save(architecture);
-        return "redirect:/architecture";
+        return "redirect:/all-architecture-list";
     }
 
     @GetMapping("/updateArchitecture/{name}")
-    public String updateArchitecture(@PathVariable String name) throws ArchitectureNotFound {
+    public String updateArchitecture(@PathVariable String name, Model model) throws ArchitectureNotFound {
         Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
-        return "updateArchitecture";
-    }
+            model.addAttribute("architecture", architectureRepository.findByName(name).get());
+            return "updateArchitecture";
+        }
 
-    @DeleteMapping("/deleteArchitecture/{name}")
-    public String deleteArchitecture(@PathVariable String name) throws ArchitectureNotFound {
-        Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
+    @RequestMapping(path = "/delete/{name}")
+    public String deleteArchitecture(Model model, @PathVariable("name") String name) throws ArchitectureNotFound {
         architectureRepository.deleteByName(name);
-        return "redirect:/architecture";
+        return "redirect:/all-architecture-list";
     }
 
     //?
@@ -57,7 +56,7 @@ public class ArchitectureController {
         model.addAttribute("architectureObject", architecture);
         user.setArchitectureSet(Collections.singleton(architecture));
         architectureRepository.save(architecture);
-        return "redirect:/architecture";
+        return "redirect:/all-architecture-list";
     }
 
 }

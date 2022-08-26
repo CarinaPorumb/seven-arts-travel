@@ -243,14 +243,14 @@ public class RunAtStartup {
         cinema.setName("Cannes Film Festival");
         cinema.setLocation("Palace of Festivals and Congresses of Cannes, France");
         cinema.setMovement(Style.CONTEMPORARY);
-        cinema.setYear(LocalDate.of(2023, 5, 16));
+        cinema.setEventTime(LocalDate.of(2023, 5, 16));
         cinema.setIsTemporary(true);
 
         Cinema cinema2 = new Cinema();
         cinema2.setName("The National Museum of Cinema");
         cinema2.setLocation("Via Montebello, 20, 10124 Torino, Italy");
         cinema2.setMovement(Style.CONTEMPORARY);
-        cinema2.setYear(LocalDate.of(1958, 1, 1));
+        cinema2.setEventTime(LocalDate.of(1958, 1, 1));
         cinema2.setIsTemporary(false);
 
         cinemaService.save(cinema);
