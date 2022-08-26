@@ -14,10 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 public class UserDTO {
 
-    private Long idUserDTO;
-    private String usernameDTO;
-    private String fullNameDTO;
-    private String emailDTO;
+    private Long id;
+    private String username;
+    private String fullName;
+    private String email;
 
     private List<String> roles = new ArrayList<>();
     private List<ArchitectureDTO> architectureDTOList = new ArrayList<>();

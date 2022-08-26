@@ -44,7 +44,7 @@ public class ArchitectureController {
             return "updateArchitecture";
         }
 
-    @RequestMapping(path = "/delete/{name}")
+    @RequestMapping(path = "/deleteArchitecture/{name}")
     public String deleteArchitecture(Model model, @PathVariable("name") String name) throws ArchitectureNotFound {
         architectureRepository.deleteByName(name);
         return "redirect:/all-architecture-list";

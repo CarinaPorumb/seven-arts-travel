@@ -8,10 +8,10 @@ public class UserMapper {
 
     public static UserDTO convertToDTO(User user) {
         UserDTO userDTO = new UserDTO();
-        userDTO.setIdUserDTO(user.getId());
-        userDTO.setUsernameDTO(user.getUsername());
-        userDTO.setEmailDTO(user.getEmail());
-        userDTO.setFullNameDTO(user.getFullName());
+        userDTO.setId(user.getId());
+        userDTO.setUsername(user.getUsername());
+        userDTO.setEmail(user.getEmail());
+        userDTO.setFullName(user.getFullName());
 
         userDTO.setRoles(user.getRoles().stream()
                 .map(Role::getName)

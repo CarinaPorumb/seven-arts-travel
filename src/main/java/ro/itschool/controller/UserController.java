@@ -39,8 +39,8 @@ public class UserController {
         return "all-users";
     }
 
-    @DeleteMapping(path = "/delete/{id}")
-    public String deleteUserById(Model model, @PathVariable("id") long id) {
+    @RequestMapping(path = "/delete/{id}")
+    public String deleteUserById(Model model, @PathVariable("id") Long id) {
         userRepository.deleteById(id);
         return "redirect:/index";
     }
