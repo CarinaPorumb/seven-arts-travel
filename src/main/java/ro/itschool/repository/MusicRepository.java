@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ro.itschool.entity.Music;
-import ro.itschool.exception.MusicNotFound;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,12 +15,12 @@ import java.util.UUID;
 public interface MusicRepository extends JpaRepository<Music, UUID> {
 
 
-    Music findByName(String name) throws MusicNotFound;
+    Music findByName(String name);
 
     List<Music> findAll(Sort sort);
 
     @Transactional
-    void deleteByName(String name) throws MusicNotFound;
+    void deleteByName(String name);
 
     @Query(
             value = "SELECT * FROM music WHERE user_id = ?",

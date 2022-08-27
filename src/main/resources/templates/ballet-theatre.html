@@ -28,7 +28,6 @@
 }
 
 
-
     </style>
 </head>
 <body>
@@ -43,7 +42,7 @@
             <div th:switch="${balletAndTheatreList}" class="container my-5">
                 <div class="col-md-10">
                     <div class="search-container">
-                        <form th:action="@{/balletAndTheatre}" method="get">
+                        <form th:action="@{/all-ballet-theatre-list}" method="get">
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="input-group mb-3">
@@ -76,7 +75,7 @@
                             <tbody>
                             <tr th:each="balletAndTheatre: ${balletAndTheatreList}">
                                 <td><span th:text="${balletAndTheatre.name}"> Name </span></td>
-                                <td><span th:text="${balletAndTheatre.author}"> Name </span></td>
+                                <td><span th:text="${balletAndTheatre.author}"> Author </span></td>
                                 <td><span th:text="${balletAndTheatre.location}"> Location </span></td>
                                 <td><span th:text="${balletAndTheatre.movement}"> Movement </span></td>
                                 <td><span th:text="${balletAndTheatre.eventTime}"> Event Time  </span></td>
@@ -85,12 +84,12 @@
                                     <span th:unless="${balletAndTheatre.isTemporary != 'true'}"></span>
                                 </td>
                                 <td>
-                                    <a th:href="@{/updateBalletAndTheatre/{name}(id=${balletAndTheatre.name})}"
-                                       class="fa fa-trash"></a>
+                                    <a th:href="@{/updateBalletAndTheatre/{name}(name=${balletAndTheatre.name})}"
+                                       class="fa fa-edit"></a>
                                 </td>
                                 <td>
-                                    <a th:href="@{/deleteBalletAndTheatre/{name}(id=${balletAndTheatre.name})}"
-                                       class="fa fa-trash"></a>
+                                    <a th:href="@{/deleteBalletAndTheatre/{name}(name=${balletAndTheatre.name})}"
+                                       class="fa fa-times"></a>
                                 </td>
                             </tr>
                             </tbody>
@@ -100,7 +99,7 @@
             </div>
         </div>
     </div>
-
+</div>
     <div class="col-lg-4 col-md-6 mb-4">
         <div class="card">
             <tr th:each="balletAndTheatre : ${balletAndTheatreList}">
@@ -127,13 +126,8 @@
     </div>
 
 
-<!--    <div th:text="${balletAndTheatreList.get(1).name}"></div>-->
-<!--    <div th:text="${balletAndTheatreList[0].name}"></div>-->
+    <!--    <div th:text="${balletAndTheatreList.get(1).name}"></div>-->
+    <!--    <div th:text="${balletAndTheatreList[0].name}"></div>-->
 
-</div>
-</div>
-</div>
-</div>
-</div>
 </body>
 </html>1

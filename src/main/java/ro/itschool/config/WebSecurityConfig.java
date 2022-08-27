@@ -17,7 +17,7 @@ public class WebSecurityConfig {
         http.authenticationProvider(authenticationProvider())
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers( "/users/postman", "/login", "/register", "/activation/**", "/activation-success").permitAll()
+                .antMatchers("/css/**","/webjars/**", "/", "/users/postman", "/login", "/register", "/activation/**", "/activation-success").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

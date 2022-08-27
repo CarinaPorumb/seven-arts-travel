@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ro.itschool.entity.BalletAndTheatre;
-import ro.itschool.exception.BalletAndTheatreNotFound;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,12 +14,12 @@ import java.util.UUID;
 @Repository
 public interface BalletAndTheatreRepository extends JpaRepository<BalletAndTheatre, UUID> {
 
-    BalletAndTheatre findByName(String name) throws BalletAndTheatreNotFound;
+    BalletAndTheatre findByName(String name);
 
     List<BalletAndTheatre> findAll(Sort sort);
 
     @Transactional
-    void deleteByName(String name) throws BalletAndTheatreNotFound;
+    void deleteByName(String name);
 
     @Query(
             value = "SELECT * FROM ballet_and_theatre WHERE user_id = ?",

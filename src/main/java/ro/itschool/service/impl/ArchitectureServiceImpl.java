@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.itschool.entity.Architecture;
 import ro.itschool.exception.ArchitectureNotFound;
-import ro.itschool.exception.UserNotFound;
 import ro.itschool.repository.ArchitectureRepository;
 import ro.itschool.service.ArchitectureService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ArchitectureServiceImpl implements ArchitectureService {
@@ -17,12 +17,10 @@ public class ArchitectureServiceImpl implements ArchitectureService {
     private ArchitectureRepository architectureRepository;
 
 
-    public void deleteByName(String name) throws ArchitectureNotFound {
+    public void deleteByName(String name) {
         Architecture architecture = architectureRepository.findByName(name);
         architectureRepository.deleteByName(name);
     }
-//     Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
-//        architectureRepository.deleteByName(name);
 
     @Override
     public void save(Architecture architecture) {
@@ -30,21 +28,17 @@ public class ArchitectureServiceImpl implements ArchitectureService {
     }
 
     @Override
-    public List<Architecture> getAllArchitectures() {
-        return architectureRepository.findAll();
+    public List<Architecture> getAllArchitectures() throws ArchitectureNotFound {
+        return Optional.of(architectureRepository.findAll()).orElseThrow(ArchitectureNotFound::new);
     }
 
     @Override
-    public Architecture findByName(String name) throws ArchitectureNotFound {
+    public Architecture findByName(String name)  {
         return architectureRepository.findByName(name);
     }
 
-//    return Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
-
     @Override
-    public List<Architecture> getAllArchitecturesByUserId(Integer userId) throws UserNotFound {
-        return architectureRepository.findByUserId(userId);
+    public List<Architecture> getAllArchitecturesByUserId(Integer userId) throws ArchitectureNotFound {
+        return Optional.ofNullable(architectureRepository.findByUserId(userId)).orElseThrow(ArchitectureNotFound::new);
     }
-
-//      return Optional.ofNullable(architectureRepository.findByUserId(userId)).orElseThrow(UserNotFound::new);
 }

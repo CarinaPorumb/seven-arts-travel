@@ -1,9 +1,5 @@
 package ro.itschool.controller;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,17 +12,13 @@ import ro.itschool.repository.BalletAndTheatreRepository;
 import java.util.Collections;
 import java.util.Optional;
 
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @Controller
 public class BalletAndTheatreController {
 
     @Autowired
     BalletAndTheatreRepository balletAndTheatreRepository;
 
-    @GetMapping("/ballet-theatre")
+    @GetMapping("/all-ballet-theatre-list")
     public String getBalletAndTheatreList(Model model, String keyword) {
         model.addAttribute("balletAndTheatreList", balletAndTheatreRepository.searchBalletAndTheatre(keyword));
         return "/ballet-theatre";
@@ -42,20 +34,20 @@ public class BalletAndTheatreController {
     public String saveBalletAndTheatre2(@ModelAttribute BalletAndTheatre balletAndTheatre, Model model) {
         model.addAttribute("balletAndTheatreObject", balletAndTheatre);
         balletAndTheatreRepository.save(balletAndTheatre);
-        return "redirect:/balletAndTheatre";
+        return "redirect:/all-ballet-theatre-list";
     }
 
-    @GetMapping("/updateBalletAndTheatre/{name}")
-    public String updateBalletAndTheatre(@PathVariable String name) throws BalletAndTheatreNotFound {
+    @GetMapping(path = "/updateBalletAndTheatre/{name}")
+    public String updateBalletAndTheatre(@PathVariable("name") String name, Model model) throws BalletAndTheatreNotFound {
         Optional.ofNullable(balletAndTheatreRepository.findByName(name)).orElseThrow(BalletAndTheatreNotFound::new);
+        model.addAttribute("balletAndTheatre", balletAndTheatreRepository.findByName(name).get());
         return "updateBalletAndTheatre";
     }
 
-    @DeleteMapping("/deleteBalletAndTheatre/{name}")
-    public String deleteBalletAndTheatre(@PathVariable String name) throws BalletAndTheatreNotFound {
-        Optional.ofNullable(balletAndTheatreRepository.findByName(name)).orElseThrow(BalletAndTheatreNotFound::new);
+    @RequestMapping(path = "/deleteBalletAndTheatre/{name}")
+    public String deleteBalletAndTheatre(@PathVariable("name") String name) {
         balletAndTheatreRepository.deleteByName(name);
-        return "redirect:/balletAndTheatre";
+        return "redirect:/all-ballet-theatre-list";
     }
 
     //?
@@ -64,6 +56,6 @@ public class BalletAndTheatreController {
         model.addAttribute("balletAndTheatreObject", balletAndTheatre);
         user.setBalletAndTheatreSet(Collections.singleton(balletAndTheatre));
         balletAndTheatreRepository.save(balletAndTheatre);
-        return "redirect:/balletAndTheatre";
+        return "redirect:/all-ballet-theatre-list";
     }
 }

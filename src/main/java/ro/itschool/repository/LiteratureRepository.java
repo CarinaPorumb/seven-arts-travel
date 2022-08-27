@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ro.itschool.entity.Literature;
-import ro.itschool.exception.LiteratureNotFound;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,12 +14,12 @@ import java.util.UUID;
 @Repository
 public interface LiteratureRepository extends JpaRepository<Literature, UUID> {
 
-    Literature findByName(String name) throws LiteratureNotFound;
+    Literature findByName(String name);
 
     List<Literature> findAll(Sort sort);
 
     @Transactional
-    void deleteByName(String name) throws LiteratureNotFound;
+    void deleteByName(String name);
 
     @Query(
             value = "SELECT * FROM literature WHERE user_id = ?",

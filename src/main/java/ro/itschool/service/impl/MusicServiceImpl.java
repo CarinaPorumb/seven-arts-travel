@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.itschool.entity.Music;
 import ro.itschool.exception.MusicNotFound;
-import ro.itschool.exception.UserNotFound;
 import ro.itschool.repository.MusicRepository;
 import ro.itschool.service.MusicService;
 
@@ -19,8 +18,8 @@ public class MusicServiceImpl implements MusicService {
 
 
     @Override
-    public void deleteByName(String name) throws MusicNotFound {
-        Optional.ofNullable(musicRepository.findByName(name)).orElseThrow(MusicNotFound::new);
+    public void deleteByName(String name) {
+        Music music = musicRepository.findByName(name);
         musicRepository.deleteByName(name);
     }
 
@@ -30,22 +29,17 @@ public class MusicServiceImpl implements MusicService {
     }
 
     @Override
-    public List<Music> getAllMusics() {
-        return musicRepository.findAll();
+    public List<Music> getAllMusics() throws MusicNotFound {
+        return Optional.of(musicRepository.findAll()).orElseThrow(MusicNotFound::new);
     }
 
     @Override
-    public Music findByName(String name) throws MusicNotFound {
-        return Optional.ofNullable(musicRepository.findByName(name)).orElseThrow(MusicNotFound::new);
+    public Music findByName(String name) {
+        return musicRepository.findByName(name);
     }
 
     @Override
-    public List<Music> getAllMusicsByUserId(Integer userId) throws UserNotFound {
-        return Optional.ofNullable(musicRepository.findByUserId(userId)).orElseThrow(UserNotFound::new);
-    }
-
-
-    public List<Music> searchMusic(String keyword) {
-        return musicRepository.searchMusic(keyword);
+    public List<Music> getAllMusicsByUserId(Integer userId) throws MusicNotFound {
+        return Optional.ofNullable(musicRepository.findByUserId(userId)).orElseThrow(MusicNotFound::new);
     }
 }

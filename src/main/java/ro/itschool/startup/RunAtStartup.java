@@ -119,7 +119,7 @@ public class RunAtStartup {
         architecture.setLocation("Chateau, 41250 Chambord, France");
         architecture.setAuthor("Domenico da Cortona");
         architecture.setYear(1547);
-        architecture.setIsTemporary(false);
+        architecture.setTemporary(false);
 
         Architecture architecture2 = new Architecture();
         architecture2.setName("Notre-Dame de Paris");
@@ -127,7 +127,7 @@ public class RunAtStartup {
         architecture2.setLocation("Parvis Notre-Dame 75004 Paris, France");
         architecture2.setAuthor("Jean de Chelles");
         architecture2.setYear(1345);
-        architecture2.setIsTemporary(false);
+        architecture2.setTemporary(false);
 
         architectureService.save(architecture);
         architectureService.save(architecture2);

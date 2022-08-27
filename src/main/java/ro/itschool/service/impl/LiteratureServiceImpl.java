@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.itschool.entity.Literature;
 import ro.itschool.exception.LiteratureNotFound;
-import ro.itschool.exception.UserNotFound;
 import ro.itschool.repository.LiteratureRepository;
 import ro.itschool.service.LiteratureService;
 
@@ -18,11 +17,10 @@ public class LiteratureServiceImpl implements LiteratureService {
     LiteratureRepository literatureRepository;
 
     @Override
-    public void deleteByName(String name) throws LiteratureNotFound {
-        Optional.ofNullable(literatureRepository.findByName(name)).orElseThrow(LiteratureNotFound::new);
+    public void deleteByName(String name) {
+        Literature literature = literatureRepository.findByName(name);
         literatureRepository.deleteByName(name);
     }
-
 
     @Override
     public void save(Literature literature) {
@@ -30,17 +28,18 @@ public class LiteratureServiceImpl implements LiteratureService {
     }
 
     @Override
-    public List<Literature> getAllLiteratures() {
-        return literatureRepository.findAll();
+    public List<Literature> getAllLiteratures() throws LiteratureNotFound {
+        return Optional.of(literatureRepository.findAll()).orElseThrow(LiteratureNotFound::new);
     }
 
     @Override
-    public Literature findByName(String name) throws LiteratureNotFound {
-        return Optional.ofNullable(literatureRepository.findByName(name)).orElseThrow(LiteratureNotFound::new);
+    public Literature findByName(String name) {
+        return literatureRepository.findByName(name);
     }
 
     @Override
-    public List<Literature> getAllLiteraturesByUserId(Integer userId) throws UserNotFound {
-        return Optional.ofNullable(literatureRepository.findByUserId(userId)).orElseThrow(UserNotFound::new);
+    public List<Literature> getAllLiteraturesByUserId(Integer userId) throws LiteratureNotFound {
+        return Optional.ofNullable(literatureRepository.findByUserId(userId)).orElseThrow(LiteratureNotFound::new);
     }
+
 }

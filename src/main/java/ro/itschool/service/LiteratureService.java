@@ -14,9 +14,9 @@ public interface LiteratureService {
 
     void save(Literature literature);
 
-    List<Literature> getAllLiteratures();
+    List<Literature> getAllLiteratures() throws LiteratureNotFound;
 
     Literature findByName(String name) throws LiteratureNotFound;
 
-    List<Literature> getAllLiteraturesByUserId(Integer userId) throws UserNotFound;
+    List<Literature> getAllLiteraturesByUserId(Integer userId) throws UserNotFound, LiteratureNotFound;
 }

@@ -8,9 +8,10 @@ import ro.itschool.entity.Architecture;
 import ro.itschool.entity.User;
 import ro.itschool.exception.ArchitectureNotFound;
 import ro.itschool.repository.ArchitectureRepository;
+import ro.itschool.repository.UserRepository;
 
-import java.util.Collections;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class ArchitectureController {
@@ -18,34 +19,37 @@ public class ArchitectureController {
     @Autowired
     ArchitectureRepository architectureRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @GetMapping("/all-architecture-list")
     public String getArchitectures(Model model, String keyword) {
         model.addAttribute("architectures", architectureRepository.searchArchitecture(keyword));
         return "/architecture";
     }
 
-    @GetMapping("/saveArchitecture")
+    @GetMapping("/save-architecture")
     public String saveArchitecture1(Model model) {
-        model.addAttribute("architectureObject", new Architecture());
-        return "saveArchitecture";
+        model.addAttribute("architecture", new Architecture());
+        return "save-architecture";
     }
 
-    @PostMapping("/saveArchitecture")
+    @PostMapping("/save-architecture")
     public String saveArchitecture2(@ModelAttribute Architecture architecture, Model model) {
-        model.addAttribute("architectureObject", architecture);
+        model.addAttribute("architecture", architecture);
         architectureRepository.save(architecture);
         return "redirect:/all-architecture-list";
     }
 
-    @GetMapping("/updateArchitecture/{name}")
-    public String updateArchitecture(@PathVariable String name, Model model) throws ArchitectureNotFound {
+    @GetMapping(path = "/update-architecture/{name}")
+    public String updateArchitecture(@PathVariable("name") String name, Model model) throws ArchitectureNotFound {
         Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
-            model.addAttribute("architecture", architectureRepository.findByName(name).get());
-            return "updateArchitecture";
-        }
+        model.addAttribute("architecture", architectureRepository.findByName(name));
+        return "update-architecture";
+    }
 
     @RequestMapping(path = "/deleteArchitecture/{name}")
-    public String deleteArchitecture(Model model, @PathVariable("name") String name) throws ArchitectureNotFound {
+    public String deleteArchitecture(@PathVariable("name") String name) {
         architectureRepository.deleteByName(name);
         return "redirect:/all-architecture-list";
     }
@@ -54,8 +58,10 @@ public class ArchitectureController {
     @PostMapping("/addArchitectureToUser")
     public String addArchitectureToUser(@ModelAttribute Architecture architecture, User user, Model model) {
         model.addAttribute("architectureObject", architecture);
-        user.setArchitectureSet(Collections.singleton(architecture));
-        architectureRepository.save(architecture);
+        Set<Architecture> arch = user.getArchitectureSet();
+        arch.add(architecture);
+        user.setArchitectureSet(arch);
+        userRepository.save(user);
         return "redirect:/all-architecture-list";
     }
 

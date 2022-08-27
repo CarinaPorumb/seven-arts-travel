@@ -18,7 +18,7 @@ public class UserMapper {
                 .toList());
 
         userDTO.setArchitectureDTOList(user.getArchitectureSet().stream()
-                .map(architecture -> new ArchitectureDTO(architecture.getName(), architecture.getAuthor(), architecture.getMovement(), architecture.getIsTemporary(), architecture.getYear(), architecture.getLocation()))
+                .map(architecture -> new ArchitectureDTO(architecture.getName(), architecture.getAuthor(), architecture.getMovement(), architecture.getTemporary(), architecture.getYear(), architecture.getLocation()))
                 .toList());
 
         userDTO.setBalletAndTheatreDTOSList(user.getBalletAndTheatreSet().stream()

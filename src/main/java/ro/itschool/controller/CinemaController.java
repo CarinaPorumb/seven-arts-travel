@@ -46,15 +46,9 @@ public class CinemaController {
         return "updateCinema";
     }
 
-    @RequestMapping(value = "/cinema/delete/{name}")
-    public String deleteCinema(@PathVariable String name) {
-//        Optional.ofNullable(cinemaService.deleteByName(name)).orElseThrow(CinemaNotFound::new);
-//        return "redirect:/cinema";
-        try {
-            cinemaService.deleteByName(name);
-        } catch (CinemaNotFound e) {
-            return e.getMessage();
-        }
+    @RequestMapping(path = "/cinema/delete/{name}")
+    public String deleteCinema(@PathVariable("name") String name) {
+        cinemaRepository.deleteByName(name);
         return "redirect:/cinema";
     }
 

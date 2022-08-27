@@ -3,20 +3,19 @@ package ro.itschool.service;
 import org.springframework.stereotype.Service;
 import ro.itschool.entity.Sculpture;
 import ro.itschool.exception.SculptureNotFound;
-import ro.itschool.exception.UserNotFound;
 
 import java.util.List;
 
 @Service
 public interface SculptureService {
 
-    void deleteByName(String name) throws SculptureNotFound;
+    void deleteByName(String name) ;
 
     void save(Sculpture sculpture);
 
-    List<Sculpture> getAllSculptures();
+    List<Sculpture> getAllSculptures() throws SculptureNotFound;
 
-    Sculpture findByName(String name) throws SculptureNotFound;
+    Sculpture findByName(String name) ;
 
-    List<Sculpture> getAllSculpturesByUserId(Integer userId) throws UserNotFound;
+    List<Sculpture> getAllSculpturesByUserId(Integer userId) throws SculptureNotFound;
 }

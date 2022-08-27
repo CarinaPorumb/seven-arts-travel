@@ -10,13 +10,13 @@ import java.util.List;
 @Service
 public interface BalletAndTheatreService {
 
-    void deleteByName(String name) throws BalletAndTheatreNotFound;
+    void deleteByName(String name);
 
     void save(BalletAndTheatre balletAndTheatre);
 
-    List<BalletAndTheatre> getAllBalletsAndTheatres();
+    List<BalletAndTheatre> getAllBalletsAndTheatres() throws BalletAndTheatreNotFound;
 
-    BalletAndTheatre findByName(String name) throws BalletAndTheatreNotFound;
+    BalletAndTheatre findByName(String name);
 
-    List<BalletAndTheatre> getAllBalletsAndTheatresByUserId(Integer userId) throws UserNotFound;
+    List<BalletAndTheatre> getAllBalletsAndTheatresByUserId(Integer userId) throws UserNotFound, BalletAndTheatreNotFound;
 }

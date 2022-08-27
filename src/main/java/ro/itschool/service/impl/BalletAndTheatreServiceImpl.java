@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.itschool.entity.BalletAndTheatre;
 import ro.itschool.exception.BalletAndTheatreNotFound;
-import ro.itschool.exception.UserNotFound;
 import ro.itschool.repository.BalletAndTheatreRepository;
 import ro.itschool.service.BalletAndTheatreService;
 
@@ -18,8 +17,8 @@ public class BalletAndTheatreServiceImpl implements BalletAndTheatreService {
     BalletAndTheatreRepository balletAndTheatreRepository;
 
     @Override
-    public void deleteByName(String name) throws BalletAndTheatreNotFound {
-        Optional.ofNullable(balletAndTheatreRepository.findByName(name)).orElseThrow(BalletAndTheatreNotFound::new);
+    public void deleteByName(String name)  {
+        BalletAndTheatre balletAndTheatre = balletAndTheatreRepository.findByName(name);
         balletAndTheatreRepository.deleteByName(name);
     }
 
@@ -29,17 +28,17 @@ public class BalletAndTheatreServiceImpl implements BalletAndTheatreService {
     }
 
     @Override
-    public List<BalletAndTheatre> getAllBalletsAndTheatres() {
-        return balletAndTheatreRepository.findAll();
+    public List<BalletAndTheatre> getAllBalletsAndTheatres() throws BalletAndTheatreNotFound {
+        return Optional.of(balletAndTheatreRepository.findAll()).orElseThrow(BalletAndTheatreNotFound::new);
     }
 
     @Override
-    public BalletAndTheatre findByName(String name) throws BalletAndTheatreNotFound {
-        return Optional.ofNullable(balletAndTheatreRepository.findByName(name)).orElseThrow(BalletAndTheatreNotFound::new);
+    public BalletAndTheatre findByName(String name) {
+        return balletAndTheatreRepository.findByName(name);
     }
 
     @Override
-    public List<BalletAndTheatre> getAllBalletsAndTheatresByUserId(Integer userId) throws UserNotFound {
-        return Optional.ofNullable(balletAndTheatreRepository.findByUserId(userId)).orElseThrow(UserNotFound::new);
+    public List<BalletAndTheatre> getAllBalletsAndTheatresByUserId(Integer userId) throws BalletAndTheatreNotFound {
+        return Optional.ofNullable(balletAndTheatreRepository.findByUserId(userId)).orElseThrow(BalletAndTheatreNotFound::new);
     }
 }

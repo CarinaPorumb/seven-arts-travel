@@ -13,10 +13,10 @@ public interface ArchitectureService {
 
     void save(Architecture architecture);
 
-    List<Architecture> getAllArchitectures();
+    List<Architecture> getAllArchitectures() throws ArchitectureNotFound;
 
     Architecture findByName(String name) throws ArchitectureNotFound;
 
-    List<Architecture> getAllArchitecturesByUserId(Integer userId) throws UserNotFound;
+    List<Architecture> getAllArchitecturesByUserId(Integer userId) throws UserNotFound, ArchitectureNotFound;
 
 }

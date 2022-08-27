@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.itschool.entity.Cinema;
 import ro.itschool.exception.CinemaNotFound;
-import ro.itschool.exception.UserNotFound;
 import ro.itschool.repository.CinemaRepository;
 import ro.itschool.service.CinemaService;
 
@@ -18,18 +17,10 @@ public class CinemaServiceImpl implements CinemaService {
     CinemaRepository cinemaRepository;
 
     @Override
-    public void deleteByName(String name) throws CinemaNotFound {
+    public void deleteByName(String name) {
         Cinema cinema = cinemaRepository.findByName(name);
-        Optional.ofNullable(cinemaRepository.findByName(name)).orElseThrow(CinemaNotFound::new);
         cinemaRepository.deleteByName(name);
     }
-
-//    public void deleteByIban(String iban) throws AmountNotEmptyException {
-//        BankAccount bankAccount = accountRepository.findByIban(iban);
-//        if (bankAccount != null && bankAccount.getAmount().intValue() > 0)
-//            throw new AmountNotEmptyException("Please transfer all your money before account deletion");
-//        accountRepository.deleteByIban(iban);
-//    }
 
     @Override
     public void save(Cinema cinema) {
@@ -37,17 +28,17 @@ public class CinemaServiceImpl implements CinemaService {
     }
 
     @Override
-    public List<Cinema> getAllCinemas() {
-        return cinemaRepository.findAll();
+    public List<Cinema> getAllCinemas() throws CinemaNotFound {
+        return Optional.of(cinemaRepository.findAll()).orElseThrow(CinemaNotFound::new);
     }
 
     @Override
-    public Cinema findByName(String name) throws CinemaNotFound {
-        return Optional.ofNullable(cinemaRepository.findByName(name)).orElseThrow(CinemaNotFound::new);
+    public Cinema findByName(String name)  {
+        return cinemaRepository.findByName(name);
     }
 
     @Override
-    public List<Cinema> getAllCinemasByUserId(Integer userId) throws UserNotFound {
-        return Optional.ofNullable(cinemaRepository.findByUserId(userId)).orElseThrow(UserNotFound::new);
+    public List<Cinema> getAllCinemasByUserId(Integer userId) throws CinemaNotFound {
+        return Optional.ofNullable(cinemaRepository.findByUserId(userId)).orElseThrow(CinemaNotFound::new);
     }
 }

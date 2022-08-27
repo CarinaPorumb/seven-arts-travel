@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ro.itschool.entity.Sculpture;
-import ro.itschool.exception.SculptureNotFound;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,12 +14,12 @@ import java.util.UUID;
 @Repository
 public interface SculptureRepository extends JpaRepository<Sculpture, UUID> {
 
-    Sculpture findByName(String name) throws SculptureNotFound;
+    Sculpture findByName(String name);
 
     List<Sculpture> findAll(Sort sort);
 
     @Transactional
-    void deleteByName(String name) throws SculptureNotFound;
+    void deleteByName(String name);
 
     @Query(
             value = "SELECT * FROM sculpture WHERE user_id = ?",

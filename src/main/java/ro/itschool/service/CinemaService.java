@@ -10,13 +10,13 @@ import java.util.List;
 @Service
 public interface CinemaService {
 
-    void deleteByName(String name) throws CinemaNotFound;
+    void deleteByName(String name);
 
     void save(Cinema cinema);
 
-    List<Cinema> getAllCinemas();
+    List<Cinema> getAllCinemas() throws CinemaNotFound;
 
-    Cinema findByName(String name) throws CinemaNotFound;
+    Cinema findByName(String name);
 
-    List<Cinema> getAllCinemasByUserId(Integer userId) throws UserNotFound;
+    List<Cinema> getAllCinemasByUserId(Integer userId) throws UserNotFound, CinemaNotFound;
 }

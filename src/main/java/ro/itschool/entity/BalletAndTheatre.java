@@ -41,4 +41,8 @@ public class BalletAndTheatre implements Serializable {
     @JoinColumn(name = "user_id")
     @ToString.Exclude
     private User user;
+
+    public String get() {
+        return name;
+    }
 }

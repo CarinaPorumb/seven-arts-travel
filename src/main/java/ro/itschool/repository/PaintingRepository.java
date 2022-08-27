@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ro.itschool.entity.Painting;
-import ro.itschool.exception.PaintingNotFound;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,12 +14,12 @@ import java.util.UUID;
 @Repository
 public interface PaintingRepository extends JpaRepository<Painting, UUID> {
 
-    Painting findByName(String name) throws PaintingNotFound;
+    Painting findByName(String name);
 
     List<Painting> findAll(Sort sort);
 
     @Transactional
-    void deleteByName(String name) throws PaintingNotFound;
+    void deleteByName(String name);
 
     @Query(
             value = "SELECT * FROM painting WHERE user_id = ?",

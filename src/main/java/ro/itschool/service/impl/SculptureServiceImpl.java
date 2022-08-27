@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.itschool.entity.Sculpture;
 import ro.itschool.exception.SculptureNotFound;
-import ro.itschool.exception.UserNotFound;
 import ro.itschool.repository.SculptureRepository;
 import ro.itschool.service.SculptureService;
 
@@ -18,8 +17,8 @@ public class SculptureServiceImpl implements SculptureService {
     private SculptureRepository sculptureRepository;
 
     @Override
-    public void deleteByName(String name) throws SculptureNotFound {
-        Optional.ofNullable(sculptureRepository.findByName(name)).orElseThrow(SculptureNotFound::new);
+    public void deleteByName(String name) {
+        Sculpture sculpture = sculptureRepository.findByName(name);
         sculptureRepository.deleteByName(name);
     }
 
@@ -29,17 +28,17 @@ public class SculptureServiceImpl implements SculptureService {
     }
 
     @Override
-    public List<Sculpture> getAllSculptures() {
-        return sculptureRepository.findAll();
+    public List<Sculpture> getAllSculptures() throws SculptureNotFound {
+        return Optional.of(sculptureRepository.findAll()).orElseThrow(SculptureNotFound::new);
     }
 
     @Override
-    public Sculpture findByName(String name) throws SculptureNotFound {
-        return Optional.ofNullable(sculptureRepository.findByName(name)).orElseThrow(SculptureNotFound::new);
+    public Sculpture findByName(String name) {
+        return sculptureRepository.findByName(name);
     }
 
     @Override
-    public List<Sculpture> getAllSculpturesByUserId(Integer userId) throws UserNotFound {
-        return Optional.ofNullable(sculptureRepository.findByUserId(userId)).orElseThrow(UserNotFound::new);
+    public List<Sculpture> getAllSculpturesByUserId(Integer userId) throws SculptureNotFound {
+        return Optional.ofNullable(sculptureRepository.findByUserId(userId)).orElseThrow(SculptureNotFound::new);
     }
 }
