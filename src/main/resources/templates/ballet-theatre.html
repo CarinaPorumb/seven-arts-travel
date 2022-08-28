@@ -28,6 +28,15 @@
 }
 
 
+
+
+
+
+
+
+
+
+
     </style>
 </head>
 <body>
@@ -100,34 +109,57 @@
         </div>
     </div>
 </div>
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card">
-            <tr th:each="balletAndTheatre : ${balletAndTheatreList}">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-                    <div class="card-body">
-                        <h5 class="card-title">Music</h5>
-                        <div>
-                            <div class="card-body">
-                                <h5 class="card-title" th:value="${balletAndTheatre.name}"
-                                    th:text="${balletAndTheatre.name}"></h5>
-                                <p class="card-text" th:text="${balletAndTheatre.location}"></p>
-                                <p class="card-text" th:text="${balletAndTheatre.eventTime}"></p>
-                                <p class="card-text" th:text="${balletAndTheatre.movement}"></p>
-                                <p class="card-text" th:text="${balletAndTheatre.isTemporary}">
-                                    <span th:if="${balletAndTheatre.isTemporary == 'true'}"></span>
-                                    <span th:unless="${balletAndTheatre.isTemporary != 'true'}"></span></p>
-                                <button class="btn btn-primary form-control" type="submit">Add</button>
-                            </div>
+
+<h5 class="card-title">Ballet And Theatre</h5>
+<div class="col-lg-4 col-md-6 mb-4">
+    <div class="card">
+        <tr th:each="balletAndTheatre : ${balletAndTheatreList}">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
+                <div class="card-body">
+                    <div>
+                        <img class="card-img-top" src="https://i1.sndcdn.com/artworks-000611708353-qh2fmo-t500x500.jpg" alt="Card image" style="width:30% 90%">
+                        <div class="card-body">
+                            <h5 class="card-title" th:value="${balletAndTheatre.name}"
+                                th:text="${balletAndTheatre.name}"></h5>
+                            <li>
+                                <th>Name:</th>
+                                <span th:text="${balletAndTheatre.name}"></span>
+                            </li>
+                            <li>
+                                <th>Author:</th>
+                                <span th:text="${balletAndTheatre.author}"></span>
+                            </li>
+                            <li>
+                                <th>Location:</th>
+                                <span th:text="${balletAndTheatre.location}"></span>
+                            </li>
+                            <li>
+
+                                <th>Movement:</th>
+                                <span th:text="${balletAndTheatre.movement}"></span>
+                            </li>
+                            <li>
+                                <th>Event Time:</th>
+                                <span th:text="${balletAndTheatre.eventTime}"></span>
+                            </li>
+                            <li>
+                                <th>Is Temporary:</th>
+                                <span th:text="${balletAndTheatre.isTemporary}"></span>
+                                <span th:if="${balletAndTheatre.isTemporary == 'true'}"></span>
+                                <span th:unless="${balletAndTheatre.isTemporary != 'true'}"></span>
+                            </li>
+                            <button class="btn btn-dark form-control" type="submit">Add</button>
                         </div>
                     </div>
                 </div>
-            </tr>
-        </div>
+            </div>
+        </tr>
     </div>
+</div>
 
 
-    <!--    <div th:text="${balletAndTheatreList.get(1).name}"></div>-->
-    <!--    <div th:text="${balletAndTheatreList[0].name}"></div>-->
+<!--    <div th:text="${balletAndTheatreList.get(1).name}"></div>-->
+<!--    <div th:text="${balletAndTheatreList[0].name}"></div>-->
 
 </body>
 </html>1

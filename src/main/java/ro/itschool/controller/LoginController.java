@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
     @Autowired
-    HttpServletRequest httpServletRequest;   //m-a scapat de JSON & Co la logare,
+    HttpServletRequest httpServletRequest;   //m-a scapat de eroarea JSON & Co la logare,
 
     @RequestMapping(value = {"/login", "/"})
     public String login() {
