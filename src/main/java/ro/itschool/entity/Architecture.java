@@ -23,6 +23,8 @@ public class Architecture implements Serializable {
 
     private String name;
 
+    private String imageLink;
+
     private String author;
 
     @Enumerated(EnumType.STRING)
@@ -102,5 +104,13 @@ public class Architecture implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 }

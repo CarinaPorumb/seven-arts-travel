@@ -8,9 +8,10 @@ import ro.itschool.entity.Painting;
 import ro.itschool.entity.User;
 import ro.itschool.exception.PaintingNotFound;
 import ro.itschool.repository.PaintingRepository;
+import ro.itschool.repository.UserRepository;
 
-import java.util.Collections;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class PaintingController {
@@ -18,44 +19,49 @@ public class PaintingController {
     @Autowired
     PaintingRepository paintingRepository;
 
-    @GetMapping("/painting")
+    @Autowired
+    UserRepository userRepository;
+
+    @GetMapping("/all-painting-list")
     public String getAllPaintings(Model model, String keyword) {
         model.addAttribute("paintings", paintingRepository.searchPaintings(keyword));
         return "/painting";
     }
 
-    @GetMapping("/savePainting")
+    @GetMapping("/save-painting")
     public String savePainting1(Model model) {
-        model.addAttribute("paintingObject", new Painting());
-        return "savePainting";
+        model.addAttribute("painting", new Painting());
+        return "save-Painting";
     }
 
-    @PostMapping("/savePainting")
+    @PostMapping("/save-painting")
     public String savePainting2(@ModelAttribute Painting painting, Model model) {
-        model.addAttribute("paintingObject", painting);
+        model.addAttribute("painting", painting);
         paintingRepository.save(painting);
-        return "redirect:/painting";
+        return "redirect:/all-painting-list";
     }
 
-    @GetMapping("/updatePainting/{name}")
-    public String updatePainting(@PathVariable String name) throws PaintingNotFound {
+    @GetMapping(path = "/update-painting/{name}")
+    public String updatePainting(@PathVariable("name") String name, Model model) throws PaintingNotFound {
         Optional.ofNullable(paintingRepository.findByName(name)).orElseThrow(PaintingNotFound::new);
-        return "updatePainting";
+        model.addAttribute("painting", paintingRepository.findByName(name));
+        return "update-painting";
     }
 
-    @DeleteMapping("/deletePainting/{name}")
-    public String deletePainting(@PathVariable String name) throws PaintingNotFound {
-        Optional.ofNullable(paintingRepository.findByName(name)).orElseThrow(PaintingNotFound::new);
+    @RequestMapping("/delete-painting/{name}")
+    public String deletePainting(@PathVariable("name") String name) {
         paintingRepository.deleteByName(name);
-        return "redirect:/painting";
+        return "redirect:/all-painting-list";
     }
 
     //?
-    @PostMapping("/addPaintingToUser")
+    @RequestMapping("/addPaintingToUser")
     public String addPaintingToUser(@ModelAttribute Painting painting, User user, Model model) {
-        model.addAttribute("paintingObject", painting);
-        user.setPaintings(Collections.singleton(painting));
-        paintingRepository.save(painting);
-        return "redirect:/painting";
+        model.addAttribute("painting", painting);
+        Set<Painting> paintings = user.getPaintings();
+        paintings.add(painting);
+        user.setPaintings(paintings);
+        userRepository.save(user);
+        return "redirect:/myList";
     }
 }

@@ -30,13 +30,13 @@ public class ArchitectureController {
 
     @GetMapping("/save-architecture")
     public String saveArchitecture1(Model model) {
-        model.addAttribute("architecture", new Architecture());
+        model.addAttribute("architectureObject", new Architecture());
         return "save-architecture";
     }
 
     @PostMapping("/save-architecture")
     public String saveArchitecture2(@ModelAttribute Architecture architecture, Model model) {
-        model.addAttribute("architecture", architecture);
+        model.addAttribute("architectureObject", architecture);
         architectureRepository.save(architecture);
         return "redirect:/all-architecture-list";
     }
@@ -48,21 +48,21 @@ public class ArchitectureController {
         return "update-architecture";
     }
 
-    @RequestMapping(path = "/deleteArchitecture/{name}")
+    @RequestMapping(path = "/delete-architecture/{name}")
     public String deleteArchitecture(@PathVariable("name") String name) {
         architectureRepository.deleteByName(name);
         return "redirect:/all-architecture-list";
     }
 
     //?
-    @PostMapping("/addArchitectureToUser")
+    @RequestMapping("/addArchitectureToUser")
     public String addArchitectureToUser(@ModelAttribute Architecture architecture, User user, Model model) {
         model.addAttribute("architectureObject", architecture);
         Set<Architecture> arch = user.getArchitectureSet();
         arch.add(architecture);
         user.setArchitectureSet(arch);
         userRepository.save(user);
-        return "redirect:/all-architecture-list";
+        return "redirect:/myList";
     }
 
 }

@@ -5,13 +5,13 @@ import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import ro.itschool.enums.Style;
-
-
 @NoArgsConstructor
 @AllArgsConstructor
 public class ArchitectureDTO {
 
     private String name;
+
+    private String imageLink;
 
     private String author;
 
@@ -23,6 +23,7 @@ public class ArchitectureDTO {
     private Integer year;
 
     private String location;
+
 
     public String getName() {
         return name;
@@ -70,5 +71,13 @@ public class ArchitectureDTO {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 }

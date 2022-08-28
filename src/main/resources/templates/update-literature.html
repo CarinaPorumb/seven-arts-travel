@@ -28,7 +28,6 @@
 
     <style>
 body { background-color: #E2DFD2;
-
 }
     </style>
 </head>
@@ -37,12 +36,12 @@ body { background-color: #E2DFD2;
 
 <main class="mt-5">
     <div class="container" style="background-color: #eee;">
-        <h4><strong>Update Architecture</strong></h4>
+        <h4><strong>Update Literature</strong></h4>
         <br>
         <section>
-            <form action="#" th:action="@{/save-architecture}" th:object="${architecture}" method="post">
+            <form action="#" th:action="@{/save-literature}" th:object="${literature}" method="post">
 
-                <input type="text" th:field="*{name}" class="form-control col-4 mb-4" disabled/>
+                <input type="text" th:field="*{name}" class="form-control col-4 mb-4"/>
 
                 <input type="text" th:field="*{imageLink}" class="form-control col-4 mb-4"
                        placeholder="Enter Image Link"/>
@@ -65,7 +64,7 @@ body { background-color: #E2DFD2;
                     <option th:value="0">false</option>
                 </select>
                 <button type="submit" class="btn btn-success">Save</button>
-                <a href="/all-architecture-list" type="button" class="btn btn-secondary">Back</a>
+                <a href="/all-literature-list" type="button" class="btn btn-secondary">Back</a>
             </form>
         </section>
     </div>

@@ -8,9 +8,10 @@ import ro.itschool.entity.Sculpture;
 import ro.itschool.entity.User;
 import ro.itschool.exception.SculptureNotFound;
 import ro.itschool.repository.SculptureRepository;
+import ro.itschool.repository.UserRepository;
 
-import java.util.Collections;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class SculptureController {
@@ -18,44 +19,49 @@ public class SculptureController {
     @Autowired
     SculptureRepository sculptureRepository;
 
-    @GetMapping("/sculpture")
+    @Autowired
+    UserRepository userRepository;
+
+    @GetMapping("/all-sculpture-list")
     public String getSculptures(Model model, String keyword) {
         model.addAttribute("sculptures", sculptureRepository.searchSculpture(keyword));
         return "/sculpture";
     }
 
-    @GetMapping("/saveSculpture")
+    @GetMapping("/save-sculpture")
     public String saveSculpture1(Model model) {
-        model.addAttribute("sculptureObject", new Sculpture());
-        return "saveSculpture";
+        model.addAttribute("sculpture", new Sculpture());
+        return "save-sculpture";
     }
 
-    @PostMapping("/saveSculpture")
+    @PostMapping("/save-sculpture")
     public String saveSculpture2(@ModelAttribute Sculpture sculpture, Model model) {
-        model.addAttribute("sculptureObject", sculpture);
+        model.addAttribute("sculpture", sculpture);
         sculptureRepository.save(sculpture);
-        return "redirect:/sculpture";
+        return "redirect:/all-sculpture-list";
     }
 
-    @GetMapping("/updateSculpture/{name}")
-    public String updateSculpture(@PathVariable String name) throws SculptureNotFound {
+    @GetMapping(path = "/update-sculpture/{name}")
+    public String updateSculpture(@PathVariable("name") String name, Model model) throws SculptureNotFound {
         Optional.ofNullable(sculptureRepository.findByName(name)).orElseThrow(SculptureNotFound::new);
-        return "updateSculpture";
+        model.addAttribute("sculpture", sculptureRepository.findByName(name));
+        return "update-sculpture";
     }
 
-    @DeleteMapping("/deleteSculpture/{name}")
-    public String deleteSculpture(@PathVariable String name) throws SculptureNotFound {
-        Optional.ofNullable(sculptureRepository.findByName(name)).orElseThrow(SculptureNotFound::new);
+    @RequestMapping("/delete-sculpture/{name}")
+    public String deleteSculpture(@PathVariable("name") String name) {
         sculptureRepository.deleteByName(name);
-        return "redirect:/sculpture";
+        return "redirect:/all-sculpture-list";
     }
 
     //?
-    @PostMapping("/addSculptureToUser")
+    @RequestMapping("/addSculptureToUser")
     public String addSculptureToUser(@ModelAttribute Sculpture sculpture, User user, Model model) {
         model.addAttribute("sculptureObject", sculpture);
-        user.setSculptures(Collections.singleton(sculpture));
-        sculptureRepository.save(sculpture);
-        return "redirect:/sculpture";
+        Set<Sculpture> sculptures = user.getSculptures();
+        sculptures.add(sculpture);
+        user.setSculptures(sculptures);
+        userRepository.save(user);
+        return "redirect:/myList";
     }
 }

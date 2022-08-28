@@ -43,26 +43,8 @@
                             <a class="nav-link" href="/users">Users</a>
                         </li>
                     </div>
-                    <div sec:authorize="hasRole('ROLE_ADMIN')">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" aria-current="page" id="navbarDropdown2" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">Content</a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown2">
-                                <li><a class="dropdown-item" href="/all-architecture-list">Architecture</a></li>
-                                <li><a class="dropdown-item" href="/all-sculpture-list">Sculpture</a></li>
-                                <li><a class="dropdown-item" href="/all-painting-list">Painting</a></li>
-                                <li><a class="dropdown-item" href="/all-ballet-theatre-list">Ballet & Theatre</a></li>
-                                <li><a class="dropdown-item" href="/all-music-list">Music</a></li>
-                                <li><a class="dropdown-item" href="/all-literature-list">Literature</a></li>
-                                <li><a class="dropdown-item" href="/all-cinema-list">Cinema</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                            </ul>
-                        </li>
-                    </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="/contact">Contact</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Logout</a>

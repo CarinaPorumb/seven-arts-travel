@@ -8,8 +8,6 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.UUID;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -24,6 +22,8 @@ public class Painting implements Serializable {
     private UUID id = UUID.randomUUID();
 
     private String name;
+
+    private String imageLink;
 
     private String author;
 
@@ -41,4 +41,77 @@ public class Painting implements Serializable {
     @ToString.Exclude
     private User user;
 
+
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public Style getMovement() {
+        return movement;
+    }
+
+    public void setMovement(Style movement) {
+        this.movement = movement;
+    }
+
+    public Boolean getTemporary() {
+        return isTemporary;
+    }
+
+    public void setTemporary(Boolean temporary) {
+        isTemporary = temporary;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
