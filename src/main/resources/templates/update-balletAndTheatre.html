@@ -30,6 +30,7 @@
 body { background-color: #E2DFD2;
 }
 
+
     </style>
 </head>
 <body>
@@ -53,7 +54,7 @@ body { background-color: #E2DFD2;
                 <input type="text" th:field="*{location}" class="form-control col-4 mb-4"
                        placeholder="Enter location"/>
 
-                <input type="text" th:field="*{eventTime}" class="form-control col-4 mb-4"
+                <input type="datetime-local" th:field="*{eventTime}" class="form-control col-4 mb-4"
                        placeholder="Enter event time"/>
 
                 <select class="form-control col-4 mb-4" name="movement" th:field="*{movement}">

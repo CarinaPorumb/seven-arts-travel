@@ -26,7 +26,7 @@ public class UserMapper {
                 .toList());
 
         userDTO.setCinemaDTOList(user.getCinemas().stream()
-                .map(cinema -> new CinemaDTO(cinema.getName(), cinema.getMovement(), cinema.getIsTemporary(), cinema.getEventTime(), cinema.getLocation()))
+                .map(cinema -> new CinemaDTO(cinema.getName(), cinema.getImageLink(), cinema.getMovement(), cinema.getTemporary(), cinema.getEventTime(), cinema.getLocation()))
                 .toList());
 
         userDTO.setLiteratureDTOList(user.getLiteratureSet().stream()
@@ -34,7 +34,7 @@ public class UserMapper {
                 .toList());
 
         userDTO.setMusicDTOList(user.getMusicSet().stream()
-                .map(music -> new MusicDTO(music.getName(), music.getMovement(), music.getIsTemporary(), music.getEventTime(), music.getLocation()))
+                .map(music -> new MusicDTO(music.getName(), music.getImageLink(), music.getAuthor(), music.getMovement(), music.getTemporary(), music.getEventTime(), music.getLocation()))
                 .toList());
 
         userDTO.setPaintingDTOList(user.getPaintings().stream()

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Update Painting</title>
+    <title>Update Music</title>
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
@@ -29,9 +29,7 @@
 
     <style>
 body { background-color: #E2DFD2;
-
 }
-
     </style>
 </head>
 <body>
@@ -39,12 +37,12 @@ body { background-color: #E2DFD2;
 
 <main class="mt-5">
     <div class="container" style="background-color: #eee;">
-        <h4><strong>Update Painting</strong></h4>
+        <h4><strong>Update Music</strong></h4>
         <br>
         <section>
-            <form action="#" th:action="@{/save-painting}" th:object="${painting}" method="post">
+            <form action="#" th:action="@{/save-music}" th:object="${music}" method="post">
 
-                <input type="text" th:field="*{name}" class="form-control col-4 mb-4"/>
+                <input type="text" th:field="*{name}" class="form-control col-4 mb-4" disabled/>
 
                 <input type="text" th:field="*{imageLink}" class="form-control col-4 mb-4"
                        placeholder="Enter Image Link"/>
@@ -55,8 +53,8 @@ body { background-color: #E2DFD2;
                 <input type="text" th:field="*{location}" class="form-control col-4 mb-4"
                        placeholder="Enter location"/>
 
-                <input type="text" th:field="*{year}" class="form-control col-4 mb-4"
-                       placeholder="Enter year"/>
+                <input type="datetime-local" th:field="*{eventTime}" class="form-control col-4 mb-4"
+                       placeholder="Enter event time"/>
 
                 <select class="form-control col-4 mb-4" name="movement" th:field="*{movement}">
                     <option th:each="movement : ${T(ro.itschool.enums.Style).values()}"
@@ -67,7 +65,7 @@ body { background-color: #E2DFD2;
                     <option th:value="0">false</option>
                 </select>
                 <button type="submit" class="btn btn-success">Save</button>
-                <a href="/all-painting-list" type="button" class="btn btn-secondary">Back</a>
+                <a href="/all-music-list" type="button" class="btn btn-secondary">Back</a>
             </form>
         </section>
     </div>

@@ -8,10 +8,10 @@ import ro.itschool.entity.Music;
 import ro.itschool.entity.User;
 import ro.itschool.exception.MusicNotFound;
 import ro.itschool.repository.MusicRepository;
-import ro.itschool.service.MusicService;
+import ro.itschool.repository.UserRepository;
 
-import java.util.Collections;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class MusicController {
@@ -20,54 +20,51 @@ public class MusicController {
     MusicRepository musicRepository;
 
     @Autowired
-    MusicService musicService;
+    UserRepository userRepository;
 
-    @GetMapping("/music")
-    public String getMusicList(Model model, String keyword) {
-        model.addAttribute("musicList", musicRepository.searchMusic(keyword));
+    @GetMapping("/all-music-list")
+    public String getMusic(Model model, String keyword) {
+        model.addAttribute("musics", musicRepository.searchMusic(keyword));
         return "/music";
     }
 
-    @GetMapping("/musicByName{name}")
-    public String getMusicByName(Model model, String name) throws MusicNotFound {
-        Optional.ofNullable(musicRepository.findByName(name)).orElseThrow(MusicNotFound::new);
-        return "/music";
-    }
-
-    @GetMapping("/saveMusic")
+    @GetMapping("/save-music")
     public String saveMusic1(Model model) {
         model.addAttribute("musicObject", new Music());
-        return "saveMusic";
+        return "save-music";
     }
 
-    @PostMapping("/saveMusic")
+    @PostMapping("/save-music")
     public String saveMusic2(@ModelAttribute Music music, Model model) {
         model.addAttribute("musicObject", music);
         musicRepository.save(music);
-        return "redirect:/music";
+        return "redirect:/all-music-list";
     }
 
-    @GetMapping("/updateMusic/{name}")
-    public String updateMusic(@PathVariable String name) throws MusicNotFound {
+    @GetMapping(path = "/update-music/{name}")
+    public String updateMusic(@PathVariable("name") String name, Model model) throws MusicNotFound {
         Optional.ofNullable(musicRepository.findByName(name)).orElseThrow(MusicNotFound::new);
-        return "updateMusic";
+        model.addAttribute("music", musicRepository.findByName(name));
+        return "update-music";
     }
 
-    @DeleteMapping("/deleteMusic/{name}")
-    public String deleteMusic(@PathVariable String name) throws MusicNotFound {
-        Optional.ofNullable(musicRepository.findByName(name)).orElseThrow(MusicNotFound::new);
+    @RequestMapping(path = "/delete-music/{name}")
+    public String deleteMusic(@PathVariable("name") String name) {
         musicRepository.deleteByName(name);
-        return "redirect:/music";
+        return "redirect:/all-music-list";
     }
 
     //?
-    @PostMapping("/addMusicToUser")
+    @RequestMapping("/addMusicToUser")
     public String addMusicToUser(@ModelAttribute Music music, User user, Model model) {
         model.addAttribute("musicObject", music);
-        user.setMusicSet(Collections.singleton(music));
-        musicRepository.save(music);
-        return "redirect:/music";
+        Set<Music> music1 = user.getMusicSet();
+        music1.add(music);
+        user.setMusicSet(music1);
+        userRepository.save(user);
+        return "redirect:/myList";
     }
+
 
 }
 

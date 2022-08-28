@@ -191,16 +191,20 @@ public class RunAtStartup {
         Set<Music> musics = new HashSet<>();
         Music music = new Music();
         music.setName("George Enescu International Festival");
+        music.setImageLink("https://www.ziarulmetropolis.ro/wp-content/uploads/2020/10/slide-1.jpg");
+        music.setAuthor("Orchestra Simfonică a Filarmonicii George Enescu");
         music.setMovement(Style.CONTEMPORARY);
         music.setLocation("Romanian Athenaeum, 050204, Bucharest, Romania");
-        music.setIsTemporary(false);
+        music.setTemporary(false);
         music.setEventTime(LocalDateTime.of(2022, 9, 4, 20, 0));
 
         Music music2 = new Music();
         music2.setName("Vienna New Year's Concert");
+        music2.setImageLink("https://pbs.twimg.com/media/Ex4n24YWYAIAskV.jpg:large");
+        music2.setAuthor("Hofburg Orchestra");
         music2.setMovement(Style.ROMANTICISM);
         music2.setLocation("Golden Hall of the Vienna State Opera, Austria");
-        music2.setIsTemporary(true);
+        music2.setTemporary(true);
         music2.setEventTime(LocalDateTime.of(2023, 1, 1, 11, 15));
         musicService.save(music);
         musicService.save(music2);
@@ -250,17 +254,19 @@ public class RunAtStartup {
         Set<Cinema> cinemas = new HashSet<>();
         Cinema cinema = new Cinema();
         cinema.setName("Cannes Film Festival");
+        cinema.setImageLink("https://malaya.com.ph/wp-content/uploads/2020/03/Cannes.jpg");
         cinema.setLocation("Palace of Festivals and Congresses of Cannes, France");
         cinema.setMovement(Style.CONTEMPORARY);
         cinema.setEventTime(LocalDate.of(2023, 5, 16));
-        cinema.setIsTemporary(true);
+        cinema.setTemporary(true);
 
         Cinema cinema2 = new Cinema();
         cinema2.setName("The National Museum of Cinema");
+        cinema.setImageLink("https://c8.alamy.com/comp/HGNBM9/tourists-visit-national-museum-of-cinema-in-turin-italy-HGNBM9.jpg");
         cinema2.setLocation("Via Montebello, 20, 10124 Torino, Italy");
         cinema2.setMovement(Style.CONTEMPORARY);
         cinema2.setEventTime(LocalDate.of(1958, 1, 1));
-        cinema2.setIsTemporary(false);
+        cinema2.setTemporary(false);
 
         cinemaService.save(cinema);
         cinemaService.save(cinema2);

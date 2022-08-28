@@ -43,7 +43,7 @@ body { background-color: #E2DFD2;
         <section>
             <form action="#" th:action="@{/save-sculpture}" th:object="${sculpture}" method="post">
 
-                <input type="text" th:field="*{name}" class="form-control col-4 mb-4" disabled/>
+                <input type="text" th:field="*{name}" class="form-control col-4 mb-4"/>
 
                 <input type="text" th:field="*{imageLink}" class="form-control col-4 mb-4"
                        placeholder="Enter Image Link"/>

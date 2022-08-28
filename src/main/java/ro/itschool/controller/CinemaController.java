@@ -8,10 +8,10 @@ import ro.itschool.entity.Cinema;
 import ro.itschool.entity.User;
 import ro.itschool.exception.CinemaNotFound;
 import ro.itschool.repository.CinemaRepository;
-import ro.itschool.service.CinemaService;
+import ro.itschool.repository.UserRepository;
 
-import java.util.Collections;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class CinemaController {
@@ -19,46 +19,48 @@ public class CinemaController {
     @Autowired
     CinemaRepository cinemaRepository;
     @Autowired
-    CinemaService cinemaService;
+    UserRepository userRepository;
 
-    @GetMapping("/cinema")
+    @GetMapping("/all-cinema-list")
     public String getCinemas(Model model, String keyword) {
         model.addAttribute("cinemas", cinemaRepository.searchCinema(keyword));
         return "/cinema";
     }
 
-    @GetMapping("/saveCinema")
+    @GetMapping("/save-cinema")
     public String saveCinema1(Model model) {
         model.addAttribute("cinemaObject", new Cinema());
-        return "saveCinema";
+        return "save-cinema";
     }
 
-    @PostMapping("/saveCinema")
+    @PostMapping("/save-cinema")
     public String saveCinema2(@ModelAttribute Cinema cinema, Model model) {
         model.addAttribute("cinemaObject", cinema);
         cinemaRepository.save(cinema);
-        return "redirect:/cinema";
+        return "redirect:/all-cinema-list";
     }
 
-    @GetMapping("/updateCinema/{name}")
-    public String updateCinema(@PathVariable String name) throws CinemaNotFound {
+    @GetMapping(path = "/update-cinema/{name}")
+    public String updateCinema(@PathVariable("name") String name, Model model) throws CinemaNotFound {
         Optional.ofNullable(cinemaRepository.findByName(name)).orElseThrow(CinemaNotFound::new);
-        return "updateCinema";
+        model.addAttribute("cinema", cinemaRepository.findByName(name));
+        return "update-cinema";
     }
 
-    @RequestMapping(path = "/cinema/delete/{name}")
+    @RequestMapping(path = "/delete-cinema/{name}")
     public String deleteCinema(@PathVariable("name") String name) {
         cinemaRepository.deleteByName(name);
-        return "redirect:/cinema";
+        return "redirect:/all-cinema-list";
     }
 
-
     //?
-    @PostMapping("/addCinemaToUser")
+    @RequestMapping("/addCinemaToUser")
     public String addCinemaToUser(@ModelAttribute Cinema cinema, User user, Model model) {
-        model.addAttribute("cinemaObject", cinema);
-        user.setCinemas(Collections.singleton(cinema));
-        cinemaRepository.save(cinema);
-        return "redirect:/cinema";
+        model.addAttribute("cinema", cinema);
+        Set<Cinema> cinemas = user.getCinemas();
+        cinemas.add(cinema);
+        user.setCinemas(cinemas);
+        userRepository.save(user);
+        return "redirect:/myList";
     }
 }
