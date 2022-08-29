@@ -1,7 +1,9 @@
 package ro.itschool.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import ro.itschool.enums.Style;
 
 import java.io.Serial;
@@ -23,18 +25,12 @@ public class BalletAndTheatre implements Serializable {
     private UUID id = UUID.randomUUID();
 
     private String name;
-
     private String imageLink;
-
     private String author;
-
     @Enumerated(EnumType.STRING)
     private Style movement;
-
     private Boolean isTemporary;
-
     private LocalDateTime eventTime;
-
     private String location;
 
     @ManyToOne
@@ -42,10 +38,11 @@ public class BalletAndTheatre implements Serializable {
     @ToString.Exclude
     private User user;
 
+
+
     public String get() {
         return name;
     }
-
 
     public UUID getId() {
         return id;

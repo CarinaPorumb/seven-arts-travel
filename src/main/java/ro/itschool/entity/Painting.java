@@ -1,7 +1,9 @@
 package ro.itschool.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import ro.itschool.enums.Style;
 
 import java.io.Serial;
@@ -20,27 +22,19 @@ public class Painting implements Serializable {
     @Id
     @GeneratedValue
     private UUID id = UUID.randomUUID();
-
     private String name;
-
     private String imageLink;
-
     private String author;
-
     @Enumerated(EnumType.STRING)
     private Style movement;
-
     private Boolean isTemporary;
-
     private Integer year;
-
     private String location;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     @ToString.Exclude
     private User user;
-
 
 
     public UUID getId() {
@@ -107,11 +101,5 @@ public class Painting implements Serializable {
         this.location = location;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
+

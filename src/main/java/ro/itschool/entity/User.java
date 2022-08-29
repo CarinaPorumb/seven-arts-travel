@@ -66,14 +66,16 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private Set<Painting> paintings;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Set<Architecture> architectureSet;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Set<Music> musicSet;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private Set<Painting> paintings;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Set<Literature> literatureSet;

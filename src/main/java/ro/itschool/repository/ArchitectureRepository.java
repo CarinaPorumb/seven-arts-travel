@@ -9,10 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import ro.itschool.entity.Architecture;
 
 import java.util.List;
-import java.util.UUID;
 
 @Repository
-public interface ArchitectureRepository extends JpaRepository<Architecture, UUID> {
+public interface ArchitectureRepository extends JpaRepository<Architecture, Long> {
 
     List<Architecture> findAll(Sort sort);
 

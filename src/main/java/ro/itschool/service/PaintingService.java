@@ -17,5 +17,5 @@ public interface PaintingService {
 
     Painting findByName(String name) throws PaintingNotFound;
 
-    List<Painting> getAllPaintingsByUserId(Integer userId) throws PaintingNotFound;
+    List<Painting> getAllPaintingsByUserId(Long userId) throws PaintingNotFound;
 }

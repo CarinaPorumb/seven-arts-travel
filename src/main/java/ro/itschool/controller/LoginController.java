@@ -1,7 +1,5 @@
 package ro.itschool.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LoginController {
-
-    @Autowired
-    HttpServletRequest httpServletRequest;   //m-a scapat de eroarea JSON & Co la logare,
+//
+//    @Autowired
+//    HttpServletRequest httpServletRequest;   //m-a scapat de eroarea JSON & Co la logare,
 
     @RequestMapping(value = {"/login", "/"})
     public String login() {
-        httpServletRequest.getSession();
+//        httpServletRequest.getSession();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             return "login";

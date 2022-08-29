@@ -78,7 +78,7 @@
                         <div class="card-body">
                             <img class="card-img-top" alt="Card image"
                                  style="width:30% 90%"
-                                 src="ro.itschool.entity.Architecture.setImageLink">
+                                th:src="${architecture.imageLink}">
 
                             <div class="card-body">
                                 <h5 class="card-title" th:value="${architecture.name}"
@@ -105,9 +105,9 @@
                                 </li>
                                 <li>
                                     <th>Is Temporary:</th>
-                                    <span th:text="${architecture.Temporary}"></span>
-                                    <span th:if="${architecture.Temporary == 'true'}"></span>
-                                    <span th:unless="${architecture.Temporary != 'true'}"></span>
+                                    <span th:text="${architecture.isTemporary}"></span>
+                                    <span th:if="${architecture.isTemporary == 'true'}"></span>
+                                    <span th:unless="${architecture.isTemporary != 'true'}"></span>
                                 </li>
                                 <a th:href="@{'/addArchitectureToUser'}"
                                    class="btn btn-warning" type="submit">Add to list</a>

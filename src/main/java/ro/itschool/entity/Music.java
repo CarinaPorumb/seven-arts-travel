@@ -23,18 +23,12 @@ public class Music implements Serializable {
     private UUID id = UUID.randomUUID();
 
     private String name;
-
     private String imageLink;
-
     private String author;
-
     @Enumerated(EnumType.STRING)
     private Style movement;
-
     private Boolean isTemporary;
-
     private LocalDateTime eventTime;
-
     private String location;
 
     @ManyToOne

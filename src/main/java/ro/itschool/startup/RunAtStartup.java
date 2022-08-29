@@ -51,7 +51,6 @@ public class RunAtStartup {
 
     }
 
-
     public void saveAdmin() {
         User user = new User();
         user.setUsername("Admin");
@@ -110,31 +109,52 @@ public class RunAtStartup {
         userService.saveUser(user);
     }
 
-
     public void saveArchitecture() {
         Set<Architecture> architectures = new HashSet<>();
         Architecture architecture = new Architecture();
         architecture.setName("Chateau de Chambord");
         architecture.setImageLink("https://royal-connection.fr/wp-content/uploads/2017/05/excursion-chateau-chambord.jpg");
         architecture.setMovement(Style.RENAISSANCE);
-        architecture.setLocation("Chateau, 41250 Chambord, France");
+        architecture.setLocation("Chateau, 41250, Chambord, France");
         architecture.setAuthor("Domenico da Cortona");
         architecture.setYear(1547);
-        architecture.setTemporary(false);
+        architecture.setIsTemporary(false);
 
         Architecture architecture2 = new Architecture();
         architecture2.setName("Notre-Dame de Paris");
         architecture2.setImageLink("https://www.piatraonline.ro/userfiles/19370a59-92cf-454a-b230-f7886006c901/Image/2_v120.jpg");
         architecture2.setMovement(Style.GOTHIC);
-        architecture2.setLocation("Parvis Notre-Dame 75004 Paris, France");
+        architecture2.setLocation("Parvis Notre-Dame, 75004, Paris, France");
         architecture2.setAuthor("Jean de Chelles");
         architecture2.setYear(1345);
-        architecture2.setTemporary(false);
+        architecture2.setIsTemporary(false);
+
+        Architecture architecture3 = new Architecture();
+        architecture3.setName("Casa Batllo");
+        architecture3.setImageLink("https://www.artmajeur.com/medias/hd/r/a/radu-bercan/artwork/13405976_dsc05184af.jpg");
+        architecture3.setMovement(Style.ARTNOUVEAU);
+        architecture3.setLocation("Pg. de Gracia, 43, 08007, Barcelona, Spania");
+        architecture3.setAuthor("Antoni Gaudí");
+        architecture3.setYear(1912);
+        architecture3.setIsTemporary(false);
+
+        Architecture architecture4 = new Architecture();
+        architecture4.setName("Palacio da Pena)");
+        architecture4.setImageLink("https://royal-connection.fr/wp-content/uploads/2017/05/excursion-chateau-chambord.jpg");
+        architecture4.setMovement(Style.ROMANTICISM);
+        architecture4.setLocation("Estrada da Pena, 2710, Sintra, Portugal");
+        architecture4.setAuthor("Wilhelm Ludwig von Eschwege, Nicolau Pires");
+        architecture4.setYear(1854);
+        architecture4.setIsTemporary(false);
 
         architectureService.save(architecture);
         architectureService.save(architecture2);
+        architectureService.save(architecture3);
+        architectureService.save(architecture4);
         architectures.add(architecture);
         architectures.add(architecture2);
+        architectures.add(architecture3);
+        architectures.add(architecture4);
     }
 
     public void saveSculpture() {
@@ -174,17 +194,27 @@ public class RunAtStartup {
         painting.setYear(1922);
 
         Painting painting2 = new Painting();
-        painting2.setName("The Louvre Museum");
-        painting2.setImageLink("https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_720/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/djvwelyhrz8z9ufftnyk/PriorityAccessEntranceTickettotheLouvreMuseum.webp");
-        painting2.setMovement(Style.RENAISSANCE);
-        painting2.setLocation("Rue de Rivoli, 75001 Paris, France");
-        painting2.setTemporary(false);
-        painting2.setYear(1793);
+        painting2.setName("Art Safari");
+        painting2.setImageLink("https://www.artsafari.ro/wp-content/uploads/2022/08/cover-editia-10.png");
+        painting2.setMovement(Style.CONTEMPORARY);
+        painting2.setLocation("Strada Lipscani 18, București, 030167 Romania");
+        painting2.setTemporary(true);
+        painting2.setYear(2022);
+
+        Painting painting3 = new Painting();
+        painting3.setName("The Louvre Museum");
+        painting3.setImageLink("https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_720/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/djvwelyhrz8z9ufftnyk/PriorityAccessEntranceTickettotheLouvreMuseum.webp");
+        painting3.setMovement(Style.RENAISSANCE);
+        painting3.setLocation("Rue de Rivoli, 75001 Paris, France");
+        painting3.setTemporary(false);
+        painting3.setYear(1793);
 
         paintingService.save(painting);
         paintingService.save(painting2);
+        paintingService.save(painting3);
         paintings.add(painting);
         paintings.add(painting2);
+        paintings.add(painting3);
     }
 
     public void saveMusic() {

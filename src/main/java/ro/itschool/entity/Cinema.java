@@ -23,16 +23,11 @@ public class Cinema implements Serializable {
     private UUID id = UUID.randomUUID();
 
     private String name;
-
     private String imageLink;
-
     @Enumerated(EnumType.STRING)
     private Style movement;
-
     private Boolean isTemporary;
-
     private LocalDate eventTime;
-
     private String location;
 
     @ManyToOne
