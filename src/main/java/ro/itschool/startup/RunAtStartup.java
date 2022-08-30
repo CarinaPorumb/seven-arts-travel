@@ -139,22 +139,44 @@ public class RunAtStartup {
         architecture3.setIsTemporary(false);
 
         Architecture architecture4 = new Architecture();
-        architecture4.setName("Palacio da Pena)");
-        architecture4.setImageLink("https://royal-connection.fr/wp-content/uploads/2017/05/excursion-chateau-chambord.jpg");
+        architecture4.setName("Palacio da Pena");
+        architecture4.setImageLink("https://tourscanner.com/blog/wp-content/uploads/2019/05/Pena-Palace-tickets-1.png");
         architecture4.setMovement(Style.ROMANTICISM);
         architecture4.setLocation("Estrada da Pena, 2710, Sintra, Portugal");
         architecture4.setAuthor("Wilhelm Ludwig von Eschwege, Nicolau Pires");
         architecture4.setYear(1854);
         architecture4.setIsTemporary(false);
 
+        Architecture architecture5 = new Architecture();
+        architecture5.setName("Chateau d'Amboise");
+        architecture5.setImageLink("https://www.loirevalley-france.co.uk/sites/default/files/visionneuse/image/amboise_7663_l_de_serres.jpg");
+        architecture5.setMovement(Style.RENAISSANCE);
+        architecture5.setLocation("37400 Amboise, France");
+        architecture5.setAuthor("Domenico da Cortona, Fra Giocondo");
+        architecture5.setYear(1495);
+        architecture5.setIsTemporary(false);
+
+        Architecture architecture6 = new Architecture();
+        architecture6.setName("Le Mont Saint-Michel Abbey");
+        architecture6.setImageLink("https://www.rfi.ro/sites/default/files/styles/inside_content/public/articol/st_michel.png?itok=ckUJKeDT");
+        architecture6.setMovement(Style.GOTHIC);
+        architecture6.setLocation("Le Mont Saint-Michel, Franța");
+        architecture6.setAuthor("William of Volpiano");
+        architecture6.setYear(1523);
+        architecture6.setIsTemporary(false);
+
         architectureService.save(architecture);
         architectureService.save(architecture2);
         architectureService.save(architecture3);
         architectureService.save(architecture4);
+        architectureService.save(architecture5);
+        architectureService.save(architecture6);
         architectures.add(architecture);
         architectures.add(architecture2);
         architectures.add(architecture3);
         architectures.add(architecture4);
+        architectures.add(architecture5);
+        architectures.add(architecture6);
     }
 
     public void saveSculpture() {
@@ -177,10 +199,32 @@ public class RunAtStartup {
         sculpture2.setIsTemporary(false);
         sculpture2.setYear(1923);
 
+        Sculpture sculpture3 = new Sculpture();
+        sculpture3.setName("Dancing With Dandelions");
+        sculpture3.setImageLink("https://www.udesign.es/wp-content/uploads/2019/04/UD-SCULTURES-2.jpg");
+        sculpture3.setAuthor("Robin Wight");
+        sculpture3.setLocation("Staffordshire, UK");
+        sculpture3.setMovement(Style.CONTEMPORARY);
+        sculpture3.setIsTemporary(false);
+        sculpture3.setYear(2014);
+
+        Sculpture sculpture4 = new Sculpture();
+        sculpture4.setName("Nefertiti Bust");
+        sculpture4.setImageLink("https://upload.wikimedia.org/wikipedia/commons/1/1f/Nofretete_Neues_Museum.jpg");
+        sculpture4.setAuthor("Thutmose");
+        sculpture4.setLocation("Neues Museum Berlin, Germany");
+        sculpture4.setMovement(Style.ANCIENT);
+        sculpture4.setIsTemporary(false);
+        sculpture4.setYear(1345);
+
         sculptureService.save(sculpture);
         sculptureService.save(sculpture2);
+        sculptureService.save(sculpture3);
+        sculptureService.save(sculpture4);
         sculptures.add(sculpture);
         sculptures.add(sculpture2);
+        sculptures.add(sculpture3);
+        sculptures.add(sculpture4);
     }
 
     public void savePainting() {
@@ -209,12 +253,32 @@ public class RunAtStartup {
         painting3.setIsTemporary(false);
         painting3.setYear(1793);
 
+        Painting painting4 = new Painting();
+        painting4.setName("Rijksmuseum");
+        painting4.setImageLink("https://winterfestivalamsterdam.com/wp-content/uploads/2021/08/Rijksmuseum-John-Lewis-Marshall-scaled.jpg");
+        painting4.setMovement(Style.BAROQUE);
+        painting4.setLocation("Museumstraat 1, 1071 XX Amsterdam, Netherlands");
+        painting4.setIsTemporary(false);
+        painting4.setYear(1808);
+
+        Painting painting5 = new Painting();
+        painting5.setName("British Museum");
+        painting5.setImageLink("https://youimg1.tripcdn.com/target/100s13000000u3nqm8913.jpg?proc=source%2Ftrip");
+        painting5.setMovement(Style.RENAISSANCE);
+        painting5.setLocation("Great Russell St, London WC1B, UK");
+        painting5.setIsTemporary(false);
+        painting5.setYear(1753);
+
         paintingService.save(painting);
         paintingService.save(painting2);
         paintingService.save(painting3);
+        paintingService.save(painting4);
+        paintingService.save(painting5);
         paintings.add(painting);
         paintings.add(painting2);
         paintings.add(painting3);
+        paintings.add(painting4);
+        paintings.add(painting5);
     }
 
     public void saveMusic() {
@@ -225,8 +289,17 @@ public class RunAtStartup {
         music.setAuthor("Orchestra Simfonică a Filarmonicii George Enescu");
         music.setMovement(Style.CONTEMPORARY);
         music.setLocation("Romanian Athenaeum, 050204, Bucharest, Romania");
-        music.setIsTemporary(false);
+        music.setIsTemporary(true);
         music.setEventTime(LocalDateTime.of(2022, 9, 4, 20, 0));
+
+        Music music1 = new Music();
+        music1.setName("Ludovico Einaudi - La Seine Musicale");
+        music1.setImageLink("https://www.laseinemusicale.com/app/uploads/2022/06/ludovico-einaudi-la-seine-musicale-2.png");
+        music1.setAuthor("Ludovico Einaudi");
+        music1.setMovement(Style.CONTEMPORARY);
+        music1.setLocation("La Seine Musicale, Île Seguin, Boulogne-Billancourt, Franța");
+        music1.setIsTemporary(true);
+        music1.setEventTime(LocalDateTime.of(2022, 10, 14, 20, 0));
 
         Music music2 = new Music();
         music2.setName("Vienna New Year's Concert");
@@ -236,10 +309,35 @@ public class RunAtStartup {
         music2.setLocation("Golden Hall of the Vienna State Opera, Austria");
         music2.setIsTemporary(true);
         music2.setEventTime(LocalDateTime.of(2023, 1, 1, 11, 15));
+
+        Music music3 = new Music();
+        music3.setName("Festival-Tournee");
+        music3.setImageLink("https://nhaccodien.vn/wp-content/uploads/2019/01/Berlin-Philharmonic.jpg");
+        music3.setAuthor("Berliner Philharmoniker");
+        music3.setMovement(Style.ROMANTICISM);
+        music3.setLocation("Herbert-von-Karajan-Str. 1, 10785 Berlin, Germany");
+        music3.setIsTemporary(true);
+        music3.setEventTime(LocalDateTime.of(2022, 9, 1, 19, 30));
+
+        Music music4 = new Music();
+        music4.setName("Mendelssohn’s Italian");
+        music4.setImageLink("https://i2-prod.manchestereveningnews.co.uk/incoming/article20728742.ece/ALTERNATES/s1200b/1_Capture-2JPG.jpg");
+        music4.setAuthor("Halle Orchestra");
+        music4.setMovement(Style.ROMANTICISM);
+        music4.setLocation("The Bridgewater Hall, Manchester, UK");
+        music4.setIsTemporary(true);
+        music4.setEventTime(LocalDateTime.of(2022, 10, 16, 16, 0));
+
         musicService.save(music);
+        musicService.save(music1);
         musicService.save(music2);
+        musicService.save(music3);
+        musicService.save(music4);
         musics.add(music);
+        musics.add(music1);
         musics.add(music2);
+        musics.add(music3);
+        musics.add(music4);
     }
 
     public void saveBalletAndTheatre() {
@@ -252,6 +350,7 @@ public class RunAtStartup {
         balletAndTheatre.setMovement(Style.ROMANTICISM);
         balletAndTheatre.setEventTime(LocalDateTime.of(2022, 9, 28, 20, 0));
         balletAndTheatre.setIsTemporary(true);
+
         balletAndTheatreService.save(balletAndTheatre);
         balletAndTheatreSet.add(balletAndTheatre);
     }
@@ -274,10 +373,20 @@ public class RunAtStartup {
         literature2.setIsTemporary(false);
         literature2.setYear(1138);
 
+        Literature literature3 = new Literature();
+        literature3.setName("Library of Trinity College Dublin");
+        literature3.setImageLink("https://images.unsplash.com/photo-1505664194779-8beaceb93744?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+        literature3.setLocation("College Street, Dublin 2, Ireland");
+        literature3.setMovement(Style.RENAISSANCE);
+        literature3.setIsTemporary(false);
+        literature2.setYear(1592);
+
         literatureService.save(literature);
         literatureService.save(literature2);
+        literatureService.save(literature3);
         literatures.add(literature);
         literatures.add(literature2);
+        literatures.add(literature3);
     }
 
     public void saveCinema() {
@@ -292,7 +401,7 @@ public class RunAtStartup {
 
         Cinema cinema2 = new Cinema();
         cinema2.setName("The National Museum of Cinema");
-        cinema.setImageLink("https://c8.alamy.com/comp/HGNBM9/tourists-visit-national-museum-of-cinema-in-turin-italy-HGNBM9.jpg");
+        cinema2.setImageLink("https://c8.alamy.com/comp/HGNBM9/tourists-visit-national-museum-of-cinema-in-turin-italy-HGNBM9.jpg");
         cinema2.setLocation("Via Montebello, 20, 10124 Torino, Italy");
         cinema2.setMovement(Style.CONTEMPORARY);
         cinema2.setEventTime(LocalDate.of(1958, 1, 1));
@@ -303,5 +412,7 @@ public class RunAtStartup {
         cinemas.add(cinema);
         cinemas.add(cinema2);
     }
+
+
 }
 

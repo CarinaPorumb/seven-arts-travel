@@ -7,100 +7,14 @@
 <style>
      body {background-color: #E2DFD2;
 }
-.container{
-    margin-top:0px;
-}
-.btn:hover{
-    color:white;
-}
-.input-text:focus{
-    box-shadow: 0px 0px 0px;
-    border-color:#343a40!important;
-    outline: 0px;
-}
-.form-control {
-    border: 1px solid #343a40!important;
-}
+
+
 </style>
 <body>
 
 <div th:replace="fragments/navs.html :: topnav"></div>
 <div class="col-md-2"></div>
 
-<div class="container my-2">
-    <br><br>
-    <h3 class="card-title"><strong>Painting</strong></h3>
-    <br><br>
-    <form th:action="@{/myList}" method="get">
-        <div class="card-body">
-            <div class="col-md-10">
-                <div class="search-container">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="input-group mb-3">
-                                <input type="text" name="keyword" th:value="${keyword}"
-                                       class="form-control input-text" placeholder="Search"
-                                       aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-dark btn-md" type="submit"><i
-                                            class="fa fa-search"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <tr th:each="painting: ${paintingSet}">
-                <div class="row">
-                    <hr class="my-5"/>
-                    <div class="card">
-                        <div class="card-body">
-                            <img class="card-img-top" alt="Card image"
-                                 style="width:30% 90%"
-                                 src="ro.itschool.entity.Painting.setImageLink">
-
-                            <div class="card-body">
-                                <h5 class="card-title" th:value="${painting.name}"
-                                    th:text="${painting.name}"></h5>
-                                <li>
-                                    <th>Name:</th>
-                                    <span th:text="${painting.name}"></span>
-                                </li>
-                                <li>
-                                    <th>Author:</th>
-                                    <span th:text="${painting.author}"></span>
-                                </li>
-                                <li>
-                                    <th>Location:</th>
-                                    <span th:text="${painting.location}"></span>
-                                </li>
-                                <li>
-                                    <th>Movement:</th>
-                                    <span th:text="${painting.movement}"></span>
-                                </li>
-                                <li>
-                                    <th>Year:</th>
-                                    <span th:text="${painting.year}"></span>
-                                </li>
-                                <li>
-                                    <th>Is Temporary:</th>
-                                    <span th:text="${painting.Temporary}"></span>
-                                    <span th:if="${painting.Temporary == 'true'}"></span>
-                                    <span th:unless="${painting.Temporary != 'true'}"></span>
-                                </li>
-                                    <a th:href="@{'/remove-painting/' + ${painting.name}}"
-                                       class="btn btn-outline-danger btn-sm">Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </tr>
-        </div>
-    </form>
-</div>
 </body>
 </html>
 <!--    <div th:text="${painting.get(1).name}"></div>-->
