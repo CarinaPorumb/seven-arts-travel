@@ -1,15 +1,14 @@
 package ro.itschool.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import ro.itschool.enums.Style;
 
 import java.io.Serial;
 import java.io.Serializable;
-@Data
+
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -36,6 +35,5 @@ public class Architecture implements Serializable {
     @JoinColumn(name = "user_id")
     @ToString.Exclude
     private User user;
-
 
 }

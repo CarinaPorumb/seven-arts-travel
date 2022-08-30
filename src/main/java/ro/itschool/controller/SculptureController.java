@@ -43,8 +43,8 @@ public class SculptureController {
 
     @GetMapping(path = "/update-sculpture/{name}")
     public String updateSculpture(@PathVariable("name") String name, Model model) throws SculptureNotFound {
-        Optional.ofNullable(sculptureRepository.findByName(name)).orElseThrow(SculptureNotFound::new);
-        model.addAttribute("sculpture", sculptureRepository.findByName(name));
+        Sculpture sculpture = Optional.ofNullable(sculptureRepository.findByName(name)).orElseThrow(SculptureNotFound::new);
+        model.addAttribute("sculpture", sculpture);
         return "update-sculpture";
     }
 

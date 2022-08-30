@@ -105,10 +105,11 @@
                                 </li>
                                 <li>
                                     <th>Is Temporary:</th>
-                                    <span th:text="${sculpture.Temporary}"></span>
-                                    <span th:if="${sculpture.Temporary == 'true'}"></span>
-                                    <span th:unless="${sculpture.Temporary != 'true'}"></span>
+                                    <span th:text="${sculpture.isTemporary}"></span>
+                                    <span th:if="${sculpture.isTemporary == 'true'}"></span>
+                                    <span th:unless="${sculpture.isTemporary != 'true'}"></span>
                                 </li>
+                                <br>
                                 <a th:href="@{'/addSculptureToUser'}"
                                    class="btn btn-warning" type="submit">Add to list</a>
                                 <div sec:authorize="hasRole('ROLE_ADMIN')">

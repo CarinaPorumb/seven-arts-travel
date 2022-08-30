@@ -43,7 +43,7 @@ public class ArchitectureController {
 
     @GetMapping(path = "/update-architecture/{name}")
     public String updateArchitecture(@PathVariable("name") String name, Model model) throws ArchitectureNotFound {
-       Architecture architecture = Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
+        Architecture architecture = Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
         model.addAttribute("architecture", architecture);
         return "update-architecture";
     }

@@ -42,8 +42,8 @@ public class CinemaController {
 
     @GetMapping(path = "/update-cinema/{name}")
     public String updateCinema(@PathVariable("name") String name, Model model) throws CinemaNotFound {
-        Optional.ofNullable(cinemaRepository.findByName(name)).orElseThrow(CinemaNotFound::new);
-        model.addAttribute("cinema", cinemaRepository.findByName(name));
+        Cinema cinema = Optional.ofNullable(cinemaRepository.findByName(name)).orElseThrow(CinemaNotFound::new);
+        model.addAttribute("cinema", cinema);
         return "update-cinema";
     }
 

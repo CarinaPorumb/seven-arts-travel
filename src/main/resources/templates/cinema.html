@@ -21,29 +21,20 @@
             crossorigin="anonymous"></script>
 
     <style>
-    body {background-color: #E2DFD2;
+    body {background-color: #E9DCC9;
 }
-.container{
-    margin-top:0px;
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
 }
-.btn:hover{
-    color:white;
-}
-.input-text:focus{
-    box-shadow: 0px 0px 0px;
-    border-color:#343a40!important;
-    outline: 0px;
-}
-.form-control {
-    border: 1px solid #343a40!important;
-}
+
     </style>
 </head>
 <body>
-
 <div th:replace="fragments/navs.html :: topnav"></div>
 <div class="col-md-2"></div>
-
 <div class="container my-2">
     <br><br>
     <h3 class="card-title"><strong>Cinema</strong></h3>
@@ -68,58 +59,59 @@
                 </div>
             </div>
         </div>
+    </form>
+    <div class="row">
         <div class="col-lg-4 col-md-6 mb-4">
             <tr th:each="cinema: ${cinemas}">
-                <div class="row">
-                    <hr class="my-5"/>
-                    <div class="card">
+                <div class="card">
+                    <div class="card-body">
+                        <img class="card-img-top" alt="Card image"
+                             style="width:40% 60%"
+                             th:src="${cinema.imageLink}">
                         <div class="card-body">
-                            <img class="card-img-top" alt="Card image"
-                                 style="width:30% 90%"
-                                 src="ro.itschool.entity.Cinema.setImageLink">
-
-                            <div class="card-body">
-                                <h5 class="card-title" th:value="${cinema.name}"
-                                    th:text="${cinema.name}"></h5>
-                                <li>
-                                    <th>Name:</th>
-                                    <span th:text="${cinema.name}"></span>
-                                </li>
-                                <li>
-                                    <th>Location:</th>
-                                    <span th:text="${cinema.location}"></span>
-                                </li>
-                                <li>
-                                    <th>Movement:</th>
-                                    <span th:text="${cinema.movement}"></span>
-                                </li>
-                                <li>
-                                    <th>Event Time:</th>
-                                    <span th:text="${cinema.eventTime}"></span>
-                                </li>
-                                <li>
-                                    <th>Is Temporary:</th>
-                                    <span th:text="${cinema.Temporary}"></span>
-                                    <span th:if="${cinema.Temporary == 'true'}"></span>
-                                    <span th:unless="${cinema.Temporary != 'true'}"></span>
-                                </li>
-                                <a th:href="@{'/addCinemaToUser'}"
-                                   class="btn btn-warning" type="submit">Add to list</a>
-                                <div sec:authorize="hasRole('ROLE_ADMIN')">
-                                    <a href="/save-cinema" type="button"
-                                       class="btn btn-outline-secondary btn-sm">Add</a>
-                                    <a th:href="@{'/update-cinema/' + ${cinema.name}}"
-                                       class="btn btn-outline-success btn-sm">Update</a>
-                                    <a th:href="@{'/delete-cinema/' + ${cinema.name}}"
-                                       class="btn btn-outline-danger btn-sm">Delete</a>
-                                </div>
+                            <h5 class="card-title" th:value="${cinema.name}"
+                                th:text="${cinema.name}"></h5>
+                            <li>
+                                <th>Name:</th>
+                                <span th:text="${cinema.name}"></span>
+                            </li>
+                            <li>
+                                <th>Location:</th>
+                                <span th:text="${cinema.location}"></span>
+                            </li>
+                            <li>
+                                <th>Movement:</th>
+                                <span th:text="${cinema.movement}"></span>
+                            </li>
+                            <li>
+                                <th>Event Time:</th>
+                                <span th:text="${cinema.eventTime}"></span>
+                            </li>
+                            <li>
+                                <th>Is Temporary:</th>
+                                <span th:text="${cinema.isTemporary}"></span>
+                                <span th:if="${cinema.isTemporary == 'true'}"></span>
+                                <span th:unless="${cinema.isTemporary != 'true'}"></span>
+                            </li>
+                            <br>
+                            <a th:href="@{'/addCinemaToUser'}"
+                               class="btn btn-warning" type="submit">Add to list</a>
+                            <br>
+                            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                                <a href="/save-cinema" type="button"
+                                   class="btn btn-outline-secondary btn-sm">Add</a>
+                                <a th:href="@{'/update-cinema/' + ${cinema.name}}"
+                                   class="btn btn-outline-success btn-sm">Update</a>
+                                <a th:href="@{'/delete-cinema/' + ${cinema.name}}"
+                                   class="btn btn-outline-danger btn-sm">Delete</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                <hr class="my-5"/>
             </tr>
         </div>
-    </form>
+    </div>
 </div>
 </body>
 </html>

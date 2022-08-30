@@ -43,8 +43,8 @@ public class BalletAndTheatreController {
 
     @GetMapping(path = "/update-balletAndTheatre/{name}")
     public String updateBalletAndTheatre(@PathVariable("name") String name, Model model) throws BalletAndTheatreNotFound {
-        Optional.ofNullable(balletAndTheatreRepository.findByName(name)).orElseThrow(BalletAndTheatreNotFound::new);
-        model.addAttribute("balletAndTheatre", balletAndTheatreRepository.findByName(name));
+        BalletAndTheatre balletAndTheatre = Optional.ofNullable(balletAndTheatreRepository.findByName(name)).orElseThrow(BalletAndTheatreNotFound::new);
+        model.addAttribute("balletAndTheatre", balletAndTheatre);
         return "update-BalletAndTheatre";
     }
 

@@ -44,6 +44,10 @@ body { background-color: #E2DFD2;
         <section>
             <form action="#" th:action="@{/save-painting}" th:object="${painting}" method="post">
 
+                <input type="text" th:field="*{id}" class="form-control col-4 mb-4" hidden/>
+
+                <input type="text" th:field="*{id}" class="form-control col-4 mb-4" hidden/>
+
                 <input type="text" th:field="*{name}" class="form-control col-4 mb-4"/>
 
                 <input type="text" th:field="*{imageLink}" class="form-control col-4 mb-4"
@@ -62,7 +66,7 @@ body { background-color: #E2DFD2;
                     <option th:each="movement : ${T(ro.itschool.enums.Style).values()}"
                             th:value="${movement}" th:text="${movement}"></option>
                 </select>
-                <select class="form-control col-4 mb-4" th:field="*{temporary}">
+                <select class="form-control col-4 mb-4" th:field="*{isTemporary}">
                     <option th:value="1">true</option>
                     <option th:value="0">false</option>
                 </select>

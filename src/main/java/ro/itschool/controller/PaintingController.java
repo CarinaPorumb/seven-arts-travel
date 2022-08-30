@@ -47,8 +47,8 @@ public class PaintingController {
 
     @GetMapping(path = "/update-painting/{name}")
     public String updatePainting(@PathVariable("name") String name, Model model) throws PaintingNotFound {
-        Optional.ofNullable(paintingRepository.findByName(name)).orElseThrow(PaintingNotFound::new);
-        model.addAttribute("painting", paintingRepository.findByName(name));
+        Painting painting = Optional.ofNullable(paintingRepository.findByName(name)).orElseThrow(PaintingNotFound::new);
+        model.addAttribute("painting", painting);
         return "update-painting";
     }
 
@@ -58,16 +58,6 @@ public class PaintingController {
         return "redirect:/all-painting-list";
     }
 
-    //?
-//    @RequestMapping("/addPaintingToUser")
-//    public String addPaintingToUser(@ModelAttribute Painting painting, User user, Model model) {
-//        model.addAttribute("painting", painting);
-//        Set<Painting> paintings = user.getPaintings();
-//        paintings.add(painting);
-//        user.setPaintings(paintings);
-//        userRepository.save(user);
-//        return "redirect:/myList";
-//    }
 
     @RequestMapping("/add-paintingToUser/{name}")
     public String addPaintingToUser(@PathVariable("name") Long id, String name) {
@@ -89,11 +79,11 @@ public class PaintingController {
             user.get().getPaintings().remove(painting);
             userService.updateUser(user.get());
             return "redirect:/myList";
-        }else throw new UserNotFound();
+        } else throw new UserNotFound();
     }
 
     @GetMapping("/myList")
-    public String getUserPainting(Model model, Long id){
+    public String getUserPainting(Model model, Long id) {
         model.addAttribute("paintingSet", paintingRepository.findByUserId(id));
         return "/myList";
     }

@@ -1,17 +1,11 @@
 
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #5b3256;
-    }
-
 .topnav {
   overflow: hidden;
-  background-color: #5b3256;
+  color: #50404d;
 }
 
 .topnav nav-item dropdown{
-    background-color: #5b3256;
+    background-color: #50404d;
 }
 
 .topnav a {
@@ -25,8 +19,7 @@ body {
 }
 
 .topnav a:hover {
-  background-color: #5b3256;
-  color: #cacfd2;
+  background-color: #50404d;
 }
 
 .topnav .search-container {
@@ -38,6 +31,7 @@ body {
   margin-top: 8px;
   font-size: 17px;
   border: none;
+  }
 
 .topnav .search-container button {
   float: right;
@@ -54,6 +48,7 @@ body {
   .topnav .search-container {
     float: none;
   }
+  }
 
 .topnav a, .topnav input[type=text], .topnav .search-container button {
     float: none;
@@ -67,4 +62,3 @@ body {
 .topnav input[type=text] {
     border: 1px solid #ccc;
   }
-}

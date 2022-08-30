@@ -43,8 +43,8 @@ public class LiteratureController {
 
     @GetMapping(path = "/update-literature/{name}")
     public String updateLiterature(@PathVariable("name") String name, Model model) throws LiteratureNotFound {
-        Optional.ofNullable(literatureRepository.findByName(name)).orElseThrow(LiteratureNotFound::new);
-        model.addAttribute("literature", literatureRepository.findByName(name));
+        Literature literature = Optional.ofNullable(literatureRepository.findByName(name)).orElseThrow(LiteratureNotFound::new);
+        model.addAttribute("literature", literature);
         return "update-literature";
     }
 

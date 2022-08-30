@@ -1,16 +1,15 @@
 package ro.itschool.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import ro.itschool.enums.Style;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
-
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -38,81 +37,4 @@ public class BalletAndTheatre implements Serializable {
     @ToString.Exclude
     private User user;
 
-
-
-    public String get() {
-        return name;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImageLink() {
-        return imageLink;
-    }
-
-    public void setImageLink(String imageLink) {
-        this.imageLink = imageLink;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public Style getMovement() {
-        return movement;
-    }
-
-    public void setMovement(Style movement) {
-        this.movement = movement;
-    }
-
-    public Boolean getTemporary() {
-        return isTemporary;
-    }
-
-    public void setTemporary(Boolean temporary) {
-        isTemporary = temporary;
-    }
-
-    public LocalDateTime getEventTime() {
-        return eventTime;
-    }
-
-    public void setEventTime(LocalDateTime eventTime) {
-        this.eventTime = eventTime;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

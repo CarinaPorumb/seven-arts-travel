@@ -14,7 +14,38 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-    <script>
+    <style>
+    body {background-color: #E9DCC9;
+}
+
+    .card text-center {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
+
+    </style>
+
+</head>
+<body>
+<br>
+<br>
+<div class="card text-center col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="align center">
+    <div class="card-header"><strong>Activation</strong></div>
+    <div class="card-body">
+        <p class="card-text">Your account was activated.</p>
+        <meta http-equiv="refresh" content="http://localhost:8080/login"/>
+        <div class="box-footer text-center"></div>
+    </div>
+    <div class="card-footer text-muted"><strong>You will be redirected in <span id="counter">3</span> seconds.</strong>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
         setInterval(function() {
             var div = document.querySelector("#counter");
             var count = div.textContent * 1 - 1;
@@ -23,38 +54,8 @@
                 window.location.replace("http://localhost:8080/login");
             }
         }, 1000);
-    </script>
 
-</head>
-<body>
-<br>
-<br>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-            <div class="card-body">
-                <div class="box-footer text-center">
-                    <meta http-equiv="refresh" content="http://localhost:8080/login"/>
-                    <div class="alert alert-success" role="alert">
-                        <p class="font-weight-bold">Your account was activated.</p>
-                        <div> You will be redirected in <span id="counter">3</span> seconds</div>
-                    </div>
-                    <div class="spinner-grow text-success text-center" role="status">
-                        <span class="visually-hidden"></span>
-                    </div>
-                    <div class="spinner-grow text-success text-center" role="status">
-                        <span class="visually-hidden"></span>
-                    </div>
-                    <div class="spinner-grow text-success text-center" role="status">
-                        <span class="visually-hidden"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</script>
 </body>
 </html>

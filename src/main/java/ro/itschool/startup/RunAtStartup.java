@@ -165,7 +165,7 @@ public class RunAtStartup {
         sculpture.setAuthor("Auguste Rodin");
         sculpture.setLocation("77 Rue de Varenne, 75007 Paris, France");
         sculpture.setMovement(Style.REALISM);
-        sculpture.setTemporary(false);
+        sculpture.setIsTemporary(false);
         sculpture.setYear(1902);
 
         Sculpture sculpture2 = new Sculpture();
@@ -174,7 +174,7 @@ public class RunAtStartup {
         sculpture2.setAuthor("Constantin Brancusi");
         sculpture2.setLocation("1000 5th Ave, New York, 10028, USA");
         sculpture2.setMovement(Style.MODERNISM);
-        sculpture2.setTemporary(false);
+        sculpture2.setIsTemporary(false);
         sculpture2.setYear(1923);
 
         sculptureService.save(sculpture);
@@ -190,7 +190,7 @@ public class RunAtStartup {
         painting.setImageLink("https://static.seetheworld.com/image_uploader/photos/b1/original/enjoying-art-at-musee-de-l-annonciade-saint-tropez-saint-tropez.jpg");
         painting.setMovement(Style.MODERNISM);
         painting.setLocation("Georges Grammont, 83990 Saint-Tropez, France");
-        painting.setTemporary(false);
+        painting.setIsTemporary(false);
         painting.setYear(1922);
 
         Painting painting2 = new Painting();
@@ -198,7 +198,7 @@ public class RunAtStartup {
         painting2.setImageLink("https://www.artsafari.ro/wp-content/uploads/2022/08/cover-editia-10.png");
         painting2.setMovement(Style.CONTEMPORARY);
         painting2.setLocation("Strada Lipscani 18, București, 030167 Romania");
-        painting2.setTemporary(true);
+        painting2.setIsTemporary(true);
         painting2.setYear(2022);
 
         Painting painting3 = new Painting();
@@ -206,7 +206,7 @@ public class RunAtStartup {
         painting3.setImageLink("https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_720/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/djvwelyhrz8z9ufftnyk/PriorityAccessEntranceTickettotheLouvreMuseum.webp");
         painting3.setMovement(Style.RENAISSANCE);
         painting3.setLocation("Rue de Rivoli, 75001 Paris, France");
-        painting3.setTemporary(false);
+        painting3.setIsTemporary(false);
         painting3.setYear(1793);
 
         paintingService.save(painting);
@@ -225,7 +225,7 @@ public class RunAtStartup {
         music.setAuthor("Orchestra Simfonică a Filarmonicii George Enescu");
         music.setMovement(Style.CONTEMPORARY);
         music.setLocation("Romanian Athenaeum, 050204, Bucharest, Romania");
-        music.setTemporary(false);
+        music.setIsTemporary(false);
         music.setEventTime(LocalDateTime.of(2022, 9, 4, 20, 0));
 
         Music music2 = new Music();
@@ -234,7 +234,7 @@ public class RunAtStartup {
         music2.setAuthor("Hofburg Orchestra");
         music2.setMovement(Style.ROMANTICISM);
         music2.setLocation("Golden Hall of the Vienna State Opera, Austria");
-        music2.setTemporary(true);
+        music2.setIsTemporary(true);
         music2.setEventTime(LocalDateTime.of(2023, 1, 1, 11, 15));
         musicService.save(music);
         musicService.save(music2);
@@ -251,7 +251,7 @@ public class RunAtStartup {
         balletAndTheatre.setLocation("London Coliseum, St Martin's Ln, London, UK");
         balletAndTheatre.setMovement(Style.ROMANTICISM);
         balletAndTheatre.setEventTime(LocalDateTime.of(2022, 9, 28, 20, 0));
-        balletAndTheatre.setTemporary(true);
+        balletAndTheatre.setIsTemporary(true);
         balletAndTheatreService.save(balletAndTheatre);
         balletAndTheatreSet.add(balletAndTheatre);
     }
@@ -263,7 +263,7 @@ public class RunAtStartup {
         literature.setImageLink("https://static.saltinourhair.com/wp-content/uploads/2021/05/12103516/Livraria-Lello-porto2.jpg");
         literature.setLocation("R. das Carmelitas 144, 4050-161 Porto, Portugal");
         literature.setMovement(Style.ARTNOUVEAU);
-        literature.setTemporary(false);
+        literature.setIsTemporary(false);
         literature.setYear(1906);
 
         Literature literature2 = new Literature();
@@ -271,7 +271,7 @@ public class RunAtStartup {
         literature2.setImageLink("https://www.pandotrip.com/wp-content/uploads/2014/06/Clementinum-National-Library.jpg");
         literature2.setLocation("Strahovské nádvoří 132/1, 118 00 Praha, Czech Republic");
         literature2.setMovement(Style.GOTHIC);
-        literature2.setTemporary(false);
+        literature2.setIsTemporary(false);
         literature2.setYear(1138);
 
         literatureService.save(literature);
@@ -288,7 +288,7 @@ public class RunAtStartup {
         cinema.setLocation("Palace of Festivals and Congresses of Cannes, France");
         cinema.setMovement(Style.CONTEMPORARY);
         cinema.setEventTime(LocalDate.of(2023, 5, 16));
-        cinema.setTemporary(true);
+        cinema.setIsTemporary(true);
 
         Cinema cinema2 = new Cinema();
         cinema2.setName("The National Museum of Cinema");
@@ -296,7 +296,7 @@ public class RunAtStartup {
         cinema2.setLocation("Via Montebello, 20, 10124 Torino, Italy");
         cinema2.setMovement(Style.CONTEMPORARY);
         cinema2.setEventTime(LocalDate.of(1958, 1, 1));
-        cinema2.setTemporary(false);
+        cinema2.setIsTemporary(false);
 
         cinemaService.save(cinema);
         cinemaService.save(cinema2);

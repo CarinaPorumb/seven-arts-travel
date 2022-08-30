@@ -43,8 +43,8 @@ public class MusicController {
 
     @GetMapping(path = "/update-music/{name}")
     public String updateMusic(@PathVariable("name") String name, Model model) throws MusicNotFound {
-        Optional.ofNullable(musicRepository.findByName(name)).orElseThrow(MusicNotFound::new);
-        model.addAttribute("music", musicRepository.findByName(name));
+        Music music = Optional.ofNullable(musicRepository.findByName(name)).orElseThrow(MusicNotFound::new);
+        model.addAttribute("music", music);
         return "update-music";
     }
 
