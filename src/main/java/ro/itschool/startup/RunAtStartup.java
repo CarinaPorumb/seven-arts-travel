@@ -351,8 +351,19 @@ public class RunAtStartup {
         balletAndTheatre.setEventTime(LocalDateTime.of(2022, 9, 28, 20, 0));
         balletAndTheatre.setIsTemporary(true);
 
+        BalletAndTheatre balletAndTheatre1 = new BalletAndTheatre();
+        balletAndTheatre1.setName("The Phantom of the Opera");
+        balletAndTheatre1.setImageLink("https://cdn.londonandpartners.com/-/media/images/london/visit/whats-on/theatre/the-phantom-of-the-opera/poto_visit-london_1920x1080.jpg?mw=640&hash=69678390596E8321E25E05220FC15549DCE3E6AB");
+        balletAndTheatre1.setAuthor("Andrew Lloyd Webber");
+        balletAndTheatre1.setLocation("Her Majesty's Theatre, London, UK");
+        balletAndTheatre1.setMovement(Style.ROMANTICISM);
+        balletAndTheatre1.setEventTime(LocalDateTime.of(2022, 9, 2, 19, 30));
+        balletAndTheatre1.setIsTemporary(true);
+
         balletAndTheatreService.save(balletAndTheatre);
+        balletAndTheatreService.save(balletAndTheatre1);
         balletAndTheatreSet.add(balletAndTheatre);
+        balletAndTheatreSet.add(balletAndTheatre1);
     }
 
     public void saveLiterature() {

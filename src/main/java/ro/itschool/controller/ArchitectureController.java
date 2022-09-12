@@ -54,7 +54,7 @@ public class ArchitectureController {
         return "redirect:/all-architecture-list";
     }
 
-    //?
+
     @RequestMapping("/addArchitectureToUser")
     public String addArchitectureToUser(@ModelAttribute Architecture architecture, User user, Model model) {
         model.addAttribute("architectureObject", architecture);
