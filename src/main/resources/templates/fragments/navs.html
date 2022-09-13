@@ -46,6 +46,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/contact">Contact</a>
                     </li>
+                    <div sec:authorize="hasRole('ROLE_ADMIN')">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contact-message">Messages</a>
+                        </li>
+                    </div>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Logout</a>
                     </li>
