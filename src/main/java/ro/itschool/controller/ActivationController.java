@@ -20,7 +20,7 @@ public class ActivationController {
 
     @GetMapping(value = "/activation/{randomToken}")
     public String registerForm(@PathVariable String randomToken, Model model) throws TokenNotFound {
-        final Optional<User> userByRandomToken = Optional.ofNullable(userService.findUserByRandomToken(randomToken));
+        Optional<User> userByRandomToken = Optional.ofNullable(userService.findUserByRandomToken(randomToken));
         if (userByRandomToken.isPresent()) {
             model.addAttribute("user", userByRandomToken.get());
             return "activation";
@@ -35,5 +35,4 @@ public class ActivationController {
         userRepository.save(user1);
         return "activation-success";
     }
-
 }

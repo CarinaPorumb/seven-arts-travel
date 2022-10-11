@@ -15,7 +15,6 @@ public interface ArchitectureRepository extends JpaRepository<Architecture, Long
 
     List<Architecture> findAll(Sort sort);
 
-
     @Query(
             value = "SELECT * FROM architecture WHERE name = ?",
             nativeQuery = true)

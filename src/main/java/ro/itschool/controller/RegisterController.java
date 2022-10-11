@@ -1,6 +1,5 @@
 package ro.itschool.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +19,6 @@ public class RegisterController {
     @Autowired
     UserService userService;
 
-    HttpServletRequest httpServletRequest;
 
     @GetMapping(value = "/register")
     public String registerForm(Model model) {

@@ -6,14 +6,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ro.itschool.controller.mapper.UserMapper;
 import ro.itschool.controller.model.UserDTO;
 import ro.itschool.entity.Role;
 import ro.itschool.entity.User;
-import ro.itschool.exception.EmailNotFound;
 import ro.itschool.exception.TokenNotFound;
 import ro.itschool.repository.RoleRepository;
 import ro.itschool.repository.UserRepository;
@@ -30,17 +28,10 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
     @Autowired
     RoleRepository roleRepository;
-
     @Autowired
     EmailBodyService emailBodyService;
-
     @Autowired
     EmailSender emailSender;
-
-
-    public User findUserByEmail(String email) throws EmailNotFound {
-        return Optional.ofNullable(userRepository.findByEmail(email)).orElseThrow(EmailNotFound::new);
-    }
 
     public User findUserByUserName(String username) {
         return userRepository.findByUsernameIgnoreCase(username);
@@ -48,11 +39,6 @@ public class UserServiceImpl implements UserService {
 
     public User findUserByRandomToken(String randomToken) throws TokenNotFound {
         return Optional.ofNullable(userRepository.findByRandomToken(randomToken)).orElseThrow(TokenNotFound::new);
-    }
-
-    public boolean findUserByUserNameAndPassword(String userName, String password) {
-        final Optional<User> user = Optional.ofNullable(userRepository.findByUsernameIgnoreCase(userName));
-        return user.filter(user1 -> BCrypt.checkpw(password, user1.getPassword())).isPresent();
     }
 
     public List<UserDTO> findAll() {
@@ -99,4 +85,7 @@ public class UserServiceImpl implements UserService {
         }
         return new ArrayList<>(roles);
     }
+
 }
+
+

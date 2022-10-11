@@ -8,15 +8,22 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import ro.itschool.entity.Role;
 import ro.itschool.entity.User;
+import ro.itschool.repository.UserRepository;
 import ro.itschool.service.UserService;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
@@ -33,4 +40,5 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
         return new ArrayList<>(roles);
     }
+
 }

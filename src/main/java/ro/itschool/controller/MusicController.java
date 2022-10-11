@@ -64,7 +64,5 @@ public class MusicController {
         userRepository.save(user);
         return "redirect:/myList";
     }
-
-
 }
 

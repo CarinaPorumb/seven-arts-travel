@@ -1,11 +1,15 @@
 package ro.itschool.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import ro.itschool.controller.model.UserDTO;
 import ro.itschool.entity.Role;
 import ro.itschool.entity.User;
@@ -25,6 +29,9 @@ public class UserController {
     private UserService userService;
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    MailSender mailSender;
 
     @GetMapping("/users")
     public String getAllUsers(Model model, String keyword) throws Exception {

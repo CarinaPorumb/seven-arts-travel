@@ -16,7 +16,6 @@ public class MusicServiceImpl implements MusicService {
     @Autowired
     MusicRepository musicRepository;
 
-
     @Override
     public void deleteByName(String name) {
         Music music = musicRepository.findByName(name);

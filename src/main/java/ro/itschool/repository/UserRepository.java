@@ -7,12 +7,11 @@ import org.springframework.stereotype.Repository;
 import ro.itschool.entity.User;
 
 import java.util.List;
+
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsernameIgnoreCase(String username);
-
-    User findByEmail(String username);
 
     User findByRandomToken(String randomToken);
 
@@ -21,6 +20,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
                     "OR u.user_id LIKE %:keyword%",
             nativeQuery = true)
     List<User> searchUser(@Param("keyword") String keyword);
-
 
 }
