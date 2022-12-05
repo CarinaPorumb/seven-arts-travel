@@ -93,7 +93,7 @@
                             <div class="col">
                                 <div class="form-outline">
                                     <input type="text" class="form-control" th:field="*{username}" id="username"
-                                           required/>
+                                           required minlength="3" maxlength="20" pattern="[a-zA-Z0-9]+"/>
                                     <label class="form-label" for="username">Username</label>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@
                         <div class="row mb-4">
                             <div class="form-outline">
                                 <input type="email" class="form-control" th:field="*{email}" id="email" required
-                                       minlength="5"/>
+                                       minlength="5" maxlength="25"/>
                                 <label class="form-label" for="email">Email address</label>
                             </div>
                         </div>
@@ -109,15 +109,14 @@
                         <div class="col">
                             <div class="form-outline">
                                 <input type="password" class="form-control" th:field="*{password}" id="password"
-                                       required minlength="4"/>
+                                       required minlength="3" maxlength="15"/>
                                 <label class="form-label" for="password">Password</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-outline">
                                 <input type="password" class="form-control" th:field="*{passwordConfirm}"
-                                       id="passwordConfirm" required
-                                       minlength="4"/>
+                                       id="passwordConfirm" required minlength="3" maxlength="15"/>
                                 <label class="form-label" for="passwordConfirm">Repeat Password</label>
                             </div>
                         </div>

@@ -4,20 +4,21 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import ro.itschool.service.impl.CustomUserDetailsService;
 
 @Configuration
+@EnableWebSecurity
 public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider())
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/css/**","/webjars/**", "/users/postman", "/login", "/forgot-password", "/register", "/activation/**", "/activation-success").permitAll()
+                .csrf().disable().authorizeHttpRequests()
+                .requestMatchers("/css/**","/webjars/**", "/users/postman", "/login", "/forgot-password", "/register", "/activation/**", "/activation-success").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -31,7 +32,6 @@ public class WebSecurityConfig {
                 .and()
                 .sessionManagement()
                 .maximumSessions(1);
-
         http.headers().frameOptions().sameOrigin();
         return http.build();
     }

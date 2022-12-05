@@ -64,20 +64,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>RELEASE</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
 			<version>3.1.0.M1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.iban4j</groupId>
-			<artifactId>iban4j</artifactId>
-			<version>3.2.3-RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>

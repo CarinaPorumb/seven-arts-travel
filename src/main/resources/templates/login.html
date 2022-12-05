@@ -285,13 +285,14 @@
                         <div class="col" id="bottom">
                             <div class="form-outline">
                                 <input type="text" class="form-control" id="username" name="username"
-                                       autofocus="autofocus"/>
+                                       autofocus="autofocus" required minlength="3" maxlength="20" pattern="[a-zA-Z0-9]+"/>
                                 <label class="form-label" for="username">Username</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-outline">
-                                <input type="password" class="form-control" id="password" name="password"/>
+                                <input type="password" class="form-control" id="password" name="password" required minlength="3"
+                                       maxlength="20" />
                                 <label class="form-label" for="password">Password</label>
                             </div>
                             <div class="text-center pt-1 mb-5 pb-1">
