@@ -18,7 +18,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider())
                 .csrf().disable().authorizeHttpRequests()
-                .requestMatchers("/css/**","/webjars/**", "/users/postman", "/login", "/forgot-password", "/register", "/activation/**", "/activation-success").permitAll()
+                .requestMatchers("/static/**","/webjars/**", "/users/postman", "/login", "/forgot-password", "/register", "/activation/**", "/activation-success").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

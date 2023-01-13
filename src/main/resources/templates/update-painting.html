@@ -26,13 +26,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
+    <link th:href="@{/css/topnav.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
 
-    <style>
-body { background-color: #E2DFD2;
-
-}
-
-    </style>
 </head>
 <body>
 <div th:replace="fragments/navs.html :: topnav"></div>
@@ -71,7 +67,7 @@ body { background-color: #E2DFD2;
                     <option th:value="0">false</option>
                 </select>
                 <button type="submit" class="btn btn-success">Save</button>
-                <a href="/all-painting-list" type="button" class="btn btn-secondary">Back</a>
+                <a href="/all-painting-list?keyword=" type="button" class="btn btn-secondary">Back</a>
             </form>
         </section>
     </div>
