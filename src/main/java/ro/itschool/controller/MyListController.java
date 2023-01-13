@@ -21,5 +21,4 @@ public class MyListController {
         model.addAttribute("architecture", userService.findUserByUserName(auth.getName()).getArchitectureSet());
         return "myList";
     }
-
 }

@@ -37,7 +37,6 @@ public class PaintingServiceImpl implements PaintingService {
      return paintingRepository.findByName(name);
     }
 
-
     public List<Painting> getAllPaintingsByUserId(Long userId) throws PaintingNotFound {
         return Optional.ofNullable(paintingRepository.findByUserId(userId)).orElseThrow(PaintingNotFound::new);
     }

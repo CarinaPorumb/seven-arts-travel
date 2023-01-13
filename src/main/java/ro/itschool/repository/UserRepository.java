@@ -15,10 +15,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByRandomToken(String randomToken);
 
-    @Query(
-            value = "SELECT * FROM user u WHERE u.username LIKE %:keyword% OR u.full_name LIKE %:keyword% OR u.email LIKE %:keyword% " +
+    @Query(value = "SELECT * FROM user u WHERE u.username LIKE %:keyword% OR u.full_name LIKE %:keyword% OR u.email LIKE %:keyword% " +
                     "OR u.user_id LIKE %:keyword%",
             nativeQuery = true)
     List<User> searchUser(@Param("keyword") String keyword);
-
 }

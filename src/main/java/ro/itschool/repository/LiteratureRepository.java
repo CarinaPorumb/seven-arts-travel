@@ -21,13 +21,11 @@ public interface LiteratureRepository extends JpaRepository<Literature, UUID> {
     @Transactional
     void deleteByName(String name);
 
-    @Query(
-            value = "SELECT * FROM literature WHERE user_id = ?",
+    @Query(value = "SELECT * FROM literature WHERE user_id = ?",
             nativeQuery = true)
     List<Literature> findByUserId(Integer userId);
 
-    @Query(
-            value = "SELECT * FROM literature l WHERE l.name LIKE %:keyword% OR l.author LIKE %:keyword% OR l.location LIKE %:keyword% OR l.movement LIKE %:keyword% " +
+    @Query(value = "SELECT * FROM literature l WHERE l.name LIKE %:keyword% OR l.author LIKE %:keyword% OR l.location LIKE %:keyword% OR l.movement LIKE %:keyword% " +
                     "OR l.is_temporary LIKE %:keyword% OR l.id LIKE %:keyword% OR l.user_id LIKE %:keyword% OR l.year LIKE %:keyword%",
             nativeQuery = true)
     List<Literature> searchLiterature(@Param("keyword") String keyword);

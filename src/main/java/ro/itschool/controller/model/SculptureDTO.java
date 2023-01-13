@@ -27,5 +27,4 @@ public class SculptureDTO {
     private Integer year;
 
     private String location;
-
 }

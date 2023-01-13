@@ -18,7 +18,6 @@ public class SculptureController {
 
     @Autowired
     SculptureRepository sculptureRepository;
-
     @Autowired
     UserRepository userRepository;
 

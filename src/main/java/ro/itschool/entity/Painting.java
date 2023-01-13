@@ -37,4 +37,3 @@ public class Painting implements Serializable {
     private User user;
 
 }
-

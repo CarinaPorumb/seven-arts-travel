@@ -18,7 +18,6 @@ public class MusicController {
 
     @Autowired
     MusicRepository musicRepository;
-
     @Autowired
     UserRepository userRepository;
 
@@ -65,4 +64,3 @@ public class MusicController {
         return "redirect:/myList";
     }
 }
-

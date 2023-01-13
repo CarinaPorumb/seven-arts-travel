@@ -16,13 +16,13 @@
                         <a class="nav-link active dropdown-toggle" aria-current="page" id="navbarDropdown" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false">Seven Arts</a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/all-architecture-list">Architecture</a></li>
-                            <li><a class="dropdown-item" href="/all-sculpture-list">Sculpture</a></li>
-                            <li><a class="dropdown-item" href="/all-painting-list">Painting</a></li>
-                            <li><a class="dropdown-item" href="/all-ballet-theatre-list">Ballet & Theatre</a></li>
-                            <li><a class="dropdown-item" href="/all-music-list">Music</a></li>
-                            <li><a class="dropdown-item" href="/all-literature-list">Literature</a></li>
-                            <li><a class="dropdown-item" href="/all-cinema-list">Cinema</a></li>
+                            <li><a class="dropdown-item" href="/all-architecture-list?keyword=">Architecture</a></li>
+                            <li><a class="dropdown-item" href="/all-sculpture-list?keyword=">Sculpture</a></li>
+                            <li><a class="dropdown-item" href="/all-painting-list?keyword=">Painting</a></li>
+                            <li><a class="dropdown-item" href="/all-ballet-theatre-list?keyword=">Ballet & Theatre</a></li>
+                            <li><a class="dropdown-item" href="/all-music-list?keyword=">Music</a></li>
+                            <li><a class="dropdown-item" href="/all-literature-list?keyword=">Literature</a></li>
+                            <li><a class="dropdown-item" href="/all-cinema-list?keyword=">Cinema</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -40,7 +40,7 @@
 
                     <div sec:authorize="hasRole('ROLE_ADMIN')">
                         <li class="nav-item">
-                            <a class="nav-link" href="/users">Users</a>
+                            <a class="nav-link" href="/users?keyword=">Users</a>
                         </li>
                     </div>
                     <li class="nav-item">
@@ -48,7 +48,7 @@
                     </li>
                     <div sec:authorize="hasRole('ROLE_ADMIN')">
                         <li class="nav-item">
-                            <a class="nav-link" href="/contact-message">Messages</a>
+                            <a class="nav-link" href="/contact-message?keyword=">Messages</a>
                         </li>
                     </div>
                     <li class="nav-item">

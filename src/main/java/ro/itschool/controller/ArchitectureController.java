@@ -9,18 +9,20 @@ import ro.itschool.entity.User;
 import ro.itschool.exception.ArchitectureNotFound;
 import ro.itschool.repository.ArchitectureRepository;
 import ro.itschool.repository.UserRepository;
+import ro.itschool.service.UserService;
 
 import java.util.Optional;
-import java.util.Set;
 
 @Controller
 public class ArchitectureController {
 
     @Autowired
     ArchitectureRepository architectureRepository;
-
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping("/all-architecture-list")
     public String getArchitectures(Model model, String keyword) {
@@ -54,15 +56,17 @@ public class ArchitectureController {
         return "redirect:/all-architecture-list";
     }
 
-
-    @RequestMapping("/addArchitectureToUser")
-    public String addArchitectureToUser(@ModelAttribute Architecture architecture, User user, Model model) {
-        model.addAttribute("architectureObject", architecture);
-        Set<Architecture> arch = user.getArchitectureSet();
-        arch.add(architecture);
-        user.setArchitectureSet(arch);
-        userRepository.save(user);
-        return "redirect:/myList";
+    //?
+    @RequestMapping("/add-architecture/{name}")
+    public String addArchitectureToUser(@PathVariable("name") String name) {
+        final Optional<User> user = Optional.ofNullable(userRepository.findByUsernameIgnoreCase(name));
+        if (user.isPresent()) {
+            final Architecture architecture = architectureRepository.findByName(name);
+            user.get().getArchitectureSet().add(architecture);
+            userService.updateUser(user.get());
+            return "redirect:/my/List";
+        }
+        return ("USER not found for this id : " + user);
     }
 
 }

@@ -37,5 +37,4 @@ public class ContactController {
         contactRepository.deleteById(id);
         return "redirect:/contact-message";
     }
-
 }

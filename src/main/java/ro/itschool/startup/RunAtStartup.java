@@ -36,7 +36,6 @@ public class RunAtStartup {
 
     @EventListener(ContextRefreshedEvent.class)
     public void contextRefreshedEvent() {
-
         saveAdmin();
         saveContributor();
         saveUser();
@@ -48,7 +47,6 @@ public class RunAtStartup {
         saveMusic();
         saveLiterature();
         saveCinema();
-
     }
 
     public void saveAdmin() {
@@ -70,7 +68,6 @@ public class RunAtStartup {
         user.setRandomTokenEmail("randomToken");
         userService.saveUser(user);
     }
-
     public void saveContributor() {
         User user = new User();
         user.setUsername("Contributor");
@@ -89,7 +86,6 @@ public class RunAtStartup {
         user.setRandomTokenEmail("randomToken");
         userService.saveUser(user);
     }
-
     public void saveUser() {
         User user = new User();
         user.setUsername("User");
@@ -178,7 +174,6 @@ public class RunAtStartup {
         architectures.add(architecture5);
         architectures.add(architecture6);
     }
-
     public void saveSculpture() {
         Set<Sculpture> sculptures = new HashSet<>();
         Sculpture sculpture = new Sculpture();
@@ -226,7 +221,6 @@ public class RunAtStartup {
         sculptures.add(sculpture3);
         sculptures.add(sculpture4);
     }
-
     public void savePainting() {
         Set<Painting> paintings = new HashSet<>();
         Painting painting = new Painting();
@@ -280,7 +274,6 @@ public class RunAtStartup {
         paintings.add(painting4);
         paintings.add(painting5);
     }
-
     public void saveMusic() {
         Set<Music> musics = new HashSet<>();
         Music music = new Music();
@@ -339,7 +332,6 @@ public class RunAtStartup {
         musics.add(music3);
         musics.add(music4);
     }
-
     public void saveBalletAndTheatre() {
         Set<BalletAndTheatre> balletAndTheatreSet = new HashSet<>();
         BalletAndTheatre balletAndTheatre = new BalletAndTheatre();
@@ -365,7 +357,6 @@ public class RunAtStartup {
         balletAndTheatreSet.add(balletAndTheatre);
         balletAndTheatreSet.add(balletAndTheatre1);
     }
-
     public void saveLiterature() {
         Set<Literature> literatures = new HashSet<>();
         Literature literature = new Literature();
@@ -378,7 +369,7 @@ public class RunAtStartup {
 
         Literature literature2 = new Literature();
         literature2.setName("Strahov Library");
-        literature2.setImageLink("https://www.pandotrip.com/wp-content/uploads/2014/06/Clementinum-National-Library.jpg");
+        literature2.setImageLink("https://wecityguide.s3.amazonaws.com/wp-content/uploads/2020/03/08105134/Interior-of-The-Clementinum-and-the-National-Library.jpeg");
         literature2.setLocation("Strahovské nádvoří 132/1, 118 00 Praha, Czech Republic");
         literature2.setMovement(Style.GOTHIC);
         literature2.setIsTemporary(false);
@@ -399,7 +390,6 @@ public class RunAtStartup {
         literatures.add(literature2);
         literatures.add(literature3);
     }
-
     public void saveCinema() {
         Set<Cinema> cinemas = new HashSet<>();
         Cinema cinema = new Cinema();
@@ -424,6 +414,4 @@ public class RunAtStartup {
         cinemas.add(cinema2);
     }
 
-
 }
-

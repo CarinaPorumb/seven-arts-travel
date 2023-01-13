@@ -27,5 +27,4 @@ public class LiteratureDTO {
     private Integer year;
 
     private String location;
-
 }

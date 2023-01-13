@@ -18,7 +18,6 @@ public class LiteratureController {
 
     @Autowired
     LiteratureRepository literatureRepository;
-
     @Autowired
     UserRepository userRepository;
 

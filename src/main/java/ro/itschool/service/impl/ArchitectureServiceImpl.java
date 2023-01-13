@@ -17,8 +17,8 @@ public class ArchitectureServiceImpl implements ArchitectureService {
     private ArchitectureRepository architectureRepository;
 
 
-    public void deleteByName(String name) {
-        Architecture architecture = architectureRepository.findByName(name);
+    public void deleteByName(String name) throws ArchitectureNotFound {
+        Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
         architectureRepository.deleteByName(name);
     }
 
@@ -33,8 +33,8 @@ public class ArchitectureServiceImpl implements ArchitectureService {
     }
 
     @Override
-    public Architecture findByName(String name)  {
-        return architectureRepository.findByName(name);
+    public Architecture findByName(String name) throws ArchitectureNotFound {
+        return Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
     }
 
     @Override

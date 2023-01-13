@@ -26,5 +26,4 @@ public class ArchitectureDTO {
 
     private String location;
 
-
 }

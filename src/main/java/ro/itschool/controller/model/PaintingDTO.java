@@ -27,6 +27,4 @@ public class PaintingDTO {
     private Integer year;
 
     private String location;
-
-
 }

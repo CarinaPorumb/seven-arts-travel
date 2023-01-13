@@ -21,13 +21,11 @@ public interface SculptureRepository extends JpaRepository<Sculpture, UUID> {
     @Transactional
     void deleteByName(String name);
 
-    @Query(
-            value = "SELECT * FROM sculpture WHERE user_id = ?",
+    @Query(value = "SELECT * FROM sculpture WHERE user_id = ?",
             nativeQuery = true)
     List<Sculpture> findByUserId(Integer userId);
 
-    @Query(
-            value = "SELECT * FROM sculpture s WHERE s.name LIKE %:keyword% OR s.author LIKE %:keyword% OR s.location LIKE %:keyword% OR s.movement LIKE %:keyword% " +
+    @Query(value = "SELECT * FROM sculpture s WHERE s.name LIKE %:keyword% OR s.author LIKE %:keyword% OR s.location LIKE %:keyword% OR s.movement LIKE %:keyword% " +
                     "OR s.is_temporary LIKE %:keyword% OR s.id LIKE %:keyword% OR s.user_id LIKE %:keyword% OR s.year LIKE %:keyword%",
             nativeQuery = true)
     List<Sculpture> searchSculpture(@Param("keyword") String keyword);

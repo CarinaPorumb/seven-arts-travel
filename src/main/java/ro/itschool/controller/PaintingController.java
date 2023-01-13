@@ -19,10 +19,8 @@ public class PaintingController {
 
     @Autowired
     PaintingRepository paintingRepository;
-
     @Autowired
     UserRepository userRepository;
-
     @Autowired
     UserService userService;
 
@@ -58,7 +56,7 @@ public class PaintingController {
         return "redirect:/all-painting-list";
     }
 
-
+    //TODO verif
     @RequestMapping("/add-paintingToUser/{name}")
     public String addPaintingToUser(@PathVariable("name") Long id, String name) {
         final Optional<User> user = userRepository.findById(id);

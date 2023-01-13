@@ -18,10 +18,8 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
     @Transactional
     void deleteById(Integer id);
 
-    @Query(
-            value = "SELECT * FROM contact c WHERE c.username LIKE %:keyword% OR c.id LIKE %:keyword% OR c.email LIKE %:keyword% OR c.subject LIKE %:keyword% " +
+    @Query(value = "SELECT * FROM contact c WHERE c.username LIKE %:keyword% OR c.id LIKE %:keyword% OR c.email LIKE %:keyword% OR c.subject LIKE %:keyword% " +
                     "OR c.message LIKE %:keyword%",
             nativeQuery = true)
     List<Contact> searchContact(@Param("keyword") String keyword);
-
 }

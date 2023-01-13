@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import ro.itschool.entity.Role;
 import ro.itschool.entity.User;
+import ro.itschool.exception.UserNotFound;
 import ro.itschool.repository.UserRepository;
 import ro.itschool.service.UserService;
 
@@ -21,13 +22,17 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserService userService;
-
     @Autowired
     private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        User user = userService.findUserByUserName(username);
+        User user = null;
+        try {
+            user = userService.findUserByUserName(username);
+        } catch (UserNotFound e) {
+            throw new RuntimeException(e);
+        }
         List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
         return new User(user.getUsername(), user.getPassword(),
                 user.isEnabled(), user.isAccountNonExpired(), user.isCredentialsNonExpired(), user.isAccountNonLocked(), authorities);

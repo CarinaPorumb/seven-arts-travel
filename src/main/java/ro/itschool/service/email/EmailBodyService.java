@@ -7,5 +7,4 @@ public interface EmailBodyService {
     String emailBody (User user);
 
     String emailBodyScheduler(User user);
-
 }

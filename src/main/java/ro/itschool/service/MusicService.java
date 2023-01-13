@@ -18,5 +18,4 @@ public interface MusicService {
     Music findByName(String name);
 
     List<Music> getAllMusicsByUserId(Integer userId) throws MusicNotFound;
-
 }

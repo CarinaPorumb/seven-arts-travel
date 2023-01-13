@@ -18,7 +18,6 @@ public class BalletAndTheatreController {
 
     @Autowired
     BalletAndTheatreRepository balletAndTheatreRepository;
-
     @Autowired
     UserRepository userRepository;
 

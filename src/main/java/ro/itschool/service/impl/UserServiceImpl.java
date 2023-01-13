@@ -13,6 +13,7 @@ import ro.itschool.controller.model.UserDTO;
 import ro.itschool.entity.Role;
 import ro.itschool.entity.User;
 import ro.itschool.exception.TokenNotFound;
+import ro.itschool.exception.UserNotFound;
 import ro.itschool.repository.RoleRepository;
 import ro.itschool.repository.UserRepository;
 import ro.itschool.service.UserService;
@@ -33,8 +34,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     EmailSender emailSender;
 
-    public User findUserByUserName(String username) {
-        return userRepository.findByUsernameIgnoreCase(username);
+    public User findUserByUserName(String username) throws UserNotFound {
+        return Optional.ofNullable(userRepository.findByUsernameIgnoreCase(username)).orElseThrow(UserNotFound::new);
     }
 
     public User findUserByRandomToken(String randomToken) throws TokenNotFound {
@@ -45,7 +46,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll().stream().map(UserMapper::convertToDTO).toList();
     }
 
-    public void deleteById(long id) {
+    public void deleteById(long id) throws UserNotFound {
+        Optional.of(userRepository.findById(id)).orElseThrow(UserNotFound::new);
         userRepository.deleteById(id);
     }
 
@@ -87,5 +89,3 @@ public class UserServiceImpl implements UserService {
     }
 
 }
-
-

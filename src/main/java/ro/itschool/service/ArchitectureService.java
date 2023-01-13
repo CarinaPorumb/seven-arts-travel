@@ -18,5 +18,4 @@ public interface ArchitectureService {
     Architecture findByName(String name) throws ArchitectureNotFound;
 
     List<Architecture> getAllArchitecturesByUserId(Integer userId) throws UserNotFound, ArchitectureNotFound;
-
 }

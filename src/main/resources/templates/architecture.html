@@ -35,12 +35,13 @@
 </head>
 <body>
 
-<div th:replace="fragments/navs.html :: topnav"></div>
+<div th:replace="~{fragments/navs.html :: topnav}"></div>
     <div class="col-md-2"></div>
     <div class="container my-2">
         <br><br>
         <h3 class="card-title"><strong>Architecture</strong></h3>
         <br><br>
+
         <form th:action="@{/all-architecture-list}" method="get">
             <div class="card-body">
                 <div class="col-md-10">
@@ -98,9 +99,9 @@
                                         <span th:unless="${architecture.isTemporary != 'true'}"></span>
                                     </li>
                                     <br>
-                                    <a th:href="@{'/addArchitectureToUser'}"
-                                       class="btn btn-warning" type="submit">Add to list</a>
-                                    <br><br>
+<!--                                    <a th:href="@{'/add-architecture/' + ${architecture.name}}"-->
+<!--                                       class="btn btn-warning" type="submit">Add to list</a>-->
+<!--                                    <br><br>-->
                                     <div sec:authorize="hasRole('ROLE_ADMIN')">
                                         <a href="/save-architecture" type="button"
                                            class="btn btn-outline-secondary btn-sm">Add</a>

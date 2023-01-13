@@ -19,7 +19,6 @@ public class RegisterController {
     @Autowired
     UserService userService;
 
-
     @GetMapping(value = "/register")
     public String registerForm(Model model) {
         User user = new User();
@@ -41,5 +40,4 @@ public class RegisterController {
             return "register";
         }
     }
-
 }

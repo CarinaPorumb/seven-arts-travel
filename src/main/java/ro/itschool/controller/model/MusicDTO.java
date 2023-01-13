@@ -29,5 +29,4 @@ public class MusicDTO {
     private LocalDateTime eventTime;
 
     private String location;
-
 }
