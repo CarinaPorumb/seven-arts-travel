@@ -49,7 +49,7 @@ public class UserController {
     @RequestMapping(path = "/delete/{id}")
     public String deleteUserById(Model model, @PathVariable("id") Long id) {
         userRepository.deleteById(id);
-        return "redirect:/index";
+        return "redirect:/users";
     }
 
     @RequestMapping("/add-admin-role/{id}")

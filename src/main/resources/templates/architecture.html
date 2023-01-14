@@ -31,94 +31,91 @@
     margin-bottom: 10px;
 }
 
+
+
+
+
     </style>
 </head>
 <body>
 
 <div th:replace="~{fragments/navs.html :: topnav}"></div>
-    <div class="col-md-2"></div>
-    <div class="container my-2">
-        <br><br>
-        <h3 class="card-title"><strong>Architecture</strong></h3>
-        <br><br>
+<div class="container-sm">
+    <br><br>
+    <h3 class="card-title"><strong>Architecture</strong></h3>
+    <br><br>
+    <form th:action="@{/all-architecture-list}" method="get">
+        <div class="search-container">
+            <div class="input-group col-lg-5">
+                <input type="text" name="keyword" th:value="${keyword}"
+                       class="form-control input-text" placeholder="Search"
+                       aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-dark btn-md" type="submit"><i
+                            class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
 
-        <form th:action="@{/all-architecture-list}" method="get">
-            <div class="card-body">
-                <div class="col-md-10">
-                    <div class="search-container">
-                        <div class="col-md-8">
-                            <div class="input-group mb-3">
-                                <input type="text" name="keyword" th:value="${keyword}"
-                                       class="form-control input-text" placeholder="Search"
-                                       aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-dark btn-md" type="submit"><i
-                                            class="fa fa-search"></i></button>
+        <br><br><br>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <tr th:each="architecture: ${architectures}">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="card-img-top" alt="Card image"
+                                 style="width:40% 60%"
+                                 th:src="${architecture.imageLink}">
+                            <div class="card-body">
+                                <h5 class="card-title" th:value="${architecture.name}"
+                                    th:text="${architecture.name}"></h5>
+                                <li>
+                                    <th>Name:</th>
+                                    <span th:text="${architecture.name}"></span>
+                                </li>
+                                <li>
+                                    <th>Author:</th>
+                                    <span th:text="${architecture.author}"></span>
+                                </li>
+                                <li>
+                                    <th>Location:</th>
+                                    <span th:text="${architecture.location}"></span>
+                                </li>
+                                <li>
+                                    <th>Movement:</th>
+                                    <span th:text="${architecture.movement}"></span>
+                                </li>
+                                <li>
+                                    <th>Year:</th>
+                                    <span th:text="${architecture.year}"></span>
+                                </li>
+                                <li>
+                                    <th>Is Temporary:</th>
+                                    <span th:text="${architecture.isTemporary}"></span>
+                                    <span th:if="${architecture.isTemporary == 'true'}"></span>
+                                    <span th:unless="${architecture.isTemporary != 'true'}"></span>
+                                </li>
+                                <br>
+                                <!--                                    <a th:href="@{'/add-architecture/' + ${architecture.name}}"-->
+                                <!--                                       class="btn btn-warning" type="submit">Add to list</a>-->
+                                <!--                                    <br><br>-->
+                                <div sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <a href="/save-architecture" type="button"
+                                       class="btn btn-outline-secondary btn-sm">Add</a>
+                                    <a th:href="@{'/update-architecture/' + ${architecture.name}}"
+                                       class="btn btn-outline-success btn-sm">Update</a>
+                                    <a th:href="@{'/delete-architecture/' + ${architecture.name}}"
+                                       class="btn btn-outline-danger btn-sm">Delete</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <br><br><br>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <tr th:each="architecture: ${architectures}">
-                    <div class="row">
-                        <div class="card">
-                            <div class="card-body">
-                                <img class="card-img-top" alt="Card image"
-                                     style="width:40% 60%"
-                                     th:src="${architecture.imageLink}">
-                                <div class="card-body">
-                                    <h5 class="card-title" th:value="${architecture.name}"
-                                        th:text="${architecture.name}"></h5>
-                                    <li>
-                                        <th>Name:</th>
-                                        <span th:text="${architecture.name}"></span>
-                                    </li>
-                                    <li>
-                                        <th>Author:</th>
-                                        <span th:text="${architecture.author}"></span>
-                                    </li>
-                                    <li>
-                                        <th>Location:</th>
-                                        <span th:text="${architecture.location}"></span>
-                                    </li>
-                                    <li>
-                                        <th>Movement:</th>
-                                        <span th:text="${architecture.movement}"></span>
-                                    </li>
-                                    <li>
-                                        <th>Year:</th>
-                                        <span th:text="${architecture.year}"></span>
-                                    </li>
-                                    <li>
-                                        <th>Is Temporary:</th>
-                                        <span th:text="${architecture.isTemporary}"></span>
-                                        <span th:if="${architecture.isTemporary == 'true'}"></span>
-                                        <span th:unless="${architecture.isTemporary != 'true'}"></span>
-                                    </li>
-                                    <br>
-<!--                                    <a th:href="@{'/add-architecture/' + ${architecture.name}}"-->
-<!--                                       class="btn btn-warning" type="submit">Add to list</a>-->
-<!--                                    <br><br>-->
-                                    <div sec:authorize="hasRole('ROLE_ADMIN')">
-                                        <a href="/save-architecture" type="button"
-                                           class="btn btn-outline-secondary btn-sm">Add</a>
-                                        <a th:href="@{'/update-architecture/' + ${architecture.name}}"
-                                           class="btn btn-outline-success btn-sm">Update</a>
-                                        <a th:href="@{'/delete-architecture/' + ${architecture.name}}"
-                                           class="btn btn-outline-danger btn-sm">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="my-5"/>
-                </tr>
-            </div>
-        </form>
-    </div>
+                <hr class="my-5"/>
+            </tr>
+        </div>
+    </form>
+</div>
 </body>
 </html>
 
