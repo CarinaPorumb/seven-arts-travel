@@ -1,6 +1,5 @@
 package ro.itschool.startup;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -16,37 +15,39 @@ import java.util.Set;
 @Component
 public class RunAtStartup {
 
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private ArchitectureService architectureService;
-    @Autowired
-    private MusicService musicService;
-    @Autowired
-    private PaintingService paintingService;
-    @Autowired
-    private LiteratureService literatureService;
-    @Autowired
-    private SculptureService sculptureService;
-    @Autowired
-    private CinemaService cinemaService;
-    @Autowired
-    private BalletAndTheatreService balletAndTheatreService;
+    private final UserService userService;
+    private final ArchitectureService architectureService;
+    private final MusicService musicService;
+    private final PaintingService paintingService;
+    private final LiteratureService literatureService;
+    private final SculptureService sculptureService;
+    private final CinemaService cinemaService;
+    private final BalletAndTheatreService balletAndTheatreService;
 
+    public RunAtStartup(UserService userService, ArchitectureService architectureService, MusicService musicService, PaintingService paintingService, LiteratureService literatureService, SculptureService sculptureService, CinemaService cinemaService, BalletAndTheatreService balletAndTheatreService) {
+        this.userService = userService;
+        this.architectureService = architectureService;
+        this.musicService = musicService;
+        this.paintingService = paintingService;
+        this.literatureService = literatureService;
+        this.sculptureService = sculptureService;
+        this.cinemaService = cinemaService;
+        this.balletAndTheatreService = balletAndTheatreService;
+    }
 
     @EventListener(ContextRefreshedEvent.class)
     public void contextRefreshedEvent() {
         saveAdmin();
-        saveContributor();
+        //      saveContributor();
         saveUser();
 
         saveArchitecture();
         saveSculpture();
-        saveBalletAndTheatre();
-        savePainting();
-        saveMusic();
-        saveLiterature();
-        saveCinema();
+//        saveBalletAndTheatre();
+//        savePainting();
+//        saveMusic();
+//        saveLiterature();
+//        saveCinema();
     }
 
     public void saveAdmin() {
@@ -163,12 +164,16 @@ public class RunAtStartup {
         architecture6.setYear(1523);
         architecture6.setIsTemporary(false);
 
-        architectureService.save(architecture);
-        architectureService.save(architecture2);
-        architectureService.save(architecture3);
-        architectureService.save(architecture4);
-        architectureService.save(architecture5);
-        architectureService.save(architecture6);
+        try {
+            architectureService.save(architecture);
+            architectureService.save(architecture2);
+            architectureService.save(architecture3);
+            architectureService.save(architecture4);
+            architectureService.save(architecture5);
+            architectureService.save(architecture6);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         architectures.add(architecture);
         architectures.add(architecture2);
         architectures.add(architecture3);
@@ -215,14 +220,19 @@ public class RunAtStartup {
         sculpture4.setIsTemporary(false);
         sculpture4.setYear(1345);
 
-        sculptureService.save(sculpture);
-        sculptureService.save(sculpture2);
-        sculptureService.save(sculpture3);
-        sculptureService.save(sculpture4);
+        try {
+            sculptureService.save(sculpture);
+            sculptureService.save(sculpture2);
+            sculptureService.save(sculpture3);
+            sculptureService.save(sculpture4);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         sculptures.add(sculpture);
         sculptures.add(sculpture2);
         sculptures.add(sculpture3);
         sculptures.add(sculpture4);
+
     }
 
     public void savePainting() {
@@ -267,11 +277,15 @@ public class RunAtStartup {
         painting5.setIsTemporary(false);
         painting5.setYear(1753);
 
-        paintingService.save(painting);
-        paintingService.save(painting2);
-        paintingService.save(painting3);
-        paintingService.save(painting4);
-        paintingService.save(painting5);
+        try {
+            paintingService.save(painting);
+            paintingService.save(painting2);
+            paintingService.save(painting3);
+            paintingService.save(painting4);
+            paintingService.save(painting5);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         paintings.add(painting);
         paintings.add(painting2);
         paintings.add(painting3);
@@ -326,11 +340,15 @@ public class RunAtStartup {
         music4.setIsTemporary(true);
         music4.setEventTime(LocalDateTime.of(2022, 10, 16, 16, 0));
 
-        musicService.save(music);
-        musicService.save(music1);
-        musicService.save(music2);
-        musicService.save(music3);
-        musicService.save(music4);
+        try {
+            musicService.save(music);
+            musicService.save(music1);
+            musicService.save(music2);
+            musicService.save(music3);
+            musicService.save(music4);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         musics.add(music);
         musics.add(music1);
         musics.add(music2);
@@ -358,8 +376,12 @@ public class RunAtStartup {
         balletAndTheatre1.setEventTime(LocalDateTime.of(2022, 9, 2, 19, 30));
         balletAndTheatre1.setIsTemporary(true);
 
-        balletAndTheatreService.save(balletAndTheatre);
-        balletAndTheatreService.save(balletAndTheatre1);
+        try {
+            balletAndTheatreService.save(balletAndTheatre);
+            balletAndTheatreService.save(balletAndTheatre1);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         balletAndTheatreSet.add(balletAndTheatre);
         balletAndTheatreSet.add(balletAndTheatre1);
     }
@@ -390,9 +412,14 @@ public class RunAtStartup {
         literature3.setIsTemporary(false);
         literature2.setYear(1592);
 
-        literatureService.save(literature);
-        literatureService.save(literature2);
-        literatureService.save(literature3);
+
+        try {
+            literatureService.save(literature);
+            literatureService.save(literature2);
+            literatureService.save(literature3);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         literatures.add(literature);
         literatures.add(literature2);
         literatures.add(literature3);
@@ -416,8 +443,12 @@ public class RunAtStartup {
         cinema2.setEventTime(LocalDate.of(1958, 1, 1));
         cinema2.setIsTemporary(false);
 
-        cinemaService.save(cinema);
-        cinemaService.save(cinema2);
+        try {
+            cinemaService.save(cinema);
+            cinemaService.save(cinema2);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         cinemas.add(cinema);
         cinemas.add(cinema2);
     }

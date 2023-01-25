@@ -16,19 +16,20 @@ public class ArchitectureServiceImpl implements ArchitectureService {
     @Autowired
     private ArchitectureRepository architectureRepository;
 
-
+    @Override
     public void deleteByName(String name) throws ArchitectureNotFound {
         Optional.ofNullable(architectureRepository.findByName(name)).orElseThrow(ArchitectureNotFound::new);
         architectureRepository.deleteByName(name);
     }
 
     @Override
-    public void save(Architecture architecture) {
-        architectureRepository.save(architecture);
+    public void save(Architecture architecture) throws ArchitectureNotFound {
+        Optional.of(architectureRepository.save(architecture)).orElseThrow(ArchitectureNotFound::new);
+
     }
 
     @Override
-    public List<Architecture> getAllArchitectures() throws ArchitectureNotFound {
+    public List<Architecture> getAll() throws ArchitectureNotFound {
         return Optional.of(architectureRepository.findAll()).orElseThrow(ArchitectureNotFound::new);
     }
 
@@ -38,7 +39,7 @@ public class ArchitectureServiceImpl implements ArchitectureService {
     }
 
     @Override
-    public List<Architecture> getAllArchitecturesByUserId(Integer userId) throws ArchitectureNotFound {
+    public List<Architecture> getAllByUserId(Long userId) throws ArchitectureNotFound {
         return Optional.ofNullable(architectureRepository.findByUserId(userId)).orElseThrow(ArchitectureNotFound::new);
     }
 }

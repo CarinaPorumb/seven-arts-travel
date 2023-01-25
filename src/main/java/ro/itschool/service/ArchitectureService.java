@@ -1,21 +1,9 @@
 package ro.itschool.service;
 
-import org.springframework.stereotype.Service;
 import ro.itschool.entity.Architecture;
-import ro.itschool.exception.ArchitectureNotFound;
-import ro.itschool.exception.UserNotFound;
-import java.util.List;
 
-@Service
-public interface ArchitectureService {
+import java.util.UUID;
 
-    void deleteByName(String name) throws ArchitectureNotFound;
+public interface ArchitectureService extends CrudService<Architecture, UUID> {
 
-    void save(Architecture architecture);
-
-    List<Architecture> getAllArchitectures() throws ArchitectureNotFound;
-
-    Architecture findByName(String name) throws ArchitectureNotFound;
-
-    List<Architecture> getAllArchitecturesByUserId(Integer userId) throws UserNotFound, ArchitectureNotFound;
 }

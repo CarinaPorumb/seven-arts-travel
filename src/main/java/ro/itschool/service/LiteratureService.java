@@ -1,22 +1,9 @@
 package ro.itschool.service;
 
-import org.springframework.stereotype.Service;
 import ro.itschool.entity.Literature;
-import ro.itschool.exception.LiteratureNotFound;
-import ro.itschool.exception.UserNotFound;
 
-import java.util.List;
+import java.util.UUID;
 
-@Service
-public interface LiteratureService {
+public interface LiteratureService extends CrudService<Literature, UUID>{
 
-    void deleteByName(String name) throws LiteratureNotFound;
-
-    void save(Literature literature);
-
-    List<Literature> getAllLiteratures() throws LiteratureNotFound;
-
-    Literature findByName(String name) throws LiteratureNotFound;
-
-    List<Literature> getAllLiteraturesByUserId(Integer userId) throws UserNotFound, LiteratureNotFound;
 }

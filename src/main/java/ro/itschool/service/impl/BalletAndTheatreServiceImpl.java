@@ -16,25 +16,29 @@ public class BalletAndTheatreServiceImpl implements BalletAndTheatreService {
     @Autowired
     BalletAndTheatreRepository balletAndTheatreRepository;
 
-
-    public void deleteByName(String name)  {
-        BalletAndTheatre balletAndTheatre = balletAndTheatreRepository.findByName(name);
+    @Override
+    public void deleteByName(String name) throws BalletAndTheatreNotFound {
+        Optional.ofNullable(balletAndTheatreRepository.findByName(name)).orElseThrow(BalletAndTheatreNotFound::new);
         balletAndTheatreRepository.deleteByName(name);
     }
 
-    public void save(BalletAndTheatre balletAndTheatre) {
-        balletAndTheatreRepository.save(balletAndTheatre);
+    @Override
+    public void save(BalletAndTheatre balletAndTheatre) throws BalletAndTheatreNotFound {
+        Optional.of(balletAndTheatreRepository.save(balletAndTheatre)).orElseThrow(BalletAndTheatreNotFound::new);
     }
 
-    public List<BalletAndTheatre> getAllBalletsAndTheatres() throws BalletAndTheatreNotFound {
+    @Override
+    public List<BalletAndTheatre> getAll() throws BalletAndTheatreNotFound {
         return Optional.of(balletAndTheatreRepository.findAll()).orElseThrow(BalletAndTheatreNotFound::new);
     }
 
-    public BalletAndTheatre findByName(String name) {
-        return balletAndTheatreRepository.findByName(name);
+    @Override
+    public BalletAndTheatre findByName(String name) throws BalletAndTheatreNotFound {
+        return Optional.ofNullable(balletAndTheatreRepository.findByName(name)).orElseThrow(BalletAndTheatreNotFound::new);
     }
 
-    public List<BalletAndTheatre> getAllBalletsAndTheatresByUserId(Integer userId) throws BalletAndTheatreNotFound {
+    @Override
+    public List<BalletAndTheatre> getAllByUserId(Long userId) throws BalletAndTheatreNotFound {
         return Optional.ofNullable(balletAndTheatreRepository.findByUserId(userId)).orElseThrow(BalletAndTheatreNotFound::new);
     }
 }

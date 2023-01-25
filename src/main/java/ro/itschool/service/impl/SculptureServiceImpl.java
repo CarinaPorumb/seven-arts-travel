@@ -17,28 +17,29 @@ public class SculptureServiceImpl implements SculptureService {
     private SculptureRepository sculptureRepository;
 
     @Override
-    public void deleteByName(String name) {
-        Sculpture sculpture = sculptureRepository.findByName(name);
+    public void deleteByName(String name) throws SculptureNotFound {
+        Optional.ofNullable(sculptureRepository.findByName(name)).orElseThrow(SculptureNotFound::new);
         sculptureRepository.deleteByName(name);
     }
 
     @Override
-    public void save(Sculpture sculpture) {
-        sculptureRepository.save(sculpture);
+    public void save(Sculpture sculpture) throws SculptureNotFound {
+        Optional.of(sculptureRepository.save(sculpture)).orElseThrow(SculptureNotFound::new);
     }
 
     @Override
-    public List<Sculpture> getAllSculptures() throws SculptureNotFound {
+    public List<Sculpture> getAll() throws SculptureNotFound {
         return Optional.of(sculptureRepository.findAll()).orElseThrow(SculptureNotFound::new);
     }
 
     @Override
-    public Sculpture findByName(String name) {
-        return sculptureRepository.findByName(name);
+    public Sculpture findByName(String name) throws SculptureNotFound {
+        return Optional.ofNullable(sculptureRepository.findByName(name)).orElseThrow(SculptureNotFound::new);
     }
 
     @Override
-    public List<Sculpture> getAllSculpturesByUserId(Integer userId) throws SculptureNotFound {
+    public List<Sculpture> getAllByUserId(Long userId) throws SculptureNotFound {
         return Optional.ofNullable(sculptureRepository.findByUserId(userId)).orElseThrow(SculptureNotFound::new);
     }
+
 }

@@ -1,21 +1,9 @@
 package ro.itschool.service;
 
-import org.springframework.stereotype.Service;
 import ro.itschool.entity.Music;
-import ro.itschool.exception.MusicNotFound;
 
-import java.util.List;
+import java.util.UUID;
 
-@Service
-public interface MusicService {
+public interface MusicService extends CrudService<Music, UUID> {
 
-    void deleteByName(String name);
-
-    void save(Music music);
-
-    List<Music> getAllMusics() throws MusicNotFound;
-
-    Music findByName(String name);
-
-    List<Music> getAllMusicsByUserId(Integer userId) throws MusicNotFound;
 }

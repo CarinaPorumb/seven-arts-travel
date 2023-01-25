@@ -23,7 +23,7 @@ public interface BalletAndTheatreRepository extends JpaRepository<BalletAndTheat
 
     @Query(value = "SELECT * FROM ballet_and_theatre WHERE user_id = ?",
             nativeQuery = true)
-    List<BalletAndTheatre> findByUserId(Integer userId);
+    List<BalletAndTheatre> findByUserId(Long userId);
 
     @Query(value = "SELECT * FROM ballet_and_theatre b WHERE b.name LIKE %:keyword% OR b.author OR b.location LIKE %:keyword% OR b.movement LIKE %:keyword% " +
                     "OR b.is_temporary LIKE %:keyword% OR b.id LIKE %:keyword% OR b.user_id LIKE %:keyword% OR b.event_time LIKE %:keyword%",

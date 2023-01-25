@@ -17,28 +17,28 @@ public class LiteratureServiceImpl implements LiteratureService {
     LiteratureRepository literatureRepository;
 
     @Override
-    public void deleteByName(String name) {
-        Literature literature = literatureRepository.findByName(name);
+    public void deleteByName(String name) throws LiteratureNotFound {
+        Optional.ofNullable(literatureRepository.findByName(name)).orElseThrow(LiteratureNotFound::new);
         literatureRepository.deleteByName(name);
     }
 
     @Override
-    public void save(Literature literature) {
-        literatureRepository.save(literature);
+    public void save(Literature literature) throws LiteratureNotFound {
+        Optional.of(literatureRepository.save(literature)).orElseThrow(LiteratureNotFound::new);
     }
 
     @Override
-    public List<Literature> getAllLiteratures() throws LiteratureNotFound {
+    public List<Literature> getAll() throws LiteratureNotFound {
         return Optional.of(literatureRepository.findAll()).orElseThrow(LiteratureNotFound::new);
     }
 
     @Override
-    public Literature findByName(String name) {
-        return literatureRepository.findByName(name);
+    public Literature findByName(String name) throws LiteratureNotFound {
+        return Optional.ofNullable(literatureRepository.findByName(name)).orElseThrow(LiteratureNotFound::new);
     }
 
     @Override
-    public List<Literature> getAllLiteraturesByUserId(Integer userId) throws LiteratureNotFound {
+    public List<Literature> getAllByUserId(Long userId) throws LiteratureNotFound {
         return Optional.ofNullable(literatureRepository.findByUserId(userId)).orElseThrow(LiteratureNotFound::new);
     }
 

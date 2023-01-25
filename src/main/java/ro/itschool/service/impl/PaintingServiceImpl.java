@@ -17,27 +17,29 @@ public class PaintingServiceImpl implements PaintingService {
     PaintingRepository paintingRepository;
 
     @Override
-    public void deleteByName(String name) {
-        Painting painting = paintingRepository.findByName(name);
+    public void deleteByName(String name) throws PaintingNotFound {
+        Optional.ofNullable(paintingRepository.findByName(name)).orElseThrow(PaintingNotFound::new);
         paintingRepository.deleteByName(name);
     }
 
     @Override
-    public void save(Painting painting) {
-        paintingRepository.save(painting);
+    public void save(Painting painting) throws PaintingNotFound {
+        Optional.of(paintingRepository.save(painting)).orElseThrow(PaintingNotFound::new);
     }
 
     @Override
-    public List<Painting> getAllPaintings() throws PaintingNotFound {
-     return Optional.of(paintingRepository.findAll()).orElseThrow(PaintingNotFound::new);
+    public List<Painting> getAll() throws PaintingNotFound {
+        return Optional.of(paintingRepository.findAll()).orElseThrow(PaintingNotFound::new);
     }
 
     @Override
-    public Painting findByName(String name) {
-     return paintingRepository.findByName(name);
+    public Painting findByName(String name) throws PaintingNotFound {
+        return Optional.ofNullable(paintingRepository.findByName(name)).orElseThrow(PaintingNotFound::new);
     }
 
-    public List<Painting> getAllPaintingsByUserId(Long userId) throws PaintingNotFound {
+    @Override
+    public List<Painting> getAllByUserId(Long userId) throws PaintingNotFound {
         return Optional.ofNullable(paintingRepository.findByUserId(userId)).orElseThrow(PaintingNotFound::new);
     }
+
 }

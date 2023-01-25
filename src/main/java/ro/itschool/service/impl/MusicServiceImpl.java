@@ -17,28 +17,29 @@ public class MusicServiceImpl implements MusicService {
     MusicRepository musicRepository;
 
     @Override
-    public void deleteByName(String name) {
-        Music music = musicRepository.findByName(name);
+    public void deleteByName(String name) throws MusicNotFound {
+        Optional.ofNullable(musicRepository.findByName(name)).orElseThrow(MusicNotFound::new);
         musicRepository.deleteByName(name);
     }
 
     @Override
-    public void save(Music music) {
-        musicRepository.save(music);
+    public void save(Music music) throws MusicNotFound {
+        Optional.of(musicRepository.save(music)).orElseThrow(MusicNotFound::new);
     }
 
     @Override
-    public List<Music> getAllMusics() throws MusicNotFound {
+    public List<Music> getAll() throws MusicNotFound {
         return Optional.of(musicRepository.findAll()).orElseThrow(MusicNotFound::new);
     }
 
     @Override
-    public Music findByName(String name) {
-        return musicRepository.findByName(name);
+    public Music findByName(String name) throws MusicNotFound {
+        return Optional.ofNullable(musicRepository.findByName(name)).orElseThrow(MusicNotFound::new);
     }
 
     @Override
-    public List<Music> getAllMusicsByUserId(Integer userId) throws MusicNotFound {
+    public List<Music> getAllByUserId(Long userId) throws MusicNotFound {
         return Optional.ofNullable(musicRepository.findByUserId(userId)).orElseThrow(MusicNotFound::new);
     }
+
 }

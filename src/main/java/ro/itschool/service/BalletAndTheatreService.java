@@ -1,22 +1,9 @@
 package ro.itschool.service;
 
-import org.springframework.stereotype.Service;
 import ro.itschool.entity.BalletAndTheatre;
-import ro.itschool.exception.BalletAndTheatreNotFound;
-import ro.itschool.exception.UserNotFound;
 
-import java.util.List;
+import java.util.UUID;
 
-@Service
-public interface BalletAndTheatreService {
+public interface BalletAndTheatreService extends CrudService<BalletAndTheatre, UUID> {
 
-    void deleteByName(String name);
-
-    void save(BalletAndTheatre balletAndTheatre);
-
-    List<BalletAndTheatre> getAllBalletsAndTheatres() throws BalletAndTheatreNotFound;
-
-    BalletAndTheatre findByName(String name);
-
-    List<BalletAndTheatre> getAllBalletsAndTheatresByUserId(Integer userId) throws UserNotFound, BalletAndTheatreNotFound;
 }

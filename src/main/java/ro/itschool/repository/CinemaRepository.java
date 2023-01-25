@@ -23,7 +23,7 @@ public interface CinemaRepository extends JpaRepository<Cinema, UUID> {
 
     @Query(value = "SELECT * FROM cinema WHERE user_id = ?",
             nativeQuery = true)
-    List<Cinema> findByUserId(Integer userId);
+    List<Cinema> findByUserId(Long userId);
 
     @Query(value = "SELECT * FROM cinema c WHERE c.name LIKE %:keyword% OR c.location LIKE %:keyword% OR c.movement LIKE %:keyword% " +
                     "OR c.is_temporary LIKE %:keyword% OR c.id LIKE %:keyword% OR c.user_id LIKE %:keyword% OR c.event_time LIKE %:keyword%",

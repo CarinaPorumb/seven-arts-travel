@@ -24,7 +24,7 @@ public interface ArchitectureRepository extends JpaRepository<Architecture, Long
 
     @Query(value = "SELECT * FROM architecture WHERE user_id = ?",
             nativeQuery = true)
-    List<Architecture> findByUserId(Integer userId);
+    List<Architecture> findByUserId(Long userId);
 
     @Query(
             value = "SELECT * FROM architecture a WHERE a.id LIKE %:keyword% OR a.author LIKE %:keyword% OR a.image_link LIKE %:keyword% OR a.is_temporary LIKE %:keyword%" +
