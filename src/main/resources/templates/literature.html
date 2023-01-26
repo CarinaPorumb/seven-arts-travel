@@ -21,56 +21,35 @@
             crossorigin="anonymous"></script>
     <link th:href="@{/css/topnav.css}" rel="stylesheet"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
-    <style>
-
-.card-img-top {
-    width: 100%;
-    height: 15vw;
-    object-fit: cover;
-}
-
-
-    </style>
 </head>
 <body>
-
 <div th:replace="fragments/navs.html :: topnav"></div>
-<div class="col-md-2"></div>
-
-<div class="container my-2">
+<div class="container-lg">
     <br><br>
     <h3 class="card-title"><strong>Literature</strong></h3>
     <br><br>
     <form th:action="@{/all-literature-list}" method="get">
-        <div class="card-body">
-            <div class="col-md-10">
-                <div class="search-container">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="input-group mb-3">
-                                <input type="text" name="keyword" th:value="${keyword}"
-                                       class="form-control input-text" placeholder="Search"
-                                       aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-dark btn-md" type="submit"><i
-                                            class="fa fa-search"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="search-container">
+            <div class="input-group col-lg-5">
+                <input type="text" name="keyword" th:value="${keyword}"
+                       class="form-control input-text" placeholder="Search"
+                       aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-dark btn-md" type="submit"><i
+                            class="fa fa-search"></i></button>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
+
+        <br><br><br>
+        <div class="row">
             <tr th:each="literature: ${literatures}">
-                <div class="row">
-                    <hr class="my-5"/>
-                    <div class="card">
+                <div class="col-lg-4 col-lg-4 mb-4">
+                    <div class="card d-flex align-items-stretch h-100">
                         <div class="card-body">
                             <img class="card-img-top" alt="Card image"
                                  style="width:30% 90%"
                                  th:src="${literature.imageLink}">
-
                             <div class="card-body">
                                 <h5 class="card-title" th:value="${literature.name}"
                                     th:text="${literature.name}"></h5>
@@ -104,7 +83,8 @@
                                 <a th:href="@{'/addLiteratureToUser'}"
                                    class="btn btn-warning" type="submit">Add to list</a>
                                 <div sec:authorize="hasRole('ROLE_ADMIN')">
-                                    <a href="/save-literature" type="button" class="btn btn-outline-secondary btn-sm">Add</a>
+                                    <a href="/save-literature" type="button"
+                                       class="btn btn-outline-secondary btn-sm">Add</a>
                                     <a th:href="@{'/update-literature/' + ${literature.name}}"
                                        class="btn btn-outline-success btn-sm">Update</a>
                                     <a th:href="@{'/delete-literature/' + ${literature.name}}"

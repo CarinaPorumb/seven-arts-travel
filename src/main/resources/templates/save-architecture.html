@@ -21,64 +21,95 @@
             crossorigin="anonymous"></script>
     <link th:href="@{/css/topnav.css}" rel="stylesheet"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
-
 </head>
 
 <body>
 <div th:replace="fragments/navs.html :: topnav"></div>
-<div class="container mt-5">
-    <div class="card-body">
-        <div class="col-md-10">
-            <h4><strong>Add Architecture</strong></h4>
-            <form  th:action="@{/save-architecture}" th:object="${architectureObject}" method="post">
-                <div class="form-group col-md-8">
-                    <label for="name" class="col-form-label"><h5>Name</h5></label>
-                    <input type="text" th:field="*{name}" class="form-control"
-                           id="name" placeholder="Name"/>
-                </div>
-                <div class="form-group col-md-8">
-                    <label for="imageLink" class="col-form-label"><h5>Image Link</h5></label>
-                    <input type="text" th:field="*{imageLink}" class="form-control"
-                           id="imageLink" placeholder="ImageLink"/>
-                </div>
-                <div class="form-group col-md-8">
-                    <label for="author" class="col-form-label"><h5>Author</h5></label>
-                    <input type="text" th:field="*{author}" class="form-control"
-                           id="author" placeholder="Author"/>
-                </div>
-                <div class="form-group col-md-8">
-                    <label for="location" class="col-form-label"><h5>Location</h5></label>
-                    <input type="text" th:field="*{location}" class="form-control"
-                           id="location" placeholder="Location"/>
-                </div>
-                <div class="form-group col-md-8">
-                    <label for="year" class="col-form-label"><h5>Year</h5></label>
-                    <input type="text" th:field="*{year}" class="form-control"
-                           id="year" placeholder="Year"/>
-                </div>
-                <div class="form-group col-md-8">
-                    <label id="movement" class="col-form-label"><h5>Movement</h5></label>
-                    <select class="form-control" name="movement" th:field="*{movement}">
-                        <option th:each="movement : ${T(ro.itschool.enums.Style).values()}"
-                                th:value="${movement}" th:text="${movement}"></option>
-                    </select>
-                </div>
+<br><br>
+<div class="container-lg">
+    <h3 class="card-title"><strong>Add New Architecture</strong></h3>
+    <br><br>
 
-                <div class="form-group col-md-8">
-                    <label id="isTemporary" class="col-form-label"><h5>Is Temporary</h5></label>
-                    <select class="form-control" th:field="*{isTemporary}">
-                        <option th:value="1">true</option>
-                        <option th:value="0">false</option>
-                    </select>
+    <section>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 gx-5 mb-4">
+                    <div class="card-body">
+                        <form th:action="@{/save-architecture}" th:object="${architectureObject}" method="post">
+                            <div class="form-group">
+                                <input type="text" th:field="*{name}" class="form-control" id="name"
+                                       placeholder="Name"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{imageLink}" class="form-control"
+                                       id="imageLink" placeholder="ImageLink"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{author}" class="form-control"
+                                       id="author" placeholder="Author"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{location}" class="form-control"
+                                       id="location" placeholder="Location"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{year}" class="form-control"
+                                       id="year" placeholder="Year"/>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="movement" th:field="*{movement}">
+                                    <option th:each="movement : ${T(ro.itschool.enums.Style).values()}"
+                                            th:value="${movement}" th:text="${movement}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" placeholder="isTemporary" th:field="*{isTemporary}">
+                                    <option th:value="1">true</option>
+                                    <option th:value="0">false</option>
+                                </select>
+                            </div>
+                            <div>
+                                <button type="submit" value="Submit" class="btn btn-success">Submit</button>
+                                <button type="reset" value="Reset" class="btn btn-warning">Reset</button>
+                                <a href="/all-architecture-list?keyword=" type="button"
+                                   class="btn btn-secondary">Back</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div>
-                    <button type="submit" value="Submit" class="btn btn-success">Submit</button>
-                    <button type="reset" value="Reset" class="btn btn-warning">Reset</button>
-                    <a href="/all-architecture-list?keyword=" type="button" class="btn btn-secondary">Back</a>
+                <div class="col-md-6 gx-5 mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                                <img src="https://www.re-thinkingthefuture.com/wp-content/uploads/2022/10/A8016-25-famous-buildings-and-their-architects-Image-19-.jpg"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Boat on Calm Water"/>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/%CE%A3%CE%B1%CE%B3%CF%81%CE%AC%CE%B4%CE%B1_%CE%A6%CE%B1%CE%BC%CE%AF%CE%BB%CE%B9%CE%B1_2941.jpg"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Wintry Mountain Landscape"/>
+                            </div>
+                            <div class="col-lg-4 mb-4 mb-lg-0">
+                                <img src="https://i.redd.it/9ygkl4i2j8r61.jpg"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Mountains in the Clouds"/>
+                                <img src="https://www.homestratosphere.com/wp-content/uploads/2022/09/amsterdam-photo-sept9.jpg"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Boat on Calm Water"/>
+                            </div>
+                            <div class="col-lg-4 mb-4 mb-lg-0">
+                                <img src="https://www.amazingczechia.com/wp-content/uploads/2020/09/dancing-house-prague.jpg.webp"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Waves at Sea"/>
+                                <img src="https://www.sah.org/images/default-source/blog/fig--21.jpg?sfvrsn=d8135d9b_2"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Yosemite National Park"/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </section>
 </div>
 </body>
 </html>

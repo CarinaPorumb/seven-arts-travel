@@ -21,55 +21,36 @@
             crossorigin="anonymous"></script>
     <link th:href="@{/css/topnav.css}" rel="stylesheet"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
-    <style>
-
-.card-img-top {
-    width: 100%;
-    height: 15vw;
-    object-fit: cover;
-}
-
-    </style>
 </head>
 <body>
 
 <div th:replace="fragments/navs.html :: topnav"></div>
-<div class="col-md-2"></div>
-
-<div class="container my-2">
+<div class="container-lg">
     <br><br>
     <h3 class="card-title"><strong>Painting</strong></h3>
     <br><br>
     <form th:action="@{/all-painting-list}" method="get">
-        <div class="card-body">
-            <div class="col-md-10">
-                <div class="search-container">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="input-group mb-3">
-                                <input type="text" name="keyword" th:value="${keyword}"
-                                       class="form-control input-text" placeholder="Search"
-                                       aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-dark btn-md" type="submit"><i
-                                            class="fa fa-search"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="search-container">
+            <div class="input-group col-lg-5">
+                <input type="text" name="keyword" th:value="${keyword}"
+                       class="form-control input-text" placeholder="Search"
+                       aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-dark btn-md" type="submit"><i
+                            class="fa fa-search"></i></button>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
+
+        <br><br><br>
+        <div class="row">
             <tr th:each="painting: ${paintings}">
-                <div class="row">
-                    <hr class="my-5"/>
-                    <div class="card">
+                <div class="col-lg-4 col-lg-4 mb-4">
+                    <div class="card d-flex align-items-stretch h-100">
                         <div class="card-body">
                             <img class="card-img-top" alt="Card image"
                                  style="width:30% 90%"
                                  th:src="${painting.imageLink}">
-
                             <div class="card-body">
                                 <h5 class="card-title" th:value="${painting.name}"
                                     th:text="${painting.name}"></h5>
@@ -120,6 +101,7 @@
 </div>
 </body>
 </html>
+
 <!--    <div th:text="${painting.get(1).name}"></div>-->
 <!--    <div th:text="${painting[0].name}"></div>-->
 

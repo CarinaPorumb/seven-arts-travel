@@ -40,7 +40,7 @@ public class ArchitectureController {
     public String saveArchitecture2(@ModelAttribute Architecture architecture, Model model) {
         model.addAttribute("architectureObject", architecture);
         architectureRepository.save(architecture);
-        return "redirect:/all-architecture-list";
+        return "redirect:/all-architecture-list?keyword=";
     }
 
     @GetMapping(path = "/update-architecture/{name}")

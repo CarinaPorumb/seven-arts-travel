@@ -22,25 +22,11 @@
             crossorigin="anonymous"></script>
     <link th:href="@{/css/topnav.css}" rel="stylesheet"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
-
-    <style>
-.card-img-top {
-    width: 100%;
-    height: 15vw;
-    object-fit: cover;
-    margin-bottom: 10px;
-}
-
-
-
-
-
-    </style>
 </head>
 <body>
 
 <div th:replace="~{fragments/navs.html :: topnav}"></div>
-<div class="container-sm">
+<div class="container-lg">
     <br><br>
     <h3 class="card-title"><strong>Architecture</strong></h3>
     <br><br>
@@ -58,10 +44,10 @@
         </div>
 
         <br><br><br>
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="row">
             <tr th:each="architecture: ${architectures}">
-                <div class="row">
-                    <div class="card">
+                <div class="col-lg-4 col-lg-4 mb-4">
+                    <div class="card d-flex align-items-stretch h-100">
                         <div class="card-body">
                             <img class="card-img-top" alt="Card image"
                                  style="width:40% 60%"
@@ -111,14 +97,9 @@
                         </div>
                     </div>
                 </div>
-                <hr class="my-5"/>
             </tr>
         </div>
     </form>
 </div>
 </body>
 </html>
-
-<!--<a th:href="@{/deleteArchitecture/{name}(name=${architecture.name})}"-->
-<!--    <div th:text="${architectures.get(1).name}"></div>-->
-<!--    <div th:text="${architectures[0].name}"></div>-->
