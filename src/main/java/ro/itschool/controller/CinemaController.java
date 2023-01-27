@@ -37,7 +37,7 @@ public class CinemaController {
     public String saveCinema2(@ModelAttribute Cinema cinema, Model model) {
         model.addAttribute("cinemaObject", cinema);
         cinemaRepository.save(cinema);
-        return "redirect:/all-cinema-list";
+        return "redirect:/all-cinema-list?keyword=";
     }
 
     @GetMapping(path = "/update-cinema/{name}")

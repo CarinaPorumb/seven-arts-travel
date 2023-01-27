@@ -37,7 +37,7 @@ public class SculptureController {
     public String saveSculpture2(@ModelAttribute Sculpture sculpture, Model model) {
         model.addAttribute("sculpture", sculpture);
         sculptureRepository.save(sculpture);
-        return "redirect:/all-sculpture-list";
+        return "redirect:/all-sculpture-list?keyword=";
     }
 
     @GetMapping(path = "/update-sculpture/{name}")

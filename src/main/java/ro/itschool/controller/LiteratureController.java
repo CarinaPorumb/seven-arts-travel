@@ -37,7 +37,7 @@ public class LiteratureController {
     public String saveLiterature2(@ModelAttribute Literature literature, Model model) {
         model.addAttribute("literatureObj", literature);
         literatureRepository.save(literature);
-        return "redirect:/all-literature-list";
+        return "redirect:/all-literature-list?keyword=";
     }
 
     @GetMapping(path = "/update-literature/{name}")

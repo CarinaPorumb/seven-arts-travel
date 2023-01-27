@@ -39,15 +39,15 @@ public class RunAtStartup {
     public void contextRefreshedEvent() {
         saveAdmin();
         //      saveContributor();
-        saveUser();
+        //   saveUser();
 
         saveArchitecture();
         saveSculpture();
-//        saveBalletAndTheatre();
-//        savePainting();
-//        saveMusic();
-//        saveLiterature();
-//        saveCinema();
+        saveBalletAndTheatre();
+        savePainting();
+        saveMusic();
+        saveLiterature();
+        saveCinema();
     }
 
     public void saveAdmin() {
@@ -412,17 +412,26 @@ public class RunAtStartup {
         literature3.setIsTemporary(false);
         literature2.setYear(1592);
 
+        Literature literature4 = new Literature();
+        literature4.setName("Royal Portuguese Cabinet of Reading");
+        literature4.setImageLink("https://media.cntraveler.com/photos/59cdea7d4c1bc3060f9b34a0/master/w_1600%2Cc_limit/Royal-Portuguese-Reading-Room-GettyImages-530795685.jpg");
+        literature4.setLocation("R. Luís de Camões, 30, Rio de Janeiro, Brazilia");
+        literature4.setMovement(Style.GOTHIC);
+        literature4.setIsTemporary(false);
+        literature4.setYear(1837);
 
         try {
             literatureService.save(literature);
             literatureService.save(literature2);
             literatureService.save(literature3);
+            literatureService.save(literature4);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         literatures.add(literature);
         literatures.add(literature2);
         literatures.add(literature3);
+        literatures.add(literature4);
     }
 
     public void saveCinema() {

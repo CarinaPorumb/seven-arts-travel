@@ -40,7 +40,7 @@ public class PaintingController {
     public String savePainting2(@ModelAttribute Painting painting, Model model) {
         model.addAttribute("painting", painting);
         paintingRepository.save(painting);
-        return "redirect:/all-painting-list";
+        return "redirect:/all-painting-list?keyword=";
     }
 
     @GetMapping(path = "/update-painting/{name}")

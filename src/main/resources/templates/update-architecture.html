@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <title>Update Architecture</title>
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
@@ -31,43 +32,281 @@
 </head>
 <body>
 <div th:replace="fragments/navs.html :: topnav"></div>
+<br><br>
+<div class="container-flex">
+    <h3 class="card-title"><strong>Update Architecture</strong></h3>
+    <br><br>
+    <section>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-5 gx-4 mb-4">
+                    <div class="card-body">
+                        <form th:action="@{/save-architecture}" th:object="${architecture}" method="post">
+                            <div class="form-group">
+                                <input type="text" th:field="*{id}" class="form-control" hidden/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{name}" class="form-control" placeholder="Enter name"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{imageLink}" class="form-control"
+                                       placeholder="Enter image link"/></div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{author}" class="form-control"
+                                       placeholder="Enter author"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{location}" class="form-control"
+                                       placeholder="Enter location"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{year}" class="form-control" placeholder="Enter year"/>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="movement" th:field="*{movement}">
+                                    <option value="" disabled selected>Select Movement</option>
+                                    <option th:each="movement : ${T(ro.itschool.enums.Style).values()}"
+                                            th:value="${movement}" th:text="${movement}"></option>
+                                </select></div>
+                            <div class="form-group">
+                                <select class="form-control " th:field="*{isTemporary}">
+                                    <option value="" disabled selected>Is Temporary?</option>
+                                    <option th:value="1">true</option>
+                                    <option th:value="0">false</option>
+                                </select></div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Save</button>
+                                <a href="/all-architecture-list?keyword=" type="button"
+                                   class="btn btn-secondary">Back</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Carousel wrapper -->
+                <div
+                        id="carouselMultiItemExample"
+                        class="carousel slide carousel-dark text-center"
+                        data-mdb-ride="carousel"
+                >
+                    <!-- Controls -->
+                    <div class="d-flex justify-content-center mb-4">
+                        <button
+                                class="carousel-control-prev position-relative"
+                                type="button"
+                                data-mdb-target="#carouselMultiItemExample"
+                                data-mdb-slide="prev"
+                        >
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button
+                                class="carousel-control-next position-relative"
+                                type="button"
+                                data-mdb-target="#carouselMultiItemExample"
+                                data-mdb-slide="next"
+                        >
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <!-- Inner -->
+                    <div class="carousel-inner py-4">
+                        <!-- Single item -->
+                        <div class="carousel-item active">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="card">
+                                            <img
+                                                    src="https://mdbcdn.b-cdn.net/img/new/standard/nature/181.webp"
+                                                    class="card-img-top"
+                                                    alt="Waterfall"
+                                            />
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">
+                                                    Some quick example text to build on the card title and make up the
+                                                    bulk
+                                                    of the card's content.
+                                                </p>
+                                                <a href="#!" class="btn btn-primary">Button</a>
+                                            </div>
+                                        </div>
+                                    </div>
 
-<main class="mt-5">
-    <div class="container" style="background-color: #eee;">
-        <h4><strong>Update Architecture</strong></h4>
-        <br>
-        <section>
-            <form action="#" th:action="@{/save-architecture}" th:object="${architecture}" method="post">
+                                    <div class="col-lg-4 d-none d-lg-block">
+                                        <div class="card">
+                                            <img
+                                                    src="https://mdbcdn.b-cdn.net/img/new/standard/nature/182.webp"
+                                                    class="card-img-top"
+                                                    alt="Sunset Over the Sea"
+                                            />
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">
+                                                    Some quick example text to build on the card title and make up the
+                                                    bulk
+                                                    of the card's content.
+                                                </p>
+                                                <a href="#!" class="btn btn-primary">Button</a>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                <input type="text" th:field="*{id}" class="form-control col-4 mb-4" hidden/>
+                                    <div class="col-lg-4 d-none d-lg-block">
+                                        <div class="card">
+                                            <img
+                                                    src="https://mdbcdn.b-cdn.net/img/new/standard/nature/183.webp"
+                                                    class="card-img-top"
+                                                    alt="Sunset over the Sea"
+                                            />
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">
+                                                    Some quick example text to build on the card title and make up the
+                                                    bulk
+                                                    of the card's content.
+                                                </p>
+                                                <a href="#!" class="btn btn-primary">Button</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                <input type="text" th:field="*{name}" class="form-control col-4 mb-4"/>
+                        <!-- Single item -->
+                        <div class="carousel-item">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="card">
+                                            <img
+                                                    src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp"
+                                                    class="card-img-top"
+                                                    alt="Fissure in Sandstone"
+                                            />
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">
+                                                    Some quick example text to build on the card title and make up the
+                                                    bulk
+                                                    of the card's content.
+                                                </p>
+                                                <a href="#!" class="btn btn-primary">Button</a>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                <input type="text" th:field="*{imageLink}" class="form-control col-4 mb-4"
-                       placeholder="Enter Image Link"/>
+                                    <div class="col-lg-4 d-none d-lg-block">
+                                        <div class="card">
+                                            <img
+                                                    src="https://mdbcdn.b-cdn.net/img/new/standard/nature/185.webp"
+                                                    class="card-img-top"
+                                                    alt="Storm Clouds"
+                                            />
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">
+                                                    Some quick example text to build on the card title and make up the
+                                                    bulk
+                                                    of the card's content.
+                                                </p>
+                                                <a href="#!" class="btn btn-primary">Button</a>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                <input type="text" th:field="*{author}" class="form-control col-4 mb-4"
-                       placeholder="Enter author"/>
+                                    <div class="col-lg-4 d-none d-lg-block">
+                                        <div class="card">
+                                            <img
+                                                    src="https://mdbcdn.b-cdn.net/img/new/standard/nature/186.webp"
+                                                    class="card-img-top"
+                                                    alt="Hot Air Balloons"
+                                            />
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">
+                                                    Some quick example text to build on the card title and make up the
+                                                    bulk
+                                                    of the card's content.
+                                                </p>
+                                                <a href="#!" class="btn btn-primary">Button</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                <input type="text" th:field="*{location}" class="form-control col-4 mb-4"
-                       placeholder="Enter location"/>
+                        <!-- Single item -->
+                        <div class="carousel-item">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                                        <div class="card">
+                                            <img
+                                                    src="https://mdbcdn.b-cdn.net/img/new/standard/nature/187.webp"
+                                                    class="card-img-top"
+                                                    alt="Peaks Against the Starry Sky"
+                                            />
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">
+                                                    Some quick example text to build on the card title and make up the
+                                                    bulk
+                                                    of the card's content.
+                                                </p>
+                                                <a href="#!" class="btn btn-primary">Button</a>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                <input type="text" th:field="*{year}" class="form-control col-4 mb-4"
-                       placeholder="Enter year"/>
+                                    <div class="col-lg-4 mb-4 mb-lg-0 d-none d-lg-block">
+                                        <div class="card">
+                                            <img
+                                                    src="https://mdbcdn.b-cdn.net/img/new/standard/nature/188.webp"
+                                                    class="card-img-top"
+                                                    alt="Bridge Over Water"
+                                            />
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">
+                                                    Some quick example text to build on the card title and make up the
+                                                    bulk
+                                                    of the card's content.
+                                                </p>
+                                                <a href="#!" class="btn btn-primary">Button</a>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                <select class="form-control col-4 mb-4" name="movement" th:field="*{movement}">
-                    <option th:each="movement : ${T(ro.itschool.enums.Style).values()}"
-                            th:value="${movement}" th:text="${movement}"></option>
-                </select>
-                <select class="form-control col-4 mb-4" th:field="*{isTemporary}">
-                    <option th:value="1">true</option>
-                    <option th:value="0">false</option>
-                </select>
-                <button type="submit" class="btn btn-success">Save</button>
-                <a href="/all-architecture-list?keyword=" type="button" class="btn btn-secondary">Back</a>
-            </form>
-        </section>
-    </div>
-</main>
+                                    <div class="col-lg-4 mb-4 mb-lg-0 d-none d-lg-block">
+                                        <div class="card">
+                                            <img
+                                                    src="https://mdbcdn.b-cdn.net/img/new/standard/nature/189.webp"
+                                                    class="card-img-top"
+                                                    alt="Purbeck Heritage Coast"
+                                            />
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">
+                                                    Some quick example text to build on the card title and make up the
+                                                    bulk
+                                                    of the card's content.
+                                                </p>
+                                                <a href="#!" class="btn btn-primary">Button</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+</div>
 </body>
 </html>

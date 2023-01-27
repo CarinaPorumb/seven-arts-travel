@@ -37,7 +37,7 @@ public class MusicController {
     public String saveMusic2(@ModelAttribute Music music, Model model) {
         model.addAttribute("musicObject", music);
         musicRepository.save(music);
-        return "redirect:/all-music-list";
+        return "redirect:/all-music-list?keyword=";
     }
 
     @GetMapping(path = "/update-music/{name}")

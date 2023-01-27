@@ -1,162 +1,335 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>All Users</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <title> Index </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
-    <link th:href="@{/css/topnav.css}" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+            integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+            integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+            crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+            crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"/>
+    <link rel="stylesheet" href="css/mdb.min.css"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
 
 </head>
 <body>
 
 <div th:replace="fragments/navs.html :: topnav"></div>
-<!--Section: Content-->
-<br>
-<section>
-    <div class="row">
-        <div class="col-md-6 gx-5 mb-4" align="center">
-            <br> <br>
-            <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/hN_q-_nGv4U"
-                        title="Ludovico Einaudi Experience" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="col-md-6 gx-5 mb-4">
-            <br>
-            <br>
-            <h4><strong>Ludovico Einaudi - Experience</strong></h4>
-            <p class="text-muted">
-                I was spending my summer holidays in a small village, in the heart of the Swiss Alps,
-                where I had a wooden room that I used as a studio.
-            </p>
-            <p><strong>Experience was born in that situation.</strong></p>
-            <p class="text-muted">
-                The music is structured around the rotation of four chords that are repeated like a mantra
-                creating a king of trance and elevation effect as if the music had the power to lift you off the ground.
-            </p>
-            <p><strong>That was my intention.</strong></p>
-            <p class="text-muted">
-                <i>Ludovico Einaudi</i></p>
-        </div>
-    </div>
-</section>
-
-<hr class="my-5"/>
-
-
-<section class="text-center">
-    <h4 class="mb-5"><strong>Facilis consequatur eligendi</strong></h4>
-
-    <div class="row">
-        <div class="col-lg-4 col-md-12 mb-4">
-            <div class="card">
-                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                    <img src="https://www.liveatshoalcreek.com/wp-content/uploads/2021/02/iStock-1190200652.jpg.webp"
-                         class="img-fluid"/>
-                    <a href="#!">
-                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                    </a>
+<div class="container lg">
+    <!--Section: Content-->
+    <br>
+    <section>
+        <div class="row">
+            <div class="col-md-6 gx-5 mb-4" align="center">
+                <br>
+                <br>
+                <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/hN_q-_nGv4U"
+                            title="Ludovico Einaudi Experience" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                 </div>
+            </div>
+            <div class="col-md-6 gx-5 mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">Famous painters quotes</h5>
-                    <p class="card-text">
-                        <q>Painting is poetry that is seen rather than felt, and poetry is painting that is felt rather
-                            than seen.</q> &nbsp; <i>Leonardo da Vinci</i></p>
-
-                    <p class="card-text">
-                        <q>If I could say it in words there would be no reason to paint.</q>&nbsp;<i>Damien Hirst</i>
+                    <br>
+                    <br>
+                    <h4><strong>Ludovico Einaudi - Experience</strong></h4>
+                    <p class="text-muted">
+                        I was spending my summer holidays in a small village, in the heart of the Swiss Alps,
+                        where I had a wooden room that I used as a studio.
                     </p>
-
-                    <p class="card-text">
-                        <q>Art is a line around your thoughts.</q>&nbsp;<i>Gustav Klimt</i></p>
-
-                    <p class="card-text">
-                        <q>Painting is just another way of keeping a diary.</q>&nbsp;<i>Pablo Picasso</i></p>
-
-                    <p class="card-text">
-                        <q>The idea is more important than the object.</q>&nbsp;<i>Damien Hirst</i></p>
-
-                    <p class="card-text">
-                        <q>Art is never finished, only abandoned.</q>&nbsp;<i>Leonardo Da Vinci</i></p>
-
-                    <a href="/all-painting-list?keyword=" class="btn btn-outline-secondary">More info</a>
+                    <p><strong>Experience was born in that situation.</strong></p>
+                    <p class="text-muted">
+                        The music is structured around the rotation of four chords that are repeated like a mantra
+                        creating a king of trance and elevation effect as if the music had the power to lift you off the
+                        ground.
+                    </p>
+                    <p><strong>That was my intention.</strong></p>
+                    <p class="text-muted">
+                        <i>Ludovico Einaudi</i></p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                    <img src="https://assets.penguinrandomhouse.com/wp-content/uploads/2020/02/04102424/Hd-2048X2048-TheImportanceofDiscoveringYourVoiceAsAWriter.jpg"
-                         class="img-fluid"/>
-                    <a href="#!">
-                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                    </a>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Famous writers quotes</h5>
-                    <p class="card-text">
-                        <q>Write down the thoughts of the moment. Those that come unsought for are commonly the most
-                            valuable.</q>&nbsp;<i>Francis Bacon</i></p>
+    <hr class="my-5"/>
 
-                    <p class="card-text">
-                        <q>All I need is a sheet of paper and something to write with, and then I can turn the world
-                            upside down.</q>&nbsp;<i>Friedrich Nietzsche</i></p>
+    <div class="text-center">
+        <h4 class="mb-5"><strong><q>Beauty perishes in life, but is immortal in art.</q> &nbsp <i>Leonardo da Vinci</i>
+        </strong></h4></div>
 
-                    <p class="card-text">
-                        <q>Write books only if you are going to say in them the things you would never dare confide to
-                            anyone.</q>&nbsp;<i>Emil Cioran</i></p>
+    <!-- Carousel wrapper -->
+    <div id="carouselMultiItemExample" class="carousel slide carousel-dark text-center" data-bs-ride="carousel">
+        <!-- Controls -->
+        <div class="d-flex justify-content-center mb-4">
+            <button class="carousel-control-prev position-relative" type="button"
+                    data-bs-target="#carouselMultiItemExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next position-relative" type="button"
+                    data-bs-target="#carouselMultiItemExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span></button>
 
-                    <p class="card-text">
-                        <q>In old days books were written by men of letters and read by the public. Nowadays books are
-                            written by the public and read by nobody.</q>&nbsp;<i>Oscar Wilde</i></p>
-
-                    <p class="card-text">
-                        <q>There are three rules for writing the novel. Unfortunately, no one knows what they are.</q>&nbsp;<i>W.
-                        Somerset Maugham</i></p>
-
-                    <a href="all-literature-list?keyword=" class="btn btn-outline-secondary">More info</a>
+        </div>
+        <!-- Inner -->
+        <div class="carousel-inner py-4">
+            <!-- Single item -->
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12 mb-4">
+                            <div class="card">
+                                <img src="https://www.liveatshoalcreek.com/wp-content/uploads/2021/02/iStock-1190200652.jpg.webp"
+                                     class="card-img-top" alt="painting"/>
+                                <div class="card-body">
+                                    <h5 class="card-title">Famous painters quotes</h5>
+                                    <p class="card-text">
+                                        <q>Painting is poetry that is seen rather than felt, and poetry is painting that
+                                            is
+                                            felt rather
+                                            than seen.</q> &nbsp <i>Leonardo da Vinci</i></p>
+                                    <p class="card-text">
+                                        <q>If I could say it in words there would be no reason to paint.</q>&nbsp;<i>Damien
+                                        Hirst</i>
+                                    </p>
+                                    <p class="card-text">
+                                        <q>Art is a line around your thoughts.</q>&nbsp;<i>Gustav Klimt</i></p>
+                                    <p class="card-text">
+                                        <q>Painting is just another way of keeping a diary.</q>&nbsp;<i>Pablo
+                                        Picasso</i>
+                                    </p>
+                                    <p class="card-text">
+                                        <q>The idea is more important than the object.</q>&nbsp;<i>Damien Hirst</i></p>
+                                    <p class="card-text">
+                                        <q>Art is never finished, only abandoned.</q>&nbsp;<i>Leonardo Da Vinci</i></p>
+                                    <a href="/all-painting-list?keyword=" class="btn btn-outline-secondary">More
+                                        info</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 mb-4">
+                            <div class="card">
+                                <img src="https://assets.penguinrandomhouse.com/wp-content/uploads/2020/02/04102424/Hd-2048X2048-TheImportanceofDiscoveringYourVoiceAsAWriter.jpg"
+                                     class="card-img-top" alt="Writing"/>
+                                <div class="card-body">
+                                    <h5 class="card-title">Famous writers quotes</h5>
+                                    <p class="card-text">
+                                        <q>Write down the thoughts of the moment. Those that come unsought for are
+                                            commonly
+                                            the most
+                                            valuable.</q>&nbsp;<i>Francis Bacon</i></p>
+                                    <p class="card-text">
+                                        <q>All I need is a sheet of paper and something to write with, and then I can
+                                            turn
+                                            the world
+                                            upside down.</q>&nbsp;<i>Friedrich Nietzsche</i></p>
+                                    <p class="card-text">
+                                        <q>Write books only if you are going to say in them the things you would never
+                                            dare
+                                            confide to
+                                            anyone.</q>&nbsp;<i>Emil Cioran</i></p>
+                                    <p class="card-text">
+                                        <q>In old days books were written by men of letters and read by the public.
+                                            Nowadays
+                                            books are
+                                            written by the public and read by nobody.</q>&nbsp;<i>Oscar Wilde</i></p>
+                                    <p class="card-text">
+                                        <q>There are three rules for writing the novel. Unfortunately, no one knows what
+                                            they are.</q>&nbsp;<i>W.
+                                        Somerset Maugham</i></p>
+                                    <a href="all-literature-list?keyword=" class="btn btn-outline-secondary">More
+                                        info</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 mb-4">
+                            <div class="card">
+                                <img src="https://www.artmajeur.com/medias/hd/r/a/radu-bercan/artwork/13405976_dsc05184af.jpg"
+                                     class="card-img-top" alt="Architecture"/>
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">
+                                        <q>Architecture should speak of its time and place, but yearn for
+                                            timelessness.</q>&nbsp;<i>Frank
+                                        Gehry</i></p>
+                                    <p class="card-text">
+                                        <q>Architecture is the learned game, correct and magnificent, of forms assembled
+                                            in
+                                            the
+                                            light.</q>&nbsp;<i>Le Corbusier</i></p>
+                                    <p class="card-text">
+                                        <q>Artists do not need monuments erected for them because their works are their
+                                            monuments.</q>&nbsp;<i>Antonio
+                                        Gaudi</i></p>
+                                    <p class="card-text">
+                                        <q>Architecture is a visual art and the buildings speak for themselves.</q>&nbsp;<i>Julia
+                                        Morgan</i></p>
+                                    <a href="/all-architecture-list?keyword=" class="btn btn-outline-secondary">More
+                                        info</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                    <img src="https://www.artmajeur.com/medias/hd/r/a/radu-bercan/artwork/13405976_dsc05184af.jpg"
-                         class="img-fluid"/>
-                    <a href="#!">
-                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                    </a>
+
+            <!-- Single item -->
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12">
+                            <div class="card">
+                                <img
+                                        src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp"
+                                        class="card-img-top"
+                                        alt="Fissure in Sandstone"
+                                />
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">
+                                        Some quick example text to build on the card title and make up the bulk
+                                        of the card's content.
+                                    </p>
+                                    <a href="#!" class="btn btn-primary">Button</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 d-none d-lg-block">
+                            <div class="card">
+                                <img
+                                        src="https://mdbcdn.b-cdn.net/img/new/standard/nature/185.webp"
+                                        class="card-img-top"
+                                        alt="Storm Clouds"
+                                />
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">
+                                        Some quick example text to build on the card title and make up the bulk
+                                        of the card's content.
+                                    </p>
+                                    <a href="#!" class="btn btn-primary">Button</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 d-none d-lg-block">
+                            <div class="card">
+                                <img
+                                        src="https://mdbcdn.b-cdn.net/img/new/standard/nature/186.webp"
+                                        class="card-img-top"
+                                        alt="Hot Air Balloons"
+                                />
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">
+                                        Some quick example text to build on the card title and make up the bulk
+                                        of the card's content.
+                                    </p>
+                                    <a href="#!" class="btn btn-primary">Button</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">Famous architects quotes</h5>
-                    <p class="card-text">
-                        <q>Architecture should speak of its time and place, but yearn for timelessness.</q>&nbsp;<i>Frank
-                        Gehry</i></p>
-                    <p class="card-text">
-                        <q>Architecture is the learned game, correct and magnificent, of forms assembled in the
-                            light.</q>&nbsp;<i>Le Corbusier</i></p>
-                    <p class="card-text">
-                        <q>Artists do not need monuments erected for them because their works are their monuments.</q>&nbsp;<i>Antonio
-                        Gaudi</i></p>
-                    <p class="card-text">
-                        <q>Architecture is a visual art and the buildings speak for themselves.</q>&nbsp;<i>Julia
-                        Morgan</i></p>
-                    <a href="/all-architecture-list?keyword=" class="btn btn-outline-secondary">More info</a>
+            </div>
+
+            <!-- Single item -->
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                            <div class="card">
+                                <img
+                                        src="https://mdbcdn.b-cdn.net/img/new/standard/nature/187.webp"
+                                        class="card-img-top"
+                                        alt="Peaks Against the Starry Sky"
+                                />
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">
+                                        Some quick example text to build on the card title and make up the bulk
+                                        of the card's content.
+                                    </p>
+                                    <a href="#!" class="btn btn-primary">Button</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 mb-4 mb-lg-0 d-none d-lg-block">
+                            <div class="card">
+                                <img
+                                        src="https://mdbcdn.b-cdn.net/img/new/standard/nature/188.webp"
+                                        class="card-img-top"
+                                        alt="Bridge Over Water"
+                                />
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">
+                                        Some quick example text to build on the card title and make up the bulk
+                                        of the card's content.
+                                    </p>
+                                    <a href="#!" class="btn btn-primary">Button</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 mb-4 mb-lg-0 d-none d-lg-block">
+                            <div class="card">
+                                <img
+                                        src="https://mdbcdn.b-cdn.net/img/new/standard/nature/189.webp"
+                                        class="card-img-top"
+                                        alt="Purbeck Heritage Coast"
+                                />
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">
+                                        Some quick example text to build on the card title and make up the bulk
+                                        of the card's content.
+                                    </p>
+                                    <a href="#!" class="btn btn-primary">Button</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+<script language="JavaScript" type="text/javascript">
+  $(document).ready(function(){
+    $('.carouselMultiItemExample').carouselMultiItemExample({
+      interval: 1000
+    })
+  });
+
+
+</script>
 </body>
 </html>

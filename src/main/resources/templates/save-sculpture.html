@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Save Sculpture</title>
+    <title>Add Sculpture</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
@@ -22,62 +22,94 @@
     <link th:href="@{/css/topnav.css}" rel="stylesheet"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
-
 <body>
 <div th:replace="fragments/navs.html :: topnav"></div>
-<div class="container mt-5">
-    <div class="card center">
-        <h3><strong> Add Sculpture</strong></h3>
-        <div class="col-md-10">
-            <form action="#" th:action="@{/save-sculpture}" th:object="${sculpture}" method="post">
-                <div class="form-group col-md-8">
-                    <label for="name" class="col-form-label"><h5>Name</h5></label>
-                    <input type="text" th:field="*{name}" class="form-control"
-                           id="name" placeholder="Name"/>
+<br><br>
+<div class="container-lg">
+    <h3 class="card-title"><strong>Add New Sculpture</strong></h3>
+    <br><br>
+    <section>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 gx-5 mb-4">
+                    <div class="card-body">
+                        <form th:action="@{/save-sculpture}" th:object="${sculptureObject}" method="post">
+                            <div class="form-group">
+                                <input type="text" th:field="*{name}" class="form-control" id="name"
+                                       placeholder="Name"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{imageLink}" class="form-control"
+                                       id="imageLink" placeholder="ImageLink"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{author}" class="form-control"
+                                       id="author" placeholder="Author"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{location}" class="form-control"
+                                       id="location" placeholder="Location"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{year}" class="form-control"
+                                       id="year" placeholder="Year"/>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="movement" th:field="*{movement}">
+                                    <option value="" disabled selected>Select Movement</option>
+                                    <option th:each="movement : ${T(ro.itschool.enums.Style).values()}"
+                                            th:value="${movement}" th:text="${movement}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" placeholder="isTemporary" th:field="*{isTemporary}">
+                                    <option value="" disabled selected>Is Temporary?</option>
+                                    <option th:value="1">true</option>
+                                    <option th:value="0">false</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" value="Submit" class="btn btn-success">Submit</button>
+                                <button type="reset" value="Reset" class="btn btn-warning">Reset</button>
+                                <a href="/all-sculpture-list?keyword=" type="button"
+                                   class="btn btn-secondary">Back</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group col-md-8">
-                    <label for="imageLink" class="col-form-label"><h5>Image Link</h5></label>
-                    <input type="text" th:field="*{imageLink}" class="form-control"
-                           id="imageLink" placeholder="ImageLink"/>
+                <div class="col-md-6 gx-5 mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                                <img src="https://www.udesign.es/wp-content/uploads/2019/04/UD-SCULTURES-2.jpg"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Dancing With Dandelions By Robin Wight, UK"/>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Fuente_Eros%2C_Piccadilly_Circus%2C_Londres%2C_Inglaterra%2C_2014-08-11%2C_DD_159.JPG/400px-Fuente_Eros%2C_Piccadilly_Circus%2C_Londres%2C_Inglaterra%2C_2014-08-11%2C_DD_159.JPG"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Shaftesbury Memorial Fountain - Piccadilly Circus London"/>
+                            </div>
+                            <div class="col-lg-4 mb-4 mb-lg-0">
+                                <img src="https://nwfc.pam.org/wp-content/uploads/2021/12/Constantin-Brancusi-1-1200x1734.jpg"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Constantin Brancusi - A Muse"/>
+                                <img src="https://img.joomcdn.net/69121dba5a8f687e7985fd6a49143ef0a9af3ea7_1024_1024.jpeg"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Outdoor Modern Abstract Girl Kiss Horse Bronze Sculpture"/>
+                            </div>
+                            <div class="col-lg-4 mb-4 mb-lg-0">
+                                <img src="https://pxl-tcdie.terminalfour.net/fit-in/480x9999/filters:no_upscale()/prod01/channel_3/media/library-bust.jpg"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Sculpture busts - Trinity College Library, Dublin"/>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Ossip_Zadkine-Grosser_Orpheus.jpg"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Orpheus by Ossip Zadkine"/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group col-md-8">
-                    <label for="author" class="col-form-label"><h5>Author</h5></label>
-                    <input type="text" th:field="*{author}" class="form-control"
-                           id="author" placeholder="Author"/>
-                </div>
-                <div class="form-group col-md-8">
-                    <label for="location" class="col-form-label"><h5>Location</h5></label>
-                    <input type="text" th:field="*{location}" class="form-control"
-                           id="location" placeholder="Location"/>
-                </div>
-                <div class="form-group col-md-8">
-                    <label for="year" class="col-form-label"><h5>Year</h5></label>
-                    <input type="text" th:field="*{year}" class="form-control"
-                           id="year" placeholder="Year"/>
-                </div>
-                <div class="form-group col-md-8">
-                    <label id="movement" class="col-form-label"><h5>Movement</h5></label>
-                    <select class="form-control" name="movement" th:field="*{movement}">
-                        <option th:each="movement : ${T(ro.itschool.enums.Style).values()}"
-                                th:value="${movement}" th:text="${movement}"></option>
-                    </select>
-                </div>
-
-                <div class="form-group col-md-8">
-                    <label id="temporary" class="col-form-label"><h5>Is Temporary</h5></label>
-                    <select class="form-control" th:field="*{isTemporary}">
-                        <option th:value="1">true</option>
-                        <option th:value="0">false</option>
-                    </select>
-                </div>
-                <div>
-                    <button type="submit" value="Submit" class="btn btn-success">Submit</button>
-                    <button type="reset" value="Reset" class="btn btn-warning">Reset</button>
-                    <a href="/all-sculpture-list?keyword=" type="button" class="btn btn-secondary">Back</a>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </section>
 </div>
 </body>
 </html>

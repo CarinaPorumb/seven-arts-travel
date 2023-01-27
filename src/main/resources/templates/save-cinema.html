@@ -22,56 +22,93 @@
     <link th:href="@{/css/topnav.css}" rel="stylesheet"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
-
 <body>
 <div th:replace="fragments/navs.html :: topnav"></div>
-<div class="container mt-5">
-    <div class="card-body">
-        <div class="col-md-10">
-            <h4><strong>Add Cinema</strong></h4>
-            <form action="#" th:action="@{/save-cinema}" th:object="${cinemaObject}" method="post">
-                <div class="form-group col-md-8">
-                    <label for="name" class="col-form-label"><h5>Name</h5></label>
-                    <input type="text" th:field="*{name}" class="form-control"
-                           id="name" placeholder="Name"/>
+<br><br>
+<div class="container-lg">
+    <h3 class="card-title"><strong>Add New Cinema Event</strong></h3>
+    <br><br>
+    <section>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 gx-5 mb-4">
+                    <div class="card-body">
+                        <form th:action="@{/save-cinema}" th:object="${cinemaObject}" method="post">
+                            <div class="form-group">
+                                <input type="text" th:field="*{name}" class="form-control" id="name"
+                                       placeholder="Name"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{imageLink}" class="form-control"
+                                       id="imageLink" placeholder="ImageLink"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{location}" class="form-control"
+                                       id="location" placeholder="Location"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="datetime-local" th:field="*{eventTime}" class="form-control"
+                                       id="eventTime" placeholder="Event Time"/>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="movement" th:field="*{movement}">
+                                    <option value="" disabled selected>Select Movement</option>
+                                    <option th:each="movement : ${T(ro.itschool.enums.Style).values()}"
+                                            th:value="${movement}" th:text="${movement}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" placeholder="isTemporary" th:field="*{isTemporary}">
+                                    <option value="" disabled selected>Is Temporary?</option>
+                                    <option th:value="1">true</option>
+                                    <option th:value="0">false</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" value="Submit" class="btn btn-success">Submit</button>
+                                <button type="reset" value="Reset" class="btn btn-warning">Reset</button>
+                                <a href="/all-save-cinema-list?keyword=" type="button"
+                                   class="btn btn-secondary">Back</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group col-md-8">
-                    <label for="imageLink" class="col-form-label"><h5>Image Link</h5></label>
-                    <input type="text" th:field="*{imageLink}" class="form-control"
-                           id="imageLink" placeholder="ImageLink"/>
+                <div class="col-md-6 gx-5 mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                                <img src="https://media.abcsalles.com/images/1/salles/900h/490184/la-cinematheque-francaise-12.jpg"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="La Cinémathèque Française"/>
+                                <img src="https://www.tagesspiegel.de/berlin/images/heprodimagesfotos83120170208film287120170207113459149jpg/alternates/BASE_16_9_W1400/heprodimagesfotos83120170208film287120170207113459149jpg.jpeg"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Deutsche Kinemathek"/>
+                                <img src="https://blog.baruthotels.com/assets/imgs/upload/5f4f58ae8dfb8sinemanin-kisa-tarihi.jpg"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Vintage Projector"/>
+                            </div>
+                            <div class="col-lg-4 mb-4 mb-lg-0">
+                                <img src="https://wwivirtualacademy.com/wp-content/uploads/2020/09/evolutionofcinema.jpg"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Kinetoscope"/>
+                                <img src="https://www.francetvinfo.fr/pictures/93-mho32H5bP_Cvl5tj2t-E78Mg/fit-in/720x/filters:format(webp)/2021/06/21/phpcUVnpG.jpg"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Musee du Cinema - Paris"/>
+                            </div>
+                            <div class="col-lg-4 mb-4 mb-lg-0">
+                                <img src="https://assets.gocity.com/files/ufrfmb316/files/featured_images/hollywood-museum-star-wars-prop-600x338.jpg"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt="Hollywood Museum"/>
+                                <img src="https://img.jakpost.net/c/2018/03/16/2018_03_16_42403_1521189595._medium.jpg"
+                                     class="w-100 shadow-1-strong rounded mb-4"
+                                     alt=""/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group col-md-8">
-                    <label for="location" class="col-form-label"><h5>Location</h5></label>
-                    <input type="text" th:field="*{location}" class="form-control"
-                           id="location" placeholder="Location"/>
-                </div>
-                <div class="form-group col-md-8">
-                    <label for="eventTime" class="col-form-label"><h5>Event Time</h5></label>
-                    <input type="datetime-local" th:field="*{eventTime}" class="form-control"
-                           id="eventTime" placeholder="Event Time"/>
-                </div>
-                <div class="form-group col-md-8">
-                    <label id="movement" class="col-form-label"><h5>Movement</h5></label>
-                    <select class="form-control" name="movement" th:field="*{movement}">
-                        <option th:each="movement : ${T(ro.itschool.enums.Style).values()}"
-                                th:value="${movement}" th:text="${movement}"></option>
-                    </select>
-                </div>
-                <div class="form-group col-md-8">
-                    <label id="temporary" class="col-form-label"><h5>Is Temporary</h5></label>
-                    <select class="form-control" th:field="*{isTemporary}">
-                        <option th:value="1">true</option>
-                        <option th:value="0">false</option>
-                    </select>
-                </div>
-                <div>
-                    <button type="submit" value="Submit" class="btn btn-success">Submit</button>
-                    <button type="reset" value="Reset" class="btn btn-warning">Reset</button>
-                    <a href="/all-save-cinema-list" type="button" class="btn btn-secondary">Back</a>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </section>
 </div>
 </body>
 </html>

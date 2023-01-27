@@ -37,7 +37,7 @@ public class BalletAndTheatreController {
     public String saveBalletAndTheatre2(@ModelAttribute BalletAndTheatre balletAndTheatre, Model model) {
         model.addAttribute("balletAndTheatreObject", balletAndTheatre);
         balletAndTheatreRepository.save(balletAndTheatre);
-        return "redirect:/all-ballet-theatre-list";
+        return "redirect:/all-ballet-theatre-list?keyword=";
     }
 
     @GetMapping(path = "/update-balletAndTheatre/{name}")
