@@ -20,12 +20,7 @@ public class UserDTO {
     private String email;
 
     private List<String> roles = new ArrayList<>();
-    private List<ArchitectureDTO> architectureDTOList = new ArrayList<>();
-    private List<BalletAndTheatreDTO> balletAndTheatreDTOSList = new ArrayList<>();
-    private List<CinemaDTO> cinemaDTOList = new ArrayList<>();
-    private List<LiteratureDTO> literatureDTOList = new ArrayList<>();
-    private List<MusicDTO> musicDTOList = new ArrayList<>();
-    private List<PaintingDTO> paintingDTOList = new ArrayList<>();
-    private List<SculptureDTO> sculptureDTOList = new ArrayList<>();
+    private List<ArtObjectDTO> artObjectDTOList = new ArrayList<>();
+    private List<ArtEventDTO> artEventDTOList = new ArrayList<>();
 
 }

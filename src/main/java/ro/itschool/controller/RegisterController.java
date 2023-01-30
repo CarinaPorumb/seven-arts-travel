@@ -17,7 +17,7 @@ import java.util.Collections;
 public class RegisterController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @GetMapping(value = "/register")
     public String registerForm(Model model) {

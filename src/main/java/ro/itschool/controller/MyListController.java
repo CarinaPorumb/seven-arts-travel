@@ -18,7 +18,7 @@ public class MyListController {
     @RequestMapping(value = {"/myList"})
     public String myList(Model model) throws UserNotFound {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("architecture", userService.findUserByUserName(auth.getName()).getArchitectureSet());
+        model.addAttribute("architecture", userService.findUserByUserName(auth.getName()).getArtEventSet());
         return "myList";
     }
 }

@@ -8,15 +8,16 @@ import ro.itschool.entity.User;
 import ro.itschool.exception.TokenNotFound;
 import ro.itschool.repository.UserRepository;
 import ro.itschool.service.UserService;
+
 import java.util.Optional;
 
 @Controller
 public class ActivationController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @GetMapping(value = "/activation/{randomToken}")
     public String registerForm(@PathVariable String randomToken, Model model) throws TokenNotFound {

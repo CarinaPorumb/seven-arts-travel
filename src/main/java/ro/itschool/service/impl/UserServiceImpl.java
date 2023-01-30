@@ -26,13 +26,13 @@ import java.util.*;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
     @Autowired
-    RoleRepository roleRepository;
+    private RoleRepository roleRepository;
     @Autowired
-    EmailBodyService emailBodyService;
+    private EmailBodyService emailBodyService;
     @Autowired
-    EmailSender emailSender;
+    private EmailSender emailSender;
 
     public User findUserByUserName(String username) throws UserNotFound {
         return Optional.ofNullable(userRepository.findByUsernameIgnoreCase(username)).orElseThrow(UserNotFound::new);

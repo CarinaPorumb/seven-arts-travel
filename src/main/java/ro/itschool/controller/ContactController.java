@@ -11,7 +11,7 @@ import ro.itschool.repository.ContactRepository;
 public class ContactController {
 
     @Autowired
-    ContactRepository contactRepository;
+    private ContactRepository contactRepository;
 
     @GetMapping("/contact-message")
     public String getContact(Model model, String keyword) {

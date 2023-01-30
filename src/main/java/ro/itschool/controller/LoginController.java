@@ -10,15 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
-//    @Autowired
-//    HttpServletRequest httpServletRequest;   //m-a scapat de eroarea JSON & Co la logare,
-
     @RequestMapping(value = {"/login", "/"})
     public String login() {
-//        httpServletRequest.getSession();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
-            return "login";
+            return "/login";
         }
         return "redirect:/index";
     }

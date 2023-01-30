@@ -66,28 +66,11 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private Set<ArtObject> artObjectSet;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private Set<Painting> paintings;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private Set<Architecture> architectureSet;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private Set<Music> musicSet;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private Set<Literature> literatureSet;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private Set<Sculpture> sculptures;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private Set<Cinema> cinemas;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private Set<BalletAndTheatre> balletAndTheatreSet;
+    private Set<ArtEvent> artEventSet;
 
     @Transient
     private List<GrantedAuthority> authorities = null;
