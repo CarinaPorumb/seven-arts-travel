@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Add Architecture</title>
+    <title>Add New Event</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
@@ -26,14 +26,14 @@
 <div th:replace="fragments/navs.html :: topnav"></div>
 <br><br>
 <div class="container-lg">
-    <h3 class="card-title"><strong>Add New Architecture</strong></h3>
+    <h3 class="card-title"><strong>Add New Event</strong></h3>
     <br><br>
     <section>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6 gx-5 mb-4">
                     <div class="card-body">
-                        <form th:action="@{/save-architecture}" th:object="${architectureObject}" method="post">
+                        <form th:action="@{/save-artevent}" th:object="${artevent}" method="post">
                             <div class="form-group">
                                 <input type="text" th:field="*{name}" class="form-control" id="name"
                                        placeholder="Name"/>
@@ -43,27 +43,33 @@
                                        id="imageLink" placeholder="ImageLink"/>
                             </div>
                             <div class="form-group">
-                                <input type="text" th:field="*{author}" class="form-control"
-                                       id="author" placeholder="Author"/>
-                            </div>
-                            <div class="form-group">
                                 <input type="text" th:field="*{location}" class="form-control"
                                        id="location" placeholder="Location"/>
                             </div>
-
                             <div class="form-group">
-                                <input type="text" th:field="*{year}" class="form-control"
-                                       id="year" placeholder="Year"/>
+                                <select class="form-control" placeholder="category" name="category"
+                                        th:field="*{category}">
+                                    <option value="" disabled selected>Select Category</option>
+                                    <option th:each="category : ${T(ro.itschool.enums.Category).values()}"
+                                            th:value="${category}" th:text="${category}"></option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <select class="form-control" name="movement" th:field="*{movement}">
+                                <select class="form-control" placeholder="movement" name="movement"
+                                        th:field="*{movement}">
                                     <option value="" disabled selected>Select Movement</option>
                                     <option th:each="movement : ${T(ro.itschool.enums.Style).values()}"
                                             th:value="${movement}" th:text="${movement}"></option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select class="form-control" placeholder="isTemporary" th:field="*{isTemporary}">
+                                <input type="datetime-local" th:field="*{eventTime}" class="form-control"
+                                       data-datetime="" value="2022-01-01T10:10" id="eventTime"
+                                       placeholder="Event Time"/>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" placeholder="isTemporary"
+                                        th:field="*{isTemporary}">
                                     <option value="" disabled selected>Is Temporary?</option>
                                     <option th:value="1">true</option>
                                     <option th:value="0">false</option>
@@ -72,38 +78,39 @@
                             <div class="form-group">
                                 <button type="submit" value="Submit" class="btn btn-success">Submit</button>
                                 <button type="reset" value="Reset" class="btn btn-warning">Reset</button>
-                                <a href="/all-architecture-list?keyword=" type="button"
+                                <a href="/artevent-list?keyword=" type="button"
                                    class="btn btn-secondary">Back</a>
                             </div>
                         </form>
                     </div>
                 </div>
+
                 <div class="col-md-6 gx-5 mb-4">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                                <img src="https://www.re-thinkingthefuture.com/wp-content/uploads/2022/10/A8016-25-famous-buildings-and-their-architects-Image-19-.jpg"
+                                <img src="https://t4.ftcdn.net/jpg/02/00/77/75/360_F_200777569_Xl4WqZ8AGYNexs57jRJciIItMIMpBYtY.jpg"
                                      class="w-100 shadow-1-strong rounded mb-4"
-                                     alt="Sydney Opera House"/>
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/%CE%A3%CE%B1%CE%B3%CF%81%CE%AC%CE%B4%CE%B1_%CE%A6%CE%B1%CE%BC%CE%AF%CE%BB%CE%B9%CE%B1_2941.jpg"
+                                     alt="Ballerina"/>
+                                <img src="https://images.unsplash.com/photo-1485688809171-248861015a63?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
                                      class="w-100 shadow-1-strong rounded mb-4"
-                                     alt="Sagrada Família - Barcelona"/>
+                                     alt="Musical Notes"/>
                             </div>
                             <div class="col-lg-4 mb-4 mb-lg-0">
-                                <img src="https://i.redd.it/9ygkl4i2j8r61.jpg"
+                                <img src="https://media.londontheatredirect.com/Event/FrozenTheMusical/event-gallery-image_34412.jpg"
                                      class="w-100 shadow-1-strong rounded mb-4"
-                                     alt="Barcelona Architecture"/>
-                                <img src="https://www.homestratosphere.com/wp-content/uploads/2022/09/amsterdam-photo-sept9.jpg"
+                                     alt="Theatrical character"/>
+                                <img src="https://img.jakpost.net/c/2018/03/16/2018_03_16_42403_1521189595._medium.jpg"
                                      class="w-100 shadow-1-strong rounded mb-4"
-                                     alt="Amsterdam Architecture"/>
+                                     alt=""/>
                             </div>
                             <div class="col-lg-4 mb-4 mb-lg-0">
-                                <img src="https://www.amazingczechia.com/wp-content/uploads/2020/09/dancing-house-prague.jpg.webp"
+                                <img src="https://wallpapercave.com/dwp1x/2VtIgCs.png"
                                      class="w-100 shadow-1-strong rounded mb-4"
-                                     alt="Dancing House - Prague"/>
-                                <img src="https://www.sah.org/images/default-source/blog/fig--21.jpg?sfvrsn=d8135d9b_2"
+                                     alt="Piano"/>
+                                <img src="https://images.unsplash.com/photo-1526394931762-90052e97b376?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
                                      class="w-100 shadow-1-strong rounded mb-4"
-                                     alt="The West Facade - Notre Dame Cathedral Paris"/>
+                                     alt="Vinyl Record Player"/>
                             </div>
                         </div>
                     </div>

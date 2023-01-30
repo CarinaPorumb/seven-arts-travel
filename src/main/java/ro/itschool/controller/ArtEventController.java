@@ -38,7 +38,7 @@ public class ArtEventController {
     @GetMapping(path = "/update-artevent/{name}")
     public String updateArtEvent(@PathVariable("name") String name, Model model) throws ArtEventNotFound {
         ArtEvent artEvent = Optional.ofNullable(artEventRepository.findByName(name)).orElseThrow(ArtEventNotFound::new);
-        model.addAttribute("artEvent", artEvent);
+        model.addAttribute("artevent", artEvent);
         return "update-artEvent";
     }
 

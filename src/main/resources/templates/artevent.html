@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
+<html lang="en" xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Architecture</title>
+    <title>Art Event</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
@@ -25,12 +25,18 @@
 </head>
 <body>
 
-<div th:replace="~{fragments/navs.html :: topnav}"></div>
+<div th:replace="fragments/navs.html :: topnav"></div>
 <div class="container-lg">
     <br><br>
-    <h3 class="card-title"><strong>Architecture</strong></h3>
+    <h3 class="card-title"><strong>Art Events</strong></h3>
     <br><br>
-    <form th:action="@{/all-architecture-list}" method="get">
+    <div class="col-lg-5">
+        <a th:href="@{/music?keyword=}" class="btn btn-outline-secondary">Music</a>
+        <a th:href="@{/cinema?keyword=}" class="btn btn-outline-secondary">Cinema</a>
+        <a th:href="@{/ballet-theatre?keyword=}" class="btn btn-outline-secondary">Ballet and Theatre</a>
+    </div>
+    <br><br>
+    <form th:action="@{/artevent-list}" method="get">
         <div class="search-container">
             <div class="input-group col-lg-5">
                 <input type="text" name="keyword" th:value="${keyword}"
@@ -42,55 +48,53 @@
                 </div>
             </div>
         </div>
-
         <br><br><br>
         <div class="row">
-            <tr th:each="architecture: ${architectures}">
+            <tr th:each="artevent: ${artevents}">
                 <div class="col-lg-4 col-lg-4 mb-4">
                     <div class="card d-flex align-items-stretch h-100">
                         <div class="card-body">
                             <img class="card-img-top" alt="Card image"
-                                 style="width:40% 60%"
-                                 th:src="${architecture.imageLink}">
+                                 style="width:30% 90%"
+                                 th:src="${artevent.imageLink}">
                             <div class="card-body">
-                                <h5 class="card-title" th:value="${architecture.name}"
-                                    th:text="${architecture.name}"></h5>
+                                <h5 class="card-title" th:value="${artevent.name}"
+                                    th:text="${artevent.name}"></h5>
                                 <li>
                                     <th>Name:</th>
-                                    <span th:text="${architecture.name}"></span>
-                                </li>
-                                <li>
-                                    <th>Author:</th>
-                                    <span th:text="${architecture.author}"></span>
+                                    <span th:text="${artevent.name}"></span>
                                 </li>
                                 <li>
                                     <th>Location:</th>
-                                    <span th:text="${architecture.location}"></span>
+                                    <span th:text="${artevent.location}"></span>
                                 </li>
                                 <li>
                                     <th>Movement:</th>
-                                    <span th:text="${architecture.movement}"></span>
+                                    <span th:text="${artevent.category}"></span>
                                 </li>
                                 <li>
-                                    <th>Year:</th>
-                                    <span th:text="${architecture.year}"></span>
+                                    <th>Movement:</th>
+                                    <span th:text="${artevent.movement}"></span>
+                                </li>
+                                <li>
+                                    <th>Event Time:</th>
+                                    <span th:text="${artevent.eventTime}"></span>
                                 </li>
                                 <li>
                                     <th>Is Temporary:</th>
-                                    <span th:text="${architecture.isTemporary}"></span>
-                                    <span th:if="${architecture.isTemporary == 'true'}"></span>
-                                    <span th:unless="${architecture.isTemporary != 'true'}"></span>
+                                    <span th:text="${artevent.isTemporary}"></span>
+                                    <span th:if="${artevent.isTemporary == 'true'}"></span>
+                                    <span th:unless="${artevent.isTemporary != 'true'}"></span>
                                 </li>
                                 <br>
-                                <!--                                    <a th:href="@{'/add-architecture/' + ${architecture.name}}"-->
-                                <!--                                       class="btn btn-warning" type="submit">Add to list</a>-->
-                                <!--                                    <br><br>-->
+                                <a th:href="@{'/artEventToUser'}"
+                                   class="btn btn-warning" type="submit">Add to list</a>
                                 <div sec:authorize="hasRole('ROLE_ADMIN')">
-                                    <a href="/save-architecture" type="button"
+                                    <a href="/save-artevent" type="button"
                                        class="btn btn-outline-secondary btn-sm">Add</a>
-                                    <a th:href="@{'/update-architecture/' + ${architecture.name}}"
+                                    <a th:href="@{'/update-artevent/' + ${artevent.name}}"
                                        class="btn btn-outline-success btn-sm">Update</a>
-                                    <a th:href="@{'/delete-architecture/' + ${architecture.name}}"
+                                    <a th:href="@{'/delete-artevent/' + ${artevent.name}}"
                                        class="btn btn-outline-danger btn-sm">Delete</a>
                                 </div>
                             </div>

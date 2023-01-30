@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Literature</title>
+    <title>Sculpture</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
@@ -23,12 +24,13 @@
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
 <body>
+
 <div th:replace="fragments/navs.html :: topnav"></div>
 <div class="container-lg">
     <br><br>
-    <h3 class="card-title"><strong>Literature</strong></h3>
+    <h3 class="card-title"><strong>Sculpture</strong></h3>
     <br><br>
-    <form th:action="@{/all-literature-list}" method="get">
+    <form th:action="@{/sculpture}" method="get">
         <div class="search-container">
             <div class="input-group col-lg-5">
                 <input type="text" name="keyword" th:value="${keyword}"
@@ -40,54 +42,51 @@
                 </div>
             </div>
         </div>
-
         <br><br><br>
         <div class="row">
-            <tr th:each="literature: ${literatures}">
+            <tr th:each="artobject: ${artobjects}">
                 <div class="col-lg-4 col-lg-4 mb-4">
                     <div class="card d-flex align-items-stretch h-100">
                         <div class="card-body">
                             <img class="card-img-top" alt="Card image"
-                                 style="width:30% 90%"
-                                 th:src="${literature.imageLink}">
+                                 style="width:40% 60%"
+                                 th:src="${artobject.imageLink}">
                             <div class="card-body">
-                                <h5 class="card-title" th:value="${literature.name}"
-                                    th:text="${literature.name}"></h5>
+                                <h5 class="card-title" th:value="${artobject.name}"
+                                    th:text="${artobject.name}"></h5>
                                 <li>
                                     <th>Name:</th>
-                                    <span th:text="${literature.name}"></span>
+                                    <span th:text="${artobject.name}"></span>
                                 </li>
                                 <li>
                                     <th>Author:</th>
-                                    <span th:text="${literature.author}"></span>
+                                    <span th:text="${artobject.author}"></span>
                                 </li>
                                 <li>
                                     <th>Location:</th>
-                                    <span th:text="${literature.location}"></span>
+                                    <span th:text="${artobject.location}"></span>
                                 </li>
                                 <li>
                                     <th>Movement:</th>
-                                    <span th:text="${literature.movement}"></span>
+                                    <span th:text="${artobject.movement}"></span>
                                 </li>
                                 <li>
                                     <th>Year:</th>
-                                    <span th:text="${literature.year}"></span>
+                                    <span th:text="${artobject.year}"></span>
                                 </li>
                                 <li>
                                     <th>Is Temporary:</th>
-                                    <span th:text="${literature.isTemporary}"></span>
-                                    <span th:if="${literature.isTemporary == 'true'}"></span>
-                                    <span th:unless="${literature.isTemporary != 'true'}"></span>
+                                    <span th:text="${artobject.isTemporary}"></span>
+                                    <span th:if="${artobject.isTemporary == 'true'}"></span>
+                                    <span th:unless="${artobject.isTemporary != 'true'}"></span>
                                 </li>
                                 <br>
-                                <a th:href="@{'/addLiteratureToUser'}"
-                                   class="btn btn-warning" type="submit">Add to list</a>
                                 <div sec:authorize="hasRole('ROLE_ADMIN')">
-                                    <a href="/save-literature" type="button"
+                                    <a href="/save-artobject" type="button"
                                        class="btn btn-outline-secondary btn-sm">Add</a>
-                                    <a th:href="@{'/update-literature/' + ${literature.name}}"
+                                    <a th:href="@{'/update-artobject/' + ${artobject.name}}"
                                        class="btn btn-outline-success btn-sm">Update</a>
-                                    <a th:href="@{'/delete-literature/' + ${literature.name}}"
+                                    <a th:href="@{'/delete-artobject/' + ${artobject.name}}"
                                        class="btn btn-outline-danger btn-sm">Delete</a>
                                 </div>
                             </div>
