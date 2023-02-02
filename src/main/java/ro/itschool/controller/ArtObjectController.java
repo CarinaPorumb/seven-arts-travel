@@ -18,7 +18,7 @@ public class ArtObjectController {
 
     @GetMapping("/artobject-list")
     public String getArtObjects(Model model, String keyword) {
-        model.addAttribute("artobjects", artObjectRepository.searchArchitecture(keyword));
+        model.addAttribute("artobjects", artObjectRepository.searchArtObject(keyword));
         return "/artobject";
     }
 

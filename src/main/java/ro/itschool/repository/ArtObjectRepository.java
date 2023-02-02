@@ -30,7 +30,7 @@ public interface ArtObjectRepository extends JpaRepository<ArtObject, Integer> {
                     " OR a.is_temporary LIKE %:keyword% OR a.location LIKE %:keyword% OR a.movement LIKE %:keyword% " +
                     "OR a.name LIKE %:keyword% OR a.year LIKE %:keyword% OR a.category LIKE %:keyword%",
             nativeQuery = true)
-    List<ArtObject> searchArchitecture(@Param("keyword") String keyword);
+    List<ArtObject> searchArtObject(@Param("keyword") String keyword);
 
     @Query(value = "SELECT * FROM art_object a WHERE a.category = 'architecture' having a.id LIKE %:keyword% " +
             "OR a.author LIKE %:keyword% OR a.is_temporary LIKE %:keyword% OR a.location LIKE %:keyword% " +
