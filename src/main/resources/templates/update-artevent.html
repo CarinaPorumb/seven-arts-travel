@@ -32,46 +32,88 @@
 </head>
 <body>
 <div th:replace="fragments/navs.html :: topnav"></div>
-<div class="container-lg">
-    <h3 class="card-title"><strong>Update</strong></h3>
-    <br><br>
-    <section>
-        <div class="card-body">
-            <div class="row">
-                <div class="card-body">
-                    <form th:action="@{/save-artevent}" th:object="${artevent}" method="post">
-
-                        <input type="text" th:field="*{id}" class="form-control col-4 mb-4" hidden/>
-
-                        <input type="text" th:field="*{name}" class="form-control col-4 mb-4"/>
-
-                        <input type="text" th:field="*{imageLink}" class="form-control col-4 mb-4"
-                               placeholder="Enter Image Link"/>
-
-                        <input type="text" th:field="*{location}" class="form-control col-4 mb-4"
-                               placeholder="Enter location"/>
-
-                        <select class="form-control col-4 mb-4" name="movement" th:field="*{movement}">
-                            <option th:each="movement : ${T(ro.itschool.enums.Style).values()}"
-                                    th:value="${movement}" th:text="${movement}"></option>
-                        </select>
-
-                        <select class="form-control col-4 mb-4" name="category" th:field="*{category}">
-                            <option th:each="category : ${T(ro.itschool.enums.Category).values()}"
-                                    th:value="${category}" th:text="${category}"></option>
-                        </select>
-
-                        <input type="datetime-local" th:field="*{eventTime}" class="form-control col-4 mb-4"
-                               data-datetime="" value="2022-01-01T10:10" id="eventTime"
-                               placeholder="Enter event time"/>
-
-                        <select class="form-control col-4 mb-4" th:field="*{isTemporary}">
-                            <option th:value="1">true</option>
-                            <option th:value="0">false</option>
-                        </select>
-                        <button type="submit" class="btn btn-success">Save</button>
-                        <a href="/artevent-list?keyword=" type="button" class="btn btn-secondary">Back</a>
-                    </form>
+<div class="container-fluid" style="background-color: #baa9ba;">
+    <section class="card-body" style="background-color: #baa9ba;">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="card text-black" style="border-radius: 25px;">
+                    <div class="card-body p-md-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Update</p>
+                                <form class="mx-1 mx-md-4" th:action="@{/save-artevent}" th:object="${artevent}"
+                                      method="post">
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" th:field="*{id}" class="form-control" hidden/>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" id="name" required th:field="*{name}"
+                                                   class="form-control"/>
+                                            <label class="form-label" for="name">Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" id="imageLink" required th:field="*{imageLink}"
+                                                   class="form-control"/>
+                                            <label class="form-label" for="imageLink">Image Link</label>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <select type="text" name="movement" th:field="*{movement}"
+                                                    class="form-control">
+                                                <option th:each="movement : ${T(ro.itschool.enums.Style).values()}"
+                                                        th:value="${movement}" th:text="${movement}"></option>
+                                            </select>
+                                            <label class="form-label">Movement</label>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <select type="text" name="category" th:field="*{category}"
+                                                    class="form-control">
+                                                <option th:each="category : ${T(ro.itschool.enums.Category).values()}"
+                                                        th:value="${category}" th:text="${category}"></option>
+                                            </select>
+                                            <label class="form-label">Category</label>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="datetime-local" th:field="*{eventTime}" class="form-control"
+                                                   data-datetime="" value="2022-01-01T10:10" id="eventTime"
+                                                   placeholder="Enter event time"/>
+                                            <label class="form-label" for="eventTime">Event Time</label>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <select type="text" name="category" placeholder="isTemporary"
+                                                    th:field="*{isTemporary}" class="form-control">
+                                                <option value="" disabled selected>Is Temporary?</option>
+                                                <option th:value="1">true</option>
+                                                <option th:value="0">false</option>
+                                            </select>
+                                            <label class="form-label">Is Temporary</label>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button type="submit" class="btn btn-secondary btn-lg">Save</button>
+                                        <a href="/artevent-list?keyword=" type="button"
+                                           class="btn btn-secondary btn-lg">Back</a>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                                <img src="https://paginarium.ro/wp-content/uploads/2020/04/969697_244529032338694_772005203_n.jpg"
+                                     class="img-fluid" alt="Sample image">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,3 +121,6 @@
 </div>
 </body>
 </html>
+
+
+

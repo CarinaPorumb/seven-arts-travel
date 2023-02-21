@@ -224,12 +224,12 @@
                         of creativity that can be used for self-reflection or social influence. Art movements have often
                         played important roles in social changes, and should be fully integrated into our lives, our
                         community and education in general.
-                        Painting, architecture, art sculpture, music, literature, and many other fine arts can be
+                        Painting, architecture, art sculpture, music, literature, and many others fine arts can be
                         considered
                         a repository of a given society's collective memory.</p>
 
                     <p class="text-muted">
-                        As the The Metropolitan Museum of Art puts it: “Looking at art from the past contributes to who
+                        As The Metropolitan Museum of Art puts it: “Looking at art from the past contributes to who
                         we are as people. By looking at what has been done before, we gather knowledge and inspiration
                         that contribute to how we speak, feel, and view the world around us.”
                         In addition to providing commentary about the larger culture, art makes life more manageable,
@@ -256,60 +256,105 @@
     </div>
 </main>
 
-<hr class="my-5"/>
-<!-- Login -->
-<main class="mt-5">
-    <div class="container" style="background-color: #E2DFD2;">
-        <section>
-            <div class="row">
-                <div class="col-md-6 gx-5 mb-4">
-                    <br>
-                    <div class="text">
-                        <h1><strong>Great to have you back!</strong></h1>
-                    </div>
-                    <br>
-                    <h4><strong>Login</strong></h4>
-                    <br>
-                    <div th:if="${loginError}" class="alert alert-danger" role="alert">
-                        <p class="error">Wrong user or password</p>
-                    </div>
-                    <form th:action="@{/login}" method="post">
-                        <div class="col" id="bottom">
-                            <div class="form-outline">
-                                <input type="text" class="form-control" id="username" name="username"
-                                       autofocus="autofocus" required minlength="3" maxlength="20" pattern="[a-zA-Z0-9]+"/>
-                                <label class="form-label" for="username">Username</label>
-                            </div>
+
+<!--<hr class="my-5"/>-->
+<!--&lt;!&ndash; Login &ndash;&gt;-->
+<!--<main class="mt-5">-->
+<!--    <div class="container" style="background-color: #E2DFD2;">-->
+<!--        <section>-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-6 gx-5 mb-4">-->
+<!--                    <br>-->
+<!--                    <div class="text">-->
+<!--                        <h1><strong>Great to have you back!</strong></h1>-->
+<!--                    </div>-->
+<!--                    <br>-->
+<!--                    <h4><strong>Login</strong></h4>-->
+<!--                    <br>-->
+<!--                    <div th:if="${loginError}" class="alert alert-danger" role="alert">-->
+<!--                        <p class="error">Wrong user or password</p>-->
+<!--                    </div>-->
+<!--                    <form th:action="@{/login}" method="post">-->
+<!--                        <div class="col" id="bottom">-->
+<!--                            <div class="form-outline">-->
+<!--                                <input type="text" class="form-control" id="username" name="username"-->
+<!--                                       autofocus="autofocus" required minlength="3" maxlength="20"-->
+<!--                                       pattern="[a-zA-Z0-9]+"/>-->
+<!--                                <label class="form-label" for="username">Username</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col">-->
+<!--                            <div class="form-outline">-->
+<!--                                <input type="password" class="form-control" id="password" name="password" required-->
+<!--                                       minlength="3"-->
+<!--                                       maxlength="20"/>-->
+<!--                                <label class="form-label" for="password">Password</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <button type="submit" class="btn btn-success btn-rounded">Login</button>-->
+<!--                    </form>-->
+<!--                    <div class="text-center pt-1 mb-5 pb-1">-->
+<!--                        <p><a class="text-muted" href="/forgot-password">Forgot password?</a></p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6 gx-5 mb-4">-->
+<!--                    <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5"-->
+<!--                         data-mdb-ripple-color="light">-->
+<!--                        <img src="https://www.georgianinsider.com/wp-content/uploads/2016/06/Welcome-1.jpg"-->
+<!--                             class="img-fluid"/>-->
+<!--                        <a href="#!">-->
+<!--                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--    </div>-->
+<!--</main>-->
+
+<section class="card-body" style="background-color: #baa9ba;">
+    <div class="container h-100">
+        <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                        <div th:if="${loginError}" class="alert alert-danger" role="alert">
+                            <p class="error">Wrong username or password</p>
                         </div>
-                        <div class="col">
-                            <div class="form-outline">
-                                <input type="password" class="form-control" id="password" name="password" required minlength="3"
-                                       maxlength="20" />
-                                <label class="form-label" for="password">Password</label>
+                        <form class="mx-1 mx-md-4" th:action="@{/login}" method="post">
+                            <div class="d-flex flex-row align-items-center mb-4" id="bottom">
+                                <div class="form-outline flex-fill mb-0">
+                                    <input type="text" id="username" th:field="*{fullName}"
+                                           class="form-control" autofocus="autofocus" required minlength="3"
+                                           pattern="[a-zA-Z0-9]+"/>
+                                    <label class="form-label" for="username">Username</label>
+                                </div>
                             </div>
-                            <div class="text-center pt-1 mb-5 pb-1">
-                                <p><a class="text-muted" href="/forgot-password">Forgot password?</a></p>
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <div class="form-outline flex-fill mb-0">
+                                    <input type="password" id="password" th:field="*{passwordConfirm}"
+                                           required minlength="3" class="form-control"/>
+                                    <label class="form-label" for="password">Password</label>
+                                </div>
                             </div>
+                            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                <button type="submit" class="btn btn-secondary btn-lg">Login</button>
+                            </div>
+                        </form>
+                        <div class="text-center pt-1 mb-5 pb-1">
+                            <p><a class="text-muted" href="/forgot-password">Forgot password?</a></p>
                         </div>
-                        <button type="submit" class="btn btn-success btn-rounded">Login</button>
-                    </form>
-                </div>
-                <div class="col-md-6 gx-5 mb-4">
-                    <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5"
-                         data-mdb-ripple-color="light">
+                    </div>
+                    <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
                         <img src="https://www.georgianinsider.com/wp-content/uploads/2016/06/Welcome-1.jpg"
-                             class="img-fluid"/>
-                        <a href="#!">
-                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                        </a>
+                             class="img-fluid" alt="Sample image">
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
-</main>
-
-
+</section>
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
@@ -321,6 +366,10 @@
       interval: 1000
     })
   });
+
+
+
+
 
 
 </script>
