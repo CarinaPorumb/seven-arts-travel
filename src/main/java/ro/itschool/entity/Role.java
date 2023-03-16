@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -38,5 +39,17 @@ public class Role {
     public String toString() {
         return name;
     }
-
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Role role = (Role) o;
+//        return Objects.equals(id, role.id);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return id != null ? id.hashCode() : 0;
+//    }
 }

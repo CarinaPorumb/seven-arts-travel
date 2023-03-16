@@ -22,8 +22,8 @@ public class ArtEventServiceImpl implements ArtEventService {
     }
 
     @Override
-    public void save(ArtEvent artEvent) throws Exception {
-        Optional.of(artEventRepository.save(artEvent)).orElseThrow(ArtEventNotFound::new);
+    public ArtEvent save(ArtEvent artEvent) throws Exception {
+        return Optional.of(artEventRepository.save(artEvent)).orElseThrow(ArtEventNotFound::new);
     }
 
     @Override
@@ -39,5 +39,25 @@ public class ArtEventServiceImpl implements ArtEventService {
     @Override
     public List<ArtEvent> getAllByUserId(Long userId) throws Exception {
         return Optional.ofNullable(artEventRepository.findByUserId(userId)).orElseThrow(ArtEventNotFound::new);
+    }
+
+    @Override
+    public List<ArtEvent> searchArtEvent(String keyword) throws Exception {
+        return Optional.ofNullable(artEventRepository.searchArtEvent(keyword)).orElseThrow(ArtEventNotFound::new);
+    }
+
+    @Override
+    public List<ArtEvent> displayMusic(String keyword) throws Exception {
+        return Optional.ofNullable(artEventRepository.displayMusic(keyword)).orElseThrow(ArtEventNotFound::new);
+    }
+
+    @Override
+    public List<ArtEvent> displayCinema(String keyword) throws Exception {
+        return Optional.ofNullable(artEventRepository.displayCinema(keyword)).orElseThrow(ArtEventNotFound::new);
+    }
+
+    @Override
+    public List<ArtEvent> displayBalletAndTheatre(String keyword) throws Exception {
+        return Optional.ofNullable(artEventRepository.displayBalletAndTheatre(keyword)).orElseThrow(ArtEventNotFound::new);
     }
 }

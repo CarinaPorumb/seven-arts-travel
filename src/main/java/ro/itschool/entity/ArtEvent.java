@@ -8,6 +8,7 @@ import ro.itschool.enums.Style;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -38,4 +39,16 @@ public class ArtEvent implements Serializable {
     @ToString.Exclude
     private User user;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ArtEvent artEvent = (ArtEvent) o;
+        return Objects.equals(id, artEvent.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }

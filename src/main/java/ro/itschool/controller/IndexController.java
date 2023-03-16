@@ -5,15 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ro.itschool.repository.ArtEventRepository;
-import ro.itschool.repository.ArtObjectRepository;
+import ro.itschool.service.ArtEventService;
+import ro.itschool.service.ArtObjectService;
 
 @Controller
 public class IndexController {
     @Autowired
-    ArtEventRepository artEventRepository;
+    ArtEventService artEventService;
     @Autowired
-    ArtObjectRepository artObjectRepository;
+    ArtObjectService artObjectService;
 
     @RequestMapping(value = {"/index"})
     public String index() {
@@ -21,9 +21,9 @@ public class IndexController {
     }
 
     @GetMapping("/search-list")
-    public String getArtEventList(Model model, String keyword) {
-        model.addAttribute("artevents", artEventRepository.searchArtEvent(keyword));
-        model.addAttribute("artobjects", artObjectRepository.searchArtObject(keyword));
+    public String getArtEventList(Model model, String keyword) throws Exception {
+        model.addAttribute("artevents", artEventService.searchArtEvent(keyword));
+        model.addAttribute("artobjects", artObjectService.searchArtObject(keyword));
         return "/search";
     }
 }

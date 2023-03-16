@@ -1,6 +1,5 @@
 package ro.itschool.startup;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -20,18 +19,19 @@ import java.util.Set;
 
 @Component
 public class RunAtStartup {
+    private final UserService userService;
+    private final ArtObjectService artObjectService;
+    private final ArtEventService artEventService;
 
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private ArtObjectService artObjectService;
-    @Autowired
-    private ArtEventService artEventService;
+    public RunAtStartup(UserService userService, ArtObjectService artObjectService, ArtEventService artEventService) {
+        this.userService = userService;
+        this.artObjectService = artObjectService;
+        this.artEventService = artEventService;
+    }
 
     @EventListener(ContextRefreshedEvent.class)
     public void contextRefreshedEvent() {
         saveAdmin();
-        //      saveContributor();
         saveUser();
         saveArtObject();
         saveArtEvent();
