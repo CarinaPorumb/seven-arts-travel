@@ -27,7 +27,9 @@
 <div th:replace="fragments/navs.html :: topnav"></div>
 <div class="container-lg">
     <br><br>
-    <h3 class="card-title"><strong>Painting</strong></h3>
+    <div>
+        <h3 class="card-title"><strong>Painting</strong></h3>
+    </div>
     <br><br>
     <form th:action="@{/painting}" method="get">
         <div class="search-container">
@@ -41,6 +43,11 @@
                 </div>
             </div>
         </div>
+        <br>
+        <a th:href="@{/architecture?keyword=}" class="btn btn-secondary btn-sm">Architecture</a>
+        <a th:href="@{/sculpture?keyword=}" class="btn btn-secondary btn-sm">Sculpture</a>
+        <a th:href="@{/artobject-list?keyword=}" class="btn btn-secondary btn-sm">All Art Objects</a>
+        <a th:href="@{/literature?keyword=}" class="btn btn-secondary btn-sm">Literature</a>
         <br><br><br>
         <div class="row">
             <tr th:each="artobject: ${artobjects}">
@@ -83,9 +90,9 @@
                                 <div sec:authorize="hasRole('ROLE_ADMIN')">
                                     <a href="/save-artobject" type="button"
                                        class="btn btn-outline-secondary btn-sm">Add</a>
-                                    <a th:href="@{'/update-artobject/' + ${artobject.name}}"
+                                    <a th:href="@{'/update-artobject/' + ${artobject.id}}"
                                        class="btn btn-outline-success btn-sm">Update</a>
-                                    <a th:href="@{'/delete-artobject/' + ${artobject.name}}"
+                                    <a th:href="@{'/delete-artobject/' + ${artobject.id}}"
                                        class="btn btn-outline-danger btn-sm">Delete</a>
                                 </div>
                             </div>

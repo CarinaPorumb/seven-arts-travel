@@ -60,12 +60,12 @@
                                placeholder="Enter year"/>
 
                         <select class="form-control col-4 mb-4" name="movement" th:field="*{movement}">
-                            <option th:each="movement : ${T(ro.itschool.enums.Style).values()}"
+                            <option th:each="movement : ${T(ro.project.enums.Style).values()}"
                                     th:value="${movement}" th:text="${movement}"></option>
                         </select>
 
                         <select class="form-control col-4 mb-4" name="category" th:field="*{category}">
-                            <option th:each="category : ${T(ro.itschool.enums.Category).values()}"
+                            <option th:each="category : ${T(ro.project.enums.Category).values()}"
                                     th:value="${category}" th:text="${category}"></option>
                         </select>
 

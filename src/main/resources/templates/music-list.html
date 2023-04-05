@@ -40,6 +40,12 @@
                 </div>
             </div>
         </div>
+        <br>
+        <div class="col-lg-5">
+            <a th:href="@{/artevent-list?keyword=}" class="btn btn-secondary btn-sm">All Events</a>
+            <a th:href="@{/cinema?keyword=}" class="btn btn-secondary btn-sm">Cinema</a>
+            <a th:href="@{/ballet-theatre?keyword=}" class="btn btn-secondary btn-sm">Ballet and Theatre</a>
+        </div>
         <br><br><br>
         <div class="row">
             <tr th:each="artevent: ${artevents}">
@@ -84,9 +90,9 @@
                                 <div sec:authorize="hasRole('ROLE_ADMIN')">
                                     <a href="/save-artevent" type="button"
                                        class="btn btn-outline-secondary btn-sm">Add</a>
-                                    <a th:href="@{'/update-artevent/' + ${artevent.name}}"
+                                    <a th:href="@{'/update-artevent/' + ${artevent.id}}"
                                        class="btn btn-outline-success btn-sm">Update</a>
-                                    <a th:href="@{'/delete-artevent/' + ${artevent.name}}"
+                                    <a th:href="@{'/delete-artevent/' + ${artevent.id}}"
                                        class="btn btn-outline-danger btn-sm">Delete</a>
                                 </div>
                             </div>

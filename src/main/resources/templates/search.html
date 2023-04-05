@@ -74,9 +74,9 @@
                                 <div sec:authorize="hasRole('ROLE_ADMIN')">
                                     <a href="/save-artevent" type="button"
                                        class="btn btn-outline-secondary btn-sm">Add</a>
-                                    <a th:href="@{'/update-artevent/' + ${artevent.name}}"
+                                    <a th:href="@{'/update-artevent/' + ${artevent.id}}"
                                        class="btn btn-outline-success btn-sm">Update</a>
-                                    <a th:href="@{'/delete-artevent/' + ${artevent.name}}"
+                                    <a th:href="@{'/delete-artevent/' + ${artevent.id}}"
                                        class="btn btn-outline-danger btn-sm">Delete</a>
                                 </div>
                             </div>
@@ -127,9 +127,9 @@
                                 <div sec:authorize="hasRole('ROLE_ADMIN')">
                                     <a href="/save-artobject" type="button"
                                        class="btn btn-outline-secondary btn-sm">Add</a>
-                                    <a th:href="@{'/update-artobject/' + ${artobject.name}}"
+                                    <a th:href="@{'/update-artobject/' + ${artobject.id}}"
                                        class="btn btn-outline-success btn-sm">Update</a>
-                                    <a th:href="@{'/delete-artobject/' + ${artobject.name}}"
+                                    <a th:href="@{'/delete-artobject/' + ${artobject.id}}"
                                        class="btn btn-outline-danger btn-sm">Delete</a>
                                 </div>
                             </div>

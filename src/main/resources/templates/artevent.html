@@ -28,12 +28,8 @@
 <div th:replace="fragments/navs.html :: topnav"></div>
 <div class="container-lg">
     <br><br>
-    <h3 class="card-title"><strong>Art Events</strong></h3>
-    <br><br>
-    <div class="col-lg-5">
-        <a th:href="@{/music?keyword=}" class="btn btn-outline-secondary">Music</a>
-        <a th:href="@{/cinema?keyword=}" class="btn btn-outline-secondary">Cinema</a>
-        <a th:href="@{/ballet-theatre?keyword=}" class="btn btn-outline-secondary">Ballet and Theatre</a>
+    <div>
+        <h3 class="card-title"><strong>Art Events</strong></h3>
     </div>
     <br><br>
     <form th:action="@{/artevent-list}" method="get">
@@ -47,6 +43,12 @@
                             class="fa fa-search"></i></button>
                 </div>
             </div>
+        </div>
+        <br>
+        <div class="col-lg-5">
+            <a th:href="@{/music?keyword=}" class="btn btn-secondary btn-sm">Music</a>
+            <a th:href="@{/cinema?keyword=}" class="btn btn-secondary btn-sm">Cinema</a>
+            <a th:href="@{/ballet-theatre?keyword=}" class="btn btn-secondary btn-sm">Ballet and Theatre</a>
         </div>
         <br><br><br>
         <div class="row">
@@ -92,9 +94,9 @@
                                 <div sec:authorize="hasRole('ROLE_ADMIN')">
                                     <a href="/save-artevent" type="button"
                                        class="btn btn-outline-secondary btn-sm">Add</a>
-                                    <a th:href="@{'/update-artevent/' + ${artevent.name}}"
+                                    <a th:href="@{'/update-artevent/' + ${artevent.id}}"
                                        class="btn btn-outline-success btn-sm">Update</a>
-                                    <a th:href="@{'/delete-artevent/' + ${artevent.name}}"
+                                    <a th:href="@{'/delete-artevent/' + ${artevent.id}}"
                                        class="btn btn-outline-danger btn-sm">Delete</a>
                                 </div>
                             </div>
