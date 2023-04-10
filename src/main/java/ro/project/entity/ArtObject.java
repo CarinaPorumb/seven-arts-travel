@@ -8,7 +8,7 @@ import ro.project.enums.Style;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
-
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor

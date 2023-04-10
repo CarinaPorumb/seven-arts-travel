@@ -1,13 +1,18 @@
 package ro.project.service.impl;
 
+import com.opencsv.bean.CsvToBeanBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
+import ro.project.model.ArtEventCSV;
 import ro.project.model.ArtEventDTO;
 import ro.project.model.mapper.ArtEventMapper;
 import ro.project.repository.ArtEventRepository;
 import ro.project.service.ArtEventService;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,5 +70,16 @@ public class ArtEventServiceImpl implements ArtEventService {
     @Override
     public List<ArtEventDTO> displayBalletAndTheatre(String keyword) {
         return artEventRepository.displayBalletAndTheatre(keyword).stream().map(artEventMapper::artEventToDto).toList();
+    }
+
+    @Override
+    public List<ArtEventCSV> convertCSV(File csvFile) {
+        try {
+            return (new CsvToBeanBuilder<ArtEventCSV>(new FileReader(csvFile)))
+                    .withType(ArtEventCSV.class)
+                    .build().parse();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

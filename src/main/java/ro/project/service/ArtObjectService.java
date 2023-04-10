@@ -1,7 +1,9 @@
 package ro.project.service;
 
+import ro.project.model.ArtObjectCSV;
 import ro.project.model.ArtObjectDTO;
 
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,5 +28,8 @@ public interface ArtObjectService {
     List<ArtObjectDTO> displayLiterature(String keyword);
 
     List<ArtObjectDTO> displayPainting(String keyword);
+
+    List<ArtObjectCSV> convertCSV(File csvFile);
+
 
 }
