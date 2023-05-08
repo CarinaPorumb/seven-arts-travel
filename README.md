@@ -35,11 +35,10 @@ Seven Arts Travel was developed using several technologies, including:
 ###### Bootstrap
 
 
-The CircleCI status badge above indicates the build status of the latest commit in the main branch of the
-Seven Arts Travel project. Click on the badge to view real-time updates on the build and testing processes.
-
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/CarinaPorumb/SevenArtsTravel/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/CarinaPorumb/SevenArtsTravel/tree/main)
 
+The CircleCI status badge above indicates the build status of the latest commit in the main branch of the
+Seven Arts Travel project. Click on the badge to view real-time updates on the build and testing processes.
 
 ---
 
