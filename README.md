@@ -6,39 +6,39 @@ Painting, Literature, Cinema, Music, Ballet and Theater - are the focus of this 
 This application provides information not only on places such as historical buildings, museums, art galleries, libraries
 and more, but also on events related to the seven arts, including exhibitions, performances, festivals and more.
 
+---
+
 ## Technologies Used
 
 Seven Arts Travel was developed using several technologies, including:
 
-###### Java 20
+* Java 20
 
-###### Apache Maven 3.9.0
+* Apache Maven 3.9.0
 
-###### Spring Boot 3.0
+* Spring Boot 3.0
 
-###### Spring Data JPA
+* Spring Data JPA
 
-###### Spring Security
+* Spring Security
 
-###### Spring Web MVC
+* Spring Web MVC
 
-###### MySQL
+* MySQL
 
-###### CSV
+* CSV
 
-###### Thymeleaf
+* Thymeleaf
 
-###### HTML
+* HTML
 
-###### CSS
+* CSS
 
-###### Bootstrap
+* Bootstrap
 
+This project uses CircleCI for continuous integration. The build status is indicated by the badge below:
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/CarinaPorumb/SevenArtsTravel/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/CarinaPorumb/SevenArtsTravel/tree/main)
-
-The CircleCI status badge above indicates the build status of the latest commit in the main branch of the
-Seven Arts Travel project. Click on the badge to view real-time updates on the build and testing processes.
 
 ---
 
