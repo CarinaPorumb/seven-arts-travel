@@ -6,12 +6,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serial;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,6 +25,7 @@ public class User implements UserDetails {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
@@ -40,7 +43,7 @@ public class User implements UserDetails {
 
     private boolean credentialsNonExpired;
 
-    @Column(name = "enabled", nullable = false)
+    @Column(nullable = false)
     private boolean enabled;
 
     @Column(nullable = false, length = 30)
@@ -66,11 +69,20 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private Set<ArtObject> artObjectSet;
+    @ManyToMany
+    @JoinTable(
+            name = "user_art_work",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "art_work_id"))
+    private Set<ArtWork> favoritesArtWork = new HashSet<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private Set<ArtEvent> artEventSet;
+    @ManyToMany
+    @JoinTable(
+            name = "user_art_event",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "art_event_id"))
+    private Set<ArtEvent> favoritesArtEvent = new HashSet<>();
+
 
     @Transient
     private List<GrantedAuthority> authorities = null;
@@ -98,10 +110,6 @@ public class User implements UserDetails {
         this.authorities = authorities;
     }
 
-    public Long getId() {
-        return id;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.authorities;
@@ -110,13 +118,15 @@ public class User implements UserDetails {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+
         User user = (User) o;
-        return getId() != null && Objects.equals(getId(), user.getId());
+
+        return id.equals(user.id);
     }
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        return id.hashCode();
     }
 }

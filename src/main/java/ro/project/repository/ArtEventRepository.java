@@ -3,12 +3,10 @@ package ro.project.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 import ro.project.entity.ArtEvent;
 
 import java.util.List;
 
-@Repository
 public interface ArtEventRepository extends JpaRepository<ArtEvent, Integer> {
 
     @Query(value = "SELECT * FROM art_event WHERE name = ?",

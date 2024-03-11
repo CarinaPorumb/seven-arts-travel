@@ -1,11 +1,17 @@
 package ro.project.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import ro.project.entity.Role;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+@Getter
+@Setter
 @Data
 public class UserDTO {
 
@@ -15,7 +21,7 @@ public class UserDTO {
     private String email;
 
     private List<Role> roles = new ArrayList<>();
-    private List<ArtObjectDTO> artObjectDTOList = new ArrayList<>();
+    private Set<ArtWorkDTO> artObjectSet = new HashSet<>();
     private List<ArtEventDTO> artEventDTOList = new ArrayList<>();
 
 }

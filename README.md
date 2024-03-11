@@ -12,11 +12,11 @@ and more, but also on events related to the seven arts, including exhibitions, p
 
 Seven Arts Travel was developed using several technologies, including:
 
-* Java 20
+* Java 21
 
 * Apache Maven 3.9.0
 
-* Spring Boot 3.0
+* Spring Boot 3.2.3
 
 * Spring Data JPA
 

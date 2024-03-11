@@ -5,8 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 import ro.project.model.ArtObjectCSV;
-import ro.project.model.ArtObjectDTO;
-import ro.project.model.mapper.ArtObjectMapper;
+import ro.project.model.ArtWorkDTO;
+import ro.project.model.mapper.ArtWorkMapper;
 import ro.project.repository.ArtObjectRepository;
 import ro.project.service.ArtObjectService;
 
@@ -21,26 +21,26 @@ import java.util.Optional;
 public class ArtObjectServiceImpl implements ArtObjectService {
 
     private final ArtObjectRepository artObjectRepository;
-    private final ArtObjectMapper artObjectMapper;
+    private final ArtWorkMapper artWorkMapper;
 
     @Override
-    public Optional<ArtObjectDTO> getById(Integer id) {
-        return Optional.of(artObjectMapper.artObjectToDto(artObjectRepository.findById(id).orElse(null)));
+    public Optional<ArtWorkDTO> getById(Long id) {
+        return Optional.of(artWorkMapper.artWorkToDto(artObjectRepository.findById(Math.toIntExact(id)).orElse(null)));
     }
 
     @Override
-    public Optional<ArtObjectDTO> getByName(String name) {
-        return Optional.of(artObjectMapper.artObjectToDto(artObjectRepository.findByName(name)));
+    public Optional<ArtWorkDTO> getByName(String name) {
+        return Optional.of(artWorkMapper.artWorkToDto(artObjectRepository.findByName(name)));
     }
 
     @Override
-    public List<ArtObjectDTO> getAll() {
-        return artObjectRepository.findAll().stream().map(artObjectMapper::artObjectToDto).toList();
+    public List<ArtWorkDTO> getAll() {
+        return artObjectRepository.findAll().stream().map(artWorkMapper::artWorkToDto).toList();
     }
 
     @Override
-    public void save(ArtObjectDTO artObjectDTO) {
-        artObjectMapper.artObjectToDto(artObjectRepository.save(artObjectMapper.dtoToArtObject(artObjectDTO)));
+    public void save(ArtWorkDTO artWorkDTO) {
+        artWorkMapper.artWorkToDto(artObjectRepository.save(artWorkMapper.dtoToArtWork(artWorkDTO)));
     }
 
     @Override
@@ -51,28 +51,28 @@ public class ArtObjectServiceImpl implements ArtObjectService {
     }
 
     @Override
-    public List<ArtObjectDTO> searchArtObject(String keyword) {
-        return artObjectRepository.searchArtObject(keyword).stream().map(artObjectMapper::artObjectToDto).toList();
+    public List<ArtWorkDTO> searchArtObject(String keyword) {
+        return artObjectRepository.searchArtObject(keyword).stream().map(artWorkMapper::artWorkToDto).toList();
     }
 
     @Override
-    public List<ArtObjectDTO> displayArchitecture(String keyword) {
-        return artObjectRepository.displayArchitecture(keyword).stream().map(artObjectMapper::artObjectToDto).toList();
+    public List<ArtWorkDTO> displayArchitecture(String keyword) {
+        return artObjectRepository.displayArchitecture(keyword).stream().map(artWorkMapper::artWorkToDto).toList();
     }
 
     @Override
-    public List<ArtObjectDTO> displaySculpture(String keyword) {
-        return artObjectRepository.displaySculpture(keyword).stream().map(artObjectMapper::artObjectToDto).toList();
+    public List<ArtWorkDTO> displaySculpture(String keyword) {
+        return artObjectRepository.displaySculpture(keyword).stream().map(artWorkMapper::artWorkToDto).toList();
     }
 
     @Override
-    public List<ArtObjectDTO> displayLiterature(String keyword) {
-        return artObjectRepository.displayLiterature(keyword).stream().map(artObjectMapper::artObjectToDto).toList();
+    public List<ArtWorkDTO> displayLiterature(String keyword) {
+        return artObjectRepository.displayLiterature(keyword).stream().map(artWorkMapper::artWorkToDto).toList();
     }
 
     @Override
-    public List<ArtObjectDTO> displayPainting(String keyword) {
-        return artObjectRepository.displayPainting(keyword).stream().map(artObjectMapper::artObjectToDto).toList();
+    public List<ArtWorkDTO> displayPainting(String keyword) {
+        return artObjectRepository.displayPainting(keyword).stream().map(artWorkMapper::artWorkToDto).toList();
 
     }
 

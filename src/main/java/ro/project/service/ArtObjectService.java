@@ -1,7 +1,7 @@
 package ro.project.service;
 
 import ro.project.model.ArtObjectCSV;
-import ro.project.model.ArtObjectDTO;
+import ro.project.model.ArtWorkDTO;
 
 import java.io.File;
 import java.util.List;
@@ -9,25 +9,25 @@ import java.util.Optional;
 
 public interface ArtObjectService {
 
-    Optional<ArtObjectDTO> getById(Integer id);
+    Optional<ArtWorkDTO> getById(Long id);
 
-    Optional<ArtObjectDTO> getByName(String name);
+    Optional<ArtWorkDTO> getByName(String name);
 
-    List<ArtObjectDTO> getAll();
+    List<ArtWorkDTO> getAll();
 
-    void save(ArtObjectDTO artObjectDTO);
+    void save(ArtWorkDTO artWorkDTO);
 
     void deleteById(Integer id) throws Exception;
 
-    List<ArtObjectDTO> searchArtObject(String keyword);
+    List<ArtWorkDTO> searchArtObject(String keyword);
 
-    List<ArtObjectDTO> displayArchitecture(String keyword);
+    List<ArtWorkDTO> displayArchitecture(String keyword);
 
-    List<ArtObjectDTO> displaySculpture(String keyword);
+    List<ArtWorkDTO> displaySculpture(String keyword);
 
-    List<ArtObjectDTO> displayLiterature(String keyword);
+    List<ArtWorkDTO> displayLiterature(String keyword);
 
-    List<ArtObjectDTO> displayPainting(String keyword);
+    List<ArtWorkDTO> displayPainting(String keyword);
 
     List<ArtObjectCSV> convertCSV(File csvFile);
 

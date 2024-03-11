@@ -16,11 +16,9 @@ public class ArtEventCSV {
     private String category;
 
     @CsvBindByName
-    private String movement;
-
-    @CsvBindByName
     private boolean isTemporary;
 
     @CsvBindByName
     private String imageLink;
+
 }

@@ -20,7 +20,7 @@ public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     private String username;
 
@@ -42,4 +42,5 @@ public class Contact {
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
     }
+
 }

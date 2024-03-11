@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ro.project.entity.ArtObject;
-import ro.project.model.ArtObjectDTO;
+import ro.project.entity.ArtWork;
+import ro.project.model.ArtWorkDTO;
 import ro.project.service.ArtObjectService;
 
 import java.util.Optional;
@@ -24,20 +24,20 @@ public class ArtObjectController {
 
     @GetMapping("/save-artobject")
     public String saveArtObject1(Model model) {
-        model.addAttribute("artobject", new ArtObject());
+        model.addAttribute("artobject", new ArtWork());
         return "save-artobject";
     }
 
     @PostMapping("/save-artobject")
-    public String saveArtObject2(@ModelAttribute ArtObjectDTO artObject, Model model) {
+    public String saveArtObject2(@ModelAttribute ArtWorkDTO artObject, Model model) {
         model.addAttribute("artobject", artObject);
         artObjectService.save(artObject);
         return "redirect:/artobject-list?keyword=";
     }
 
     @GetMapping(path = "/update-artobject/{id}")
-    public String updateArtObject(@PathVariable("id") Integer id, Model model) {
-        Optional<ArtObjectDTO> artObject = artObjectService.getById(id);
+    public String updateArtObject(@PathVariable("id") Long id, Model model) {
+        Optional<ArtWorkDTO> artObject = artObjectService.getById(id);
         model.addAttribute("artobject", artObject);
         return "update-artobject";
     }
