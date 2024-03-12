@@ -3,6 +3,7 @@ package ro.project.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import ro.project.enums.Category;
+import ro.project.enums.Status;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -28,10 +29,14 @@ public class ArtEvent implements Serializable {
     private Long id;
     private String name;
     private String imageLink;
+    private String description;
     private String location;
     @Enumerated(EnumType.STRING)
     private Category category;
-    private LocalDateTime eventTime;
+    @Enumerated(EnumType.STRING)
+    private Status status;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private Boolean isTemporary;
 
     @ManyToMany

@@ -4,13 +4,16 @@ import com.opencsv.bean.CsvBindByName;
 import lombok.Data;
 
 @Data
-public class ArtObjectCSV {
+public class ArtWorkCSV {
 
     @CsvBindByName
     private String name;
 
     @CsvBindByName
     private String author;
+
+    @CsvBindByName
+    private String description;
 
     @CsvBindByName
     private String location;
@@ -22,11 +25,6 @@ public class ArtObjectCSV {
     private String category;
 
     @CsvBindByName
-    private String movement;
-
-    @CsvBindByName
-    private boolean isTemporary;
-
-    @CsvBindByName
     private String imageLink;
+
 }

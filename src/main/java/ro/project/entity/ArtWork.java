@@ -27,6 +27,7 @@ public class ArtWork implements Serializable {
     private Long id;
     private String name;
     private String imageLink;
+    private String description;
     private Integer year;
     private String location;
     @Enumerated(EnumType.STRING)

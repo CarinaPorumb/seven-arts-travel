@@ -10,15 +10,24 @@ public class ArtEventCSV {
     private String name;
 
     @CsvBindByName
+    private String description;
+
+    @CsvBindByName
     private String location;
 
     @CsvBindByName
     private String category;
 
     @CsvBindByName
-    private boolean isTemporary;
+    private String status;
 
     @CsvBindByName
-    private String imageLink;
+    private String startTime;
+
+    @CsvBindByName
+    private String endTime;
+
+    @CsvBindByName
+    private boolean isTemporary;
 
 }

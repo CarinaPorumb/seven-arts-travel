@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Getter
@@ -29,6 +30,8 @@ public class Contact {
     private String subject;
 
     private String message;
+
+    private LocalDate date;
 
     @Override
     public boolean equals(Object o) {
