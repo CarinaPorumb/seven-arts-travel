@@ -1,14 +1,17 @@
 package ro.project.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import ro.project.enums.Category;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Builder
 @Getter
@@ -16,16 +19,19 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "art_work")
 @ToString
-public class ArtWork implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1905122041950251207L;
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class ArtWork extends Auditable implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "artwork_id", updatable = false, nullable = false)
+    private UUID id;
+
+    @NotBlank(message = "Name must not be blank")
     private String name;
+
     private String imageLink;
     private String description;
     private Integer year;
@@ -39,26 +45,31 @@ public class ArtWork implements Serializable {
             joinColumns = @JoinColumn(name = "art_work_id"),
             inverseJoinColumns = @JoinColumn(name = "movement_id")
     )
-    private Set<Movement> movements;
+    @ToString.Exclude
+    private Set<Movement> movements = new HashSet<>();
 
     @ManyToMany(mappedBy = "artWorks")
-    private Set<Artist> artists;
-
+    @ToString.Exclude
+    private Set<Artist> artists = new HashSet<>();
 
     @ManyToMany(mappedBy = "favoritesArtWork")
+    @ToString.Exclude
     private Set<User> favoritedBy = new HashSet<>();
+
+    @Version
+    private Long version;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         ArtWork artWork = (ArtWork) o;
         return Objects.equals(id, artWork.id);
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return Objects.hashCode(id);
     }
-
 }

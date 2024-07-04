@@ -4,11 +4,11 @@ import org.mapstruct.Mapper;
 import ro.project.entity.ArtEvent;
 import ro.project.model.ArtEventDTO;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ArtEventMapper {
 
-    ArtEvent dtoToArtEvent(ArtEventDTO dto);
+    ArtEvent toEntity(ArtEventDTO dto);
 
-    ArtEventDTO artEventToDto(ArtEvent artEvent);
+    ArtEventDTO toDTO(ArtEvent artEvent);
 
 }

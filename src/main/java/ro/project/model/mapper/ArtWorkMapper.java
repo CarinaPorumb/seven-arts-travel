@@ -4,11 +4,11 @@ import org.mapstruct.Mapper;
 import ro.project.entity.ArtWork;
 import ro.project.model.ArtWorkDTO;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ArtWorkMapper {
 
-    ArtWork dtoToArtWork(ArtWorkDTO dto);
+    ArtWork toEntity(ArtWorkDTO dto);
 
-    ArtWorkDTO artWorkToDto(ArtWork artWork);
+    ArtWorkDTO toDTO(ArtWork artWork);
 
 }

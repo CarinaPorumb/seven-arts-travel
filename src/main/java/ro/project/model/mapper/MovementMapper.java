@@ -4,11 +4,11 @@ import org.mapstruct.Mapper;
 import ro.project.entity.Movement;
 import ro.project.model.MovementDTO;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface MovementMapper {
 
-    Movement dtoToMovement(MovementDTO dto);
+    Movement toEntity(MovementDTO dto);
 
-    MovementDTO movementToDto(Movement movement);
+    MovementDTO toDTO(Movement movement);
 
 }

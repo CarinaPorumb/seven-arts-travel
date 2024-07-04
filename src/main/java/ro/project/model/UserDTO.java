@@ -1,23 +1,20 @@
 package ro.project.model;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import ro.project.entity.Role;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-@Getter
-@Setter
 @Data
 public class UserDTO {
 
-    private Long id;
+    private UUID id;
+    @NotBlank(message = "Username must not be blank ")
     private String username;
+    @NotBlank(message = "Full name must not be blank ")
     private String fullName;
+    @NotBlank(message = "Email must not be blank ")
     private String email;
 
     private List<Role> roles = new ArrayList<>();

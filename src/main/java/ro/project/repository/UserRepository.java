@@ -3,24 +3,24 @@ package ro.project.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 import ro.project.entity.User;
 
 import java.util.List;
+import java.util.UUID;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, UUID> {
 
     User findByUsernameIgnoreCase(String username);
 
     User findByRandomToken(String randomToken);
 
-    @Query(value = "SELECT * FROM user WHERE email = ?",
-            nativeQuery = true)
-    User findByEmail(@Param("emailConfirm") String emailConfirm);
+    User findByEmail(String email);
 
-    @Query(value = "SELECT * FROM user u WHERE u.username LIKE %:keyword% OR u.full_name LIKE %:keyword% OR u.email LIKE %:keyword% " +
-            "OR u.user_id LIKE %:keyword%",
+    @Query(value = "SELECT * FROM user u WHERE u.username LIKE CONCAT('%', :keyword, '%')" +
+            "OR u.full_name LIKE CONCAT('%', :keyword, '%')" +
+            "OR u.email LIKE CONCAT('%', :keyword, '%')" +
+            "OR u.user_id LIKE CONCAT('%', :keyword, '%')",
             nativeQuery = true)
     List<User> searchUser(@Param("keyword") String keyword);
+
 }

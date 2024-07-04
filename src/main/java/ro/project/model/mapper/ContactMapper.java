@@ -4,11 +4,11 @@ import org.mapstruct.Mapper;
 import ro.project.entity.Contact;
 import ro.project.model.ContactDTO;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ContactMapper {
 
-    Contact dtoToContact(ContactDTO dto);
+    Contact toEntity(ContactDTO dto);
 
-    ContactDTO contactToDto(Contact contact);
+    ContactDTO toDTO(Contact contact);
 
 }

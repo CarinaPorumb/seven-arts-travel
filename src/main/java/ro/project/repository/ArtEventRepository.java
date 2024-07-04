@@ -1,44 +1,28 @@
 package ro.project.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import ro.project.entity.ArtEvent;
+import ro.project.enums.Category;
 
 import java.util.List;
+import java.util.UUID;
 
-public interface ArtEventRepository extends JpaRepository<ArtEvent, Integer> {
+public interface ArtEventRepository extends JpaRepository<ArtEvent, UUID>, JpaSpecificationExecutor<ArtEvent> {
 
-    @Query(value = "SELECT * FROM art_event WHERE name = ?",
-            nativeQuery = true)
-    ArtEvent findByName(String name);
+    List<ArtEvent> findByNameContainingIgnoreCase(String name);
 
-    @Query(value = "SELECT * FROM art_event WHERE user_id = ?",
-            nativeQuery = true)
-    List<ArtEvent> findByUserId(Long userId);
-
-    @Query(value = "SELECT * FROM art_event a WHERE a.name LIKE %:keyword% OR a.location LIKE %:keyword% " +
-            "OR a.movement LIKE %:keyword% OR a.is_temporary LIKE %:keyword% OR a.id LIKE %:keyword% OR " +
-            "a.category LIKE %:keyword% OR a.event_time LIKE %:keyword%",
+    //TODO join for artist and movement
+    @Query(value = "SELECT * FROM art_event a WHERE a.name LIKE CONCAT('%', :keyword, '%')" +
+            "OR a.description LIKE CONCAT('%', :keyword, '%')" +
+            "OR a.location LIKE CONCAT('%', :keyword, '%')" +
+            "OR a.category LIKE CONCAT('%', :keyword, '%')" +
+            "OR a.status LIKE CONCAT('%', :keyword, '%')",
             nativeQuery = true)
     List<ArtEvent> searchArtEvent(@Param("keyword") String keyword);
 
-    @Query(value = "SELECT * FROM art_event a WHERE a.category = 'music' having a.name LIKE %:keyword% OR " +
-            "a.location LIKE %:keyword% OR a.movement LIKE %:keyword% OR a.is_temporary LIKE %:keyword% OR " +
-            "a.id LIKE %:keyword% OR a.event_time LIKE %:keyword%",
-            nativeQuery = true)
-    List<ArtEvent> displayMusic(@Param("keyword") String keyword);
-
-    @Query(value = "SELECT * FROM art_event a WHERE a.category = 'cinema' having a.name LIKE %:keyword% OR " +
-            "a.location LIKE %:keyword% OR a.movement LIKE %:keyword% OR a.is_temporary LIKE %:keyword% OR " +
-            "a.id LIKE %:keyword% OR a.event_time LIKE %:keyword%",
-            nativeQuery = true)
-    List<ArtEvent> displayCinema(@Param("keyword") String keyword);
-
-    @Query(value = "SELECT * FROM art_event a WHERE a.category = 'ballet_and_theatre' having a.name LIKE %:keyword% OR " +
-            "a.location LIKE %:keyword% OR a.movement LIKE %:keyword% OR a.is_temporary LIKE %:keyword% OR " +
-            "a.id LIKE %:keyword% OR a.event_time LIKE %:keyword%",
-            nativeQuery = true)
-    List<ArtEvent> displayBalletAndTheatre(@Param("keyword") String keyword);
-
+    @Query(value = "SELECT * FROM art_event a WHERE a.category = :category", nativeQuery = true)
+    List<ArtEvent> findEventsByCategory(Category category);
 }
