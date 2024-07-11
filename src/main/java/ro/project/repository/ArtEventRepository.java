@@ -1,5 +1,7 @@
 package ro.project.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -21,8 +23,7 @@ public interface ArtEventRepository extends JpaRepository<ArtEvent, UUID>, JpaSp
             "OR a.category LIKE CONCAT('%', :keyword, '%')" +
             "OR a.status LIKE CONCAT('%', :keyword, '%')",
             nativeQuery = true)
-    List<ArtEvent> searchArtEvent(@Param("keyword") String keyword);
+    Page<ArtEvent> searchArtEvent(@Param("keyword") String keyword, Pageable pageable);
 
-    @Query(value = "SELECT * FROM art_event a WHERE a.category = :category", nativeQuery = true)
     List<ArtEvent> findEventsByCategory(Category category);
 }
