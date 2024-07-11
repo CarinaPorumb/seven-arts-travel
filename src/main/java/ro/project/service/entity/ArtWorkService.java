@@ -1,4 +1,4 @@
-package ro.project.service;
+package ro.project.service.entity;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

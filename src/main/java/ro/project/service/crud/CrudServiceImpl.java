@@ -1,4 +1,4 @@
-package ro.project.service;
+package ro.project.service.crud;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;

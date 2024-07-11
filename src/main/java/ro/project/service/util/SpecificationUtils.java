@@ -1,4 +1,4 @@
-package ro.project.service.impl;
+package ro.project.service.util;
 
 import org.springframework.data.jpa.domain.Specification;
 
