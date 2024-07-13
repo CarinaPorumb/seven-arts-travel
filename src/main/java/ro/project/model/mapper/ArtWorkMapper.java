@@ -8,19 +8,15 @@ import ro.project.entity.ArtWork;
 import ro.project.model.ArtWorkDTO;
 
 @Mapper(componentModel = "spring")
-public interface ArtWorkMapper extends GenericMapper<ArtWorkDTO, ArtWork> {
+public interface ArtWorkMapper {
 
-    @Override
     ArtWork toEntity(ArtWorkDTO dto);
 
-    @Override
-    ArtWorkDTO toDTO(ArtWork artWork);
+    ArtWorkDTO toDTO(ArtWork entity);
 
-    @Override
-    void updateEntity(@MappingTarget ArtWork artWork, ArtWorkDTO dto);
+    void updateEntity(@MappingTarget ArtWork entity, ArtWorkDTO dto);
 
-    @Override
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void patchEntity(@MappingTarget ArtWork artWork, ArtWorkDTO dto);
+    void patchEntity(@MappingTarget ArtWork entity, ArtWorkDTO dto);
 
 }

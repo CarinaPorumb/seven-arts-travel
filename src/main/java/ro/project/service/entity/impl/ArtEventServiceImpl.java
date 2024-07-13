@@ -26,6 +26,7 @@ import ro.project.service.util.SpecificationUtils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,10 +38,11 @@ public class ArtEventServiceImpl extends CrudServiceImpl<ArtEventDTO, ArtEvent, 
     private final ArtEventMapper artEventMapper;
 
     public ArtEventServiceImpl(ArtEventRepository artEventRepository, ArtEventMapper artEventMapper) {
-        super(artEventRepository, artEventMapper);
+        super(artEventRepository);
         this.artEventRepository = artEventRepository;
         this.artEventMapper = artEventMapper;
     }
+
 
     @Override
     @Transactional(readOnly = true)
@@ -83,13 +85,22 @@ public class ArtEventServiceImpl extends CrudServiceImpl<ArtEventDTO, ArtEvent, 
     }
 
     @Override
-    public List<ArtEventCSV> convertCSV(File csvFile) {
+    public void convertCSV(File csvFile) {
         log.debug("Converting CSV file: {}", csvFile);
+
         try (FileReader fileReader = new FileReader(csvFile)) {
-            return (new CsvToBeanBuilder<ArtEventCSV>(fileReader))
+            List<ArtEventCSV> artEventCSV = new CsvToBeanBuilder<ArtEventCSV>(fileReader)
                     .withType(ArtEventCSV.class)
                     .build()
                     .parse();
+
+            artEventCSV.forEach(elem -> {
+                ArtEventDTO dto = convertCSVToDTO(elem);
+                ArtEvent entity = artEventMapper.toEntity(dto);
+                artEventRepository.save(entity);
+            });
+            log.info("ArtEvents loaded from CSV and saved to database successfully.");
+
         } catch (FileNotFoundException e) {
             log.error("CSV file not found : {}", csvFile);
             throw new NotFoundException("CSV file not found!", e);
@@ -97,6 +108,52 @@ public class ArtEventServiceImpl extends CrudServiceImpl<ArtEventDTO, ArtEvent, 
             log.error("Error processing CSV file: {}", csvFile, e);
             throw new CsvProcessingException("Error processing CSV file", e);
         }
+    }
+
+    //TODO Fix enum inputs: lowercase, replace spaces
+    private ArtEventDTO convertCSVToDTO(ArtEventCSV csv) {
+        ArtEventDTO dto = new ArtEventDTO();
+        dto.setName(csv.getName());
+        dto.setDescription(csv.getDescription());
+        dto.setLocation(csv.getLocation());
+        dto.setStatus(Status.valueOf(csv.getStatus()));
+        dto.setCategory(Category.valueOf(csv.getCategory()));
+
+        if (csv.getStartTime() != null && !csv.getStartTime().isEmpty()) {
+            dto.setStartTime(LocalDateTime.parse(csv.getStartTime()));
+        } else {
+            log.error("Invalid start time format for {}", csv.getStartTime());
+            dto.setStartTime(LocalDateTime.now());
+        }
+
+        if (csv.getEndTime() != null && !csv.getEndTime().isEmpty()) {
+            dto.setEndTime(LocalDateTime.parse(csv.getEndTime()));
+        } else {
+            log.error("Invalid end time format for {}", csv.getEndTime());
+            dto.setEndTime(LocalDateTime.now().plusDays(1));
+        }
+        return dto;
+    }
+
+
+    @Override
+    protected ArtEvent toEntity(ArtEventDTO dto) {
+        return artEventMapper.toEntity(dto);
+    }
+
+    @Override
+    protected ArtEventDTO toDTO(ArtEvent entity) {
+        return artEventMapper.toDTO(entity);
+    }
+
+    @Override
+    protected void updateEntity(ArtEvent entity, ArtEventDTO dto) {
+        artEventMapper.updateEntity(entity, dto);
+    }
+
+    @Override
+    protected void patchEntity(ArtEvent entity, ArtEventDTO dto) {
+        artEventMapper.patchEntity(entity, dto);
     }
 
 }

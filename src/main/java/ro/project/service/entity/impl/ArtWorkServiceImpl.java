@@ -36,10 +36,11 @@ public class ArtWorkServiceImpl extends CrudServiceImpl<ArtWorkDTO, ArtWork, UUI
     private final ArtWorkMapper artWorkMapper;
 
     public ArtWorkServiceImpl(ArtWorkRepository artWorkRepository, ArtWorkMapper artWorkMapper) {
-        super(artWorkRepository, artWorkMapper);
+        super(artWorkRepository);
         this.artWorkRepository = artWorkRepository;
         this.artWorkMapper = artWorkMapper;
     }
+
 
     @Override
     @Transactional(readOnly = true)
@@ -81,14 +82,22 @@ public class ArtWorkServiceImpl extends CrudServiceImpl<ArtWorkDTO, ArtWork, UUI
     }
 
     @Override
-    public List<ArtWorkCSV> convertCSV(File csvFile) {
+    public void convertCSV(File csvFile) {
         log.debug("Converting CSV file: {}", csvFile);
 
         try (FileReader fileReader = new FileReader(csvFile)) {
-            return (new CsvToBeanBuilder<ArtWorkCSV>(fileReader))
+
+            List<ArtWorkCSV> artWorkCSV = new CsvToBeanBuilder<ArtWorkCSV>(fileReader)
                     .withType(ArtWorkCSV.class)
                     .build()
                     .parse();
+
+            artWorkCSV.forEach(elem -> {
+                ArtWorkDTO dto = convertCSVToDTO(elem);
+                ArtWork entity = artWorkMapper.toEntity(dto);
+                artWorkRepository.save(entity);
+            });
+            log.info("Artworks loaded from CSV and saved to database successfully.");
         } catch (FileNotFoundException e) {
             log.error("CSV file not found: {}", csvFile);
             throw new NotFoundException("CSV file not found: " + e);
@@ -97,4 +106,36 @@ public class ArtWorkServiceImpl extends CrudServiceImpl<ArtWorkDTO, ArtWork, UUI
             throw new CsvProcessingException("Error processing CSV file", e);
         }
     }
+
+    private ArtWorkDTO convertCSVToDTO(ArtWorkCSV csv) {
+        ArtWorkDTO dto = new ArtWorkDTO();
+        dto.setName(csv.getName());
+        dto.setImageLink(csv.getImageLink());
+        dto.setDescription(csv.getDescription());
+        dto.setYear(csv.getYear());
+        dto.setLocation(csv.getLocation());
+        dto.setCategory(Category.valueOf(csv.getCategory()));
+        return dto;
+    }
+
+    @Override
+    protected ArtWork toEntity(ArtWorkDTO dto) {
+        return artWorkMapper.toEntity(dto);
+    }
+
+    @Override
+    protected ArtWorkDTO toDTO(ArtWork entity) {
+        return artWorkMapper.toDTO(entity);
+    }
+
+    @Override
+    protected void updateEntity(ArtWork entity, ArtWorkDTO dto) {
+        artWorkMapper.updateEntity(entity, dto);
+    }
+
+    @Override
+    protected void patchEntity(ArtWork entity, ArtWorkDTO dto) {
+        artWorkMapper.patchEntity(entity, dto);
+    }
+
 }

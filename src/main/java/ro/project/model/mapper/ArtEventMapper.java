@@ -8,19 +8,15 @@ import ro.project.entity.ArtEvent;
 import ro.project.model.ArtEventDTO;
 
 @Mapper(componentModel = "spring")
-public interface ArtEventMapper extends GenericMapper<ArtEventDTO, ArtEvent> {
+public interface ArtEventMapper {
 
-    @Override
     ArtEvent toEntity(ArtEventDTO dto);
 
-    @Override
     ArtEventDTO toDTO(ArtEvent artEvent);
 
-
-    @Override
     void updateEntity(@MappingTarget ArtEvent artEvent, ArtEventDTO dto);
 
-    @Override
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void patchEntity(@MappingTarget ArtEvent artEvent, ArtEventDTO dto);
+
 }
