@@ -1,5 +1,7 @@
 package ro.project.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -17,6 +19,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @ToString
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Artist extends Auditable implements Serializable {
 
     @Id
@@ -33,14 +36,6 @@ public class Artist extends Auditable implements Serializable {
     private Integer deathYear;
     private String nationality;
 
-    public Artist(String name, String biography, String imageLink, Integer birthYear, Integer deathYear, String nationality) {
-        this.name = name;
-        this.biography = biography;
-        this.imageLink = imageLink;
-        this.birthYear = birthYear;
-        this.deathYear = deathYear;
-        this.nationality = nationality;
-    }
 
     @ManyToMany
     @JoinTable(

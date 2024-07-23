@@ -25,9 +25,8 @@ public class Movement extends Auditable implements Serializable {
     private UUID id;
 
     @NotBlank(message = "Name must not be blank")
-    private String name;    // ANCIENT, RENAISSANCE, GOTHIC, BAROQUE, CLASSICISM, ROCOCO, NEOCLASSICISM, ROMANTICISM,
-                            // REALISM, ARTNOUVEAU, IMPRESSIONISM, POSTIMPRESSIONISM, SYMBOLISM, EXPRESSIONISM, CUBISM,
-                            // SURREALISM, MODERNISM, CONTEMPORARY, AVANTGARDE, UNCERTAIN
+    private String name;
+
 
     private String description;
     private Integer startYear;

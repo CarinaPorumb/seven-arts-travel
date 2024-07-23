@@ -1,6 +1,9 @@
 package ro.project.model.mapper;
 
+import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 import ro.project.entity.Movement;
 import ro.project.model.MovementDTO;
 
@@ -9,6 +12,11 @@ public interface MovementMapper {
 
     Movement toEntity(MovementDTO dto);
 
-    MovementDTO toDTO(Movement movement);
+    MovementDTO toDTO(Movement entity);
+
+    void updateEntity(@MappingTarget Movement entity, MovementDTO dto);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void patchEntity(@MappingTarget Movement entity, MovementDTO dto);
 
 }

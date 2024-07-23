@@ -57,7 +57,7 @@ public class ArtWorkServiceImpl extends CrudServiceImpl<ArtWorkDTO, ArtWork, UUI
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<ArtWorkDTO> getByName(String name) {
         log.debug("Attempting to get ArtWork by name: {}", name);
         return artWorkRepository.findByNameContainingIgnoreCase(name).stream()

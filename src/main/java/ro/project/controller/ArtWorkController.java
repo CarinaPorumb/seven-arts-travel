@@ -1,5 +1,6 @@
 package ro.project.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -9,7 +10,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ro.project.enums.Category;
 import ro.project.exception.NotFoundException;
@@ -33,9 +33,9 @@ public class ArtWorkController {
     public ResponseEntity<Page<ArtWorkDTO>> getAll(
             @RequestParam(required = false, defaultValue = "") String search,
             @RequestParam(required = false, defaultValue = "") String name,
-            @RequestParam(required = false, defaultValue = "") Integer year,
+            @RequestParam(required = false) Integer year,
             @RequestParam(required = false, defaultValue = "") String location,
-            @RequestParam(required = false, defaultValue = "") Category category,
+            @RequestParam(required = false) Category category,
             @RequestParam(required = false, defaultValue = "0") Integer pageNumber,
             @RequestParam(required = false, defaultValue = "10") Integer pageSize) {
         log.info("Request to list or search art works");
@@ -44,7 +44,7 @@ public class ArtWorkController {
 
         if (search != null && !search.isEmpty()) {
             return ResponseEntity.ok(artWorkService.search(search, pageable));
-        } else if (name != null || year != null || location != null || category != null) {
+        } else if ((name != null && !name.isEmpty()) || year != null || (location != null && !location.isEmpty()) || category != null) {
             return ResponseEntity.ok(artWorkService.getAllArtWorks(name, year, location, category, pageNumber, pageSize));
         } else {
             return ResponseEntity.ok(crudService.getAll(pageable));
@@ -65,7 +65,7 @@ public class ArtWorkController {
     }
 
     @PostMapping
-    public ResponseEntity<ArtWorkDTO> create(@Validated @RequestBody ArtWorkDTO artWorkDTO) {
+    public ResponseEntity<ArtWorkDTO> create(@Valid @RequestBody ArtWorkDTO artWorkDTO) {
         log.info("Request to create artwork: {}", artWorkDTO);
         ArtWorkDTO createdArtWork = crudService.save(artWorkDTO);
         HttpHeaders responseHeaders = new HttpHeaders();
@@ -74,7 +74,7 @@ public class ArtWorkController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ArtWorkDTO> update(@PathVariable("id") UUID id, @Validated @RequestBody ArtWorkDTO artWorkDTO) {
+    public ResponseEntity<ArtWorkDTO> update(@PathVariable("id") UUID id, @Valid @RequestBody ArtWorkDTO artWorkDTO) {
         log.info("Request to update artwork: {}", artWorkDTO);
         return ResponseEntity.ok(crudService.update(id, artWorkDTO)
                 .orElseThrow(() -> new NotFoundException("Art work with id " + id + " not found")));
@@ -87,11 +87,11 @@ public class ArtWorkController {
         if (!deleted) {
             throw new NotFoundException("Art work with id " + id + " not found");
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.noContent().build();
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ArtWorkDTO> patch(@PathVariable("id") UUID id, @Validated @RequestBody ArtWorkDTO artWorkDTO) {
+    public ResponseEntity<ArtWorkDTO> patch(@PathVariable("id") UUID id, @Valid @RequestBody ArtWorkDTO artWorkDTO) {
         log.info("Request to patch artwork: {}", artWorkDTO);
         return ResponseEntity.ok(crudService.patch(id, artWorkDTO)
                 .orElseThrow(() -> new NotFoundException("Art work with id " + id + " not found")));
