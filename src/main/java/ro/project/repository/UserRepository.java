@@ -1,26 +1,29 @@
 package ro.project.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import ro.project.entity.User;
 
-import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
-public interface UserRepository extends JpaRepository<User, UUID> {
+public interface UserRepository extends JpaRepository<User, UUID>, JpaSpecificationExecutor<User> {
 
-    User findByUsernameIgnoreCase(String username);
+    Optional<User> findByUsernameIgnoreCase(String username);
 
-    User findByRandomToken(String randomToken);
+    Optional<User> findByRandomToken(String randomToken);
 
-    User findByEmail(String email);
+    Optional<User> findByEmail(String email);
 
     @Query(value = "SELECT * FROM user u WHERE u.username LIKE CONCAT('%', :keyword, '%')" +
             "OR u.full_name LIKE CONCAT('%', :keyword, '%')" +
             "OR u.email LIKE CONCAT('%', :keyword, '%')" +
             "OR u.user_id LIKE CONCAT('%', :keyword, '%')",
             nativeQuery = true)
-    List<User> searchUser(@Param("keyword") String keyword);
+    Page<User> searchUser(@Param("keyword") String keyword, Pageable pageable);
 
 }

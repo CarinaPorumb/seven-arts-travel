@@ -1,6 +1,6 @@
-package ro.project.service.impl;
+package ro.project.service.entity.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,33 +8,33 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import ro.project.entity.Role;
 import ro.project.entity.User;
-import ro.project.exception.UserNotFound;
-import ro.project.repository.UserRepository;
-import ro.project.service.UserService;
+import ro.project.exception.NotFoundException;
+import ro.project.model.UserDTO;
+import ro.project.model.mapper.UserMapper;
+import ro.project.service.entity.UserService;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@RequiredArgsConstructor
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private UserRepository userRepository;
+    private final UserService userService;
+    private final UserMapper userMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        User user = null;
-        try {
-            user = userService.findUserByUserName(username);
-        } catch (UserNotFound e) {
-            throw new RuntimeException(e);
-        }
+
+        UserDTO userDTO = userService.findUserByUserName(username)
+                .orElseThrow(() -> new NotFoundException("User not found"));
+
+        User user = userMapper.toEntity(userDTO);
+
         List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
-        return new User(user.getUsername(), user.getPassword(),
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 user.isEnabled(), user.isAccountNonExpired(), user.isCredentialsNonExpired(), user.isAccountNonLocked(), authorities);
     }
 

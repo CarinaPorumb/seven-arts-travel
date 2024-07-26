@@ -3,6 +3,7 @@ package ro.project.entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.util.*;
-
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,11 +27,11 @@ public class User extends Auditable implements UserDetails, Serializable {
     private UUID id;
 
     @Column(nullable = false, unique = true)
-    @NotBlank(message = "Username must not be blank ")
+    @NotBlank(message = "Username must not be blank")
     private String username;
 
     @Column(nullable = false)
-    @NotBlank(message = "Password must not be blank ")
+    @NotBlank(message = "Password must not be blank")
     private String password;
 
     private boolean accountNonExpired;
@@ -40,12 +41,13 @@ public class User extends Auditable implements UserDetails, Serializable {
     @Column(nullable = false)
     private boolean enabled;
 
-    @Column(nullable = false, length = 30)
-    @NotBlank(message = "Full name must not be blank ")
+    @Column(nullable = false)
+    @NotBlank(message = "Full name must not be blank")
     private String fullName;
 
-    @Column(nullable = false, length = 30, unique = true)
-    @NotBlank(message = "Email must not be blank ")
+    @Column(nullable = false, unique = true)
+    @NotBlank(message = "Email must not be blank")
+    @Email(message = "Email should be valid")
     private String email;
 
     private String randomToken;
