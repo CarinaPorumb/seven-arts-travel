@@ -2,22 +2,23 @@ package ro.project.service.entity;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import ro.project.enums.Nationality;
 import ro.project.model.ArtistDTO;
-
-import java.util.List;
 
 public interface ArtistService {
 
-    Page<ArtistDTO> getAllArtists(String name, String biography, Integer birthYear, Integer deathYear, String nationality, Integer pageNumber, Integer pageSize);
+    Page<ArtistDTO> getAllArtists(String name, String biography, Integer birthYear, Integer deathYear, Nationality nationality, Pageable pageable);
 
-    List<ArtistDTO> getByName(String name);
+    Page<ArtistDTO> getByName(String name, Pageable pageable);
 
     Page<ArtistDTO> searchArtist(String keyword, Pageable pageable);
 
-    List<ArtistDTO> getArtistByBirthYearAndDeathYear(Integer birthYear, Integer deathYear);
+    Page<ArtistDTO> getArtistByBirthYearAndDeathYear(Integer birthYear, Integer deathYear, Pageable pageable);
 
-    List<ArtistDTO> getArtistByBirthYear(Integer birthYear);
+    Page<ArtistDTO> getArtistByBirthYear(Integer birthYear, Pageable pageable);
 
-    List<ArtistDTO> getArtistByDeathYear(Integer deathYear);
+    Page<ArtistDTO> getArtistByDeathYear(Integer deathYear, Pageable pageable);
+
+    Page<ArtistDTO> getArtistsAlive(Pageable pageable);
 
 }

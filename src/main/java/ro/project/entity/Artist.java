@@ -1,10 +1,12 @@
 package ro.project.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+import ro.project.enums.Nationality;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -19,7 +21,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @ToString
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Artist extends Auditable implements Serializable {
 
     @Id
@@ -32,29 +33,39 @@ public class Artist extends Auditable implements Serializable {
 
     private String biography;
     private String imageLink;
+
+    @Min(value = -1000, message = "Birth year must be a realistic historical value (min: 1000 BC written -1000)")
+    @Max(value = 2025, message = "Birth year cannot be in future")
     private Integer birthYear;
+
+    @Min(value = -1000, message = "Death year must be a realistic historical value (min: 1000 BC written -1000)")
+    @Max(value = 2025, message = "Death year cannot be in future")
     private Integer deathYear;
-    private String nationality;
 
+    @Enumerated(EnumType.STRING)
+    private Nationality nationality;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "artist_art_work",
             joinColumns = @JoinColumn(name = "artist_id"),
             inverseJoinColumns = @JoinColumn(name = "art_work_id")
     )
     @ToString.Exclude
+    @JsonIgnore
     private Set<ArtWork> artWorks = new HashSet<>();
 
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "artist_art_event",
             joinColumns = @JoinColumn(name = "artist_id"),
             inverseJoinColumns = @JoinColumn(name = "art_event_id")
     )
     @ToString.Exclude
+    @JsonIgnore
     private Set<ArtEvent> artEvents = new HashSet<>();
+
 
     @Version
     private Long version;

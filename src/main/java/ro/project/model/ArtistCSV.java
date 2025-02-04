@@ -1,12 +1,15 @@
 package ro.project.model;
 
 import com.opencsv.bean.CsvBindByName;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import ro.project.enums.Nationality;
 
 @Data
 public class ArtistCSV {
 
     @CsvBindByName
+    @NotBlank(message = "Name must not be blank")
     private String name;
     @CsvBindByName
     private String biography;
@@ -17,6 +20,6 @@ public class ArtistCSV {
     @CsvBindByName
     private Integer deathYear;
     @CsvBindByName
-    private String nationality;
+    private Nationality nationality;
 
 }

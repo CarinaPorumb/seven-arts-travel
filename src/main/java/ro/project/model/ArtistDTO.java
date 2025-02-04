@@ -1,7 +1,10 @@
 package ro.project.model;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import ro.project.enums.Nationality;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,11 +18,17 @@ public class ArtistDTO {
     private String name;
     private String biography;
     private String imageLink;
-    private Integer birthYear;
-    private Integer deathYear;
-    private String nationality;
 
-    private Set<Long> artWorkIds = new HashSet<>();
-    private Set<Long> artEventIds = new HashSet<>();
+    @Min(value = 1000, message = "Birth year must be a realistic historical value (min: 1000 BC written -1000)")
+    @Max(value = 2025, message = "Birth year cannot be in future")
+    private Integer birthYear;
+
+    @Min(value = -1000, message = "Death year must be a realistic historical value (min: 1000 BC written -1000)")
+    @Max(value = 2025, message = "Death year cannot be in future")
+    private Integer deathYear;
+    private Nationality nationality;
+
+    private Set<UUID> artWorkIds = new HashSet<>();
+    private Set<UUID> artEventIds = new HashSet<>();
 
 }
