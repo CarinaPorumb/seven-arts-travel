@@ -32,7 +32,7 @@ public class Artist extends Auditable implements Serializable {
     private String name;
 
     private String biography;
-    private String imageLink;
+    private String imageUrl;
 
     @Min(value = -1000, message = "Birth year must be a realistic historical value (min: 1000 BC written -1000)")
     @Max(value = 2025, message = "Birth year cannot be in future")
@@ -47,25 +47,14 @@ public class Artist extends Auditable implements Serializable {
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-            name = "artist_art_work",
+            name = "artist_art_object",
             joinColumns = @JoinColumn(name = "artist_id"),
-            inverseJoinColumns = @JoinColumn(name = "art_work_id")
+            inverseJoinColumns = @JoinColumn(name = "art_object_id")
     )
     @ToString.Exclude
     @JsonIgnore
-    private Set<ArtWork> artWorks = new HashSet<>();
-
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "artist_art_event",
-            joinColumns = @JoinColumn(name = "artist_id"),
-            inverseJoinColumns = @JoinColumn(name = "art_event_id")
-    )
-    @ToString.Exclude
-    @JsonIgnore
-    private Set<ArtEvent> artEvents = new HashSet<>();
-
+    @Builder.Default
+    private Set<ArtObject> artObjects = new HashSet<>();
 
     @Version
     private Long version;

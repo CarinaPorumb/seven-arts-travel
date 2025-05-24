@@ -67,22 +67,6 @@ public class User extends Auditable implements UserDetails, Serializable {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_art_work",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "art_work_id"))
-    @ToString.Exclude
-    private Set<ArtWork> favoritesArtWork = new HashSet<>();
-
-    @ManyToMany
-    @JoinTable(
-            name = "user_art_event",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "art_event_id"))
-    @ToString.Exclude
-    private Set<ArtEvent> favoritesArtEvent = new HashSet<>();
-
     @Transient
     private List<GrantedAuthority> authorities = null;
 

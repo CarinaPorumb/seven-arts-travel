@@ -1,4 +1,4 @@
-package ro.project.model;
+package ro.project.dto;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -17,18 +17,18 @@ public class ArtistDTO {
     @NotBlank(message = "Name must not be blank")
     private String name;
     private String biography;
-    private String imageLink;
+    private String imageUrl;
 
-    @Min(value = 1000, message = "Birth year must be a realistic historical value (min: 1000 BC written -1000)")
+    @Min(value = -1000, message = "Birth year must be a realistic historical value (min: 1000 BC written -1000)")
     @Max(value = 2025, message = "Birth year cannot be in future")
     private Integer birthYear;
 
     @Min(value = -1000, message = "Death year must be a realistic historical value (min: 1000 BC written -1000)")
     @Max(value = 2025, message = "Death year cannot be in future")
     private Integer deathYear;
+
     private Nationality nationality;
 
-    private Set<UUID> artWorkIds = new HashSet<>();
-    private Set<UUID> artEventIds = new HashSet<>();
+    private Set<UUID> artObjectIds = new HashSet<>();
 
 }

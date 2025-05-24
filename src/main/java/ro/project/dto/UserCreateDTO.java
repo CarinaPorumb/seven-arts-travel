@@ -1,18 +1,14 @@
-package ro.project.model;
+package ro.project.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import ro.project.entity.Role;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Data
-public class UserDTO {
-
-    private UUID id;
+public class UserCreateDTO {
 
     @NotBlank(message = "Username must not be blank")
     private String username;
@@ -21,14 +17,15 @@ public class UserDTO {
     private String fullName;
 
     @NotBlank(message = "Email must not be blank")
-    @Email(message = "Email should be valid")
+    @Email(message = "Email must be valid")
     private String email;
 
     @NotBlank(message = "Password must not be blank")
     private String password;
 
-    private Set<Role> roles = new HashSet<>();
-    private Set<ArtWorkDTO> artWorks = new HashSet<>();
-    private Set<ArtEventDTO> artEvents = new HashSet<>();
+    @NotBlank(message = "Password confirmation is required")
+    private String passwordConfirm;
+
+    Set<String> roles = new HashSet<>();
 
 }

@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -16,7 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Contact extends Auditable implements Serializable {
+public class ContactMessage extends Auditable implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -36,15 +35,13 @@ public class Contact extends Auditable implements Serializable {
     @NotBlank(message = "Message must not be blank")
     private String message;
 
-    private LocalDate date;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Contact contact = (Contact) o;
-        return Objects.equals(id, contact.id);
+        ContactMessage contactMessage = (ContactMessage) o;
+        return Objects.equals(id, contactMessage.id);
     }
 
     @Override

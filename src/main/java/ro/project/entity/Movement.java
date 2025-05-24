@@ -25,27 +25,18 @@ public class Movement extends Auditable implements Serializable {
     private UUID id;
 
     @NotBlank(message = "Name must not be blank")
-    private String name;
-
+    private String name; //    ANCIENT, RENAISSANCE, GOTHIC, BAROQUE, CLASSICISM, ROCOCO, NEOCLASSICISM, ROMANTICISM, REALISM, ARTNOUVEAU, IMPRESSIONISM,
+    //POSTIMPRESSIONISM, SYMBOLISM, EXPRESSIONISM, CUBISM, SURREALISM, MODERNISM, CONTEMPORARY, AVANTGARDE, UNCERTAIN
 
     private String description;
     private Integer startYear;
     private Integer endYear;
+    private String originRegion;
 
-    public Movement(String name, String description, Integer startYear, Integer endYear) {
-        this.name = name;
-        this.description = description;
-        this.startYear = startYear;
-        this.endYear = endYear;
-    }
-
-    @ManyToMany(mappedBy = "movements")
+    @OneToMany(mappedBy = "movement")
     @ToString.Exclude
-    private Set<ArtWork> artWorks = new HashSet<>();
-
-    @ManyToMany(mappedBy = "movements")
-    @ToString.Exclude
-    private Set<ArtEvent> artEvents = new HashSet<>();
+    @Builder.Default
+    private Set<ArtObject> artObjects = new HashSet<>();
 
     @Version
     private Long version;
