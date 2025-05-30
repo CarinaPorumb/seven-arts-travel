@@ -1,6 +1,7 @@
 package ro.sevenartstravel.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -21,6 +22,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @ToString
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Artist extends Auditable implements Serializable {
 
     @Id
@@ -52,7 +54,6 @@ public class Artist extends Auditable implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "art_object_id")
     )
     @ToString.Exclude
-    @JsonIgnore
     @Builder.Default
     private Set<ArtObject> artObjects = new HashSet<>();
 

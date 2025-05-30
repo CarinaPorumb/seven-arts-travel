@@ -21,7 +21,7 @@ public interface ArtObjectMapper extends CrudMapper<ArtObjectDTO, ArtObject> {
 
     @Override
     @Mapping(target = "artistIds", expression = "java(mapArtistsToIds(artObject))")
-    @Mapping(target = "movementIds", expression = "java(mapMovementToId(artObject))")
+    @Mapping(target = "movementId", expression = "java(mapMovementToId(artObject))")
     ArtObjectDTO toDTO(ArtObject artObject);
 
     @Override
@@ -38,7 +38,7 @@ public interface ArtObjectMapper extends CrudMapper<ArtObjectDTO, ArtObject> {
                 .collect(Collectors.toSet());
     }
 
-    default Set<UUID> mapMovementToId(ArtObject entity) {
-        return entity.getMovement() != null ? Set.of(entity.getMovement().getId()) : Set.of();
+    default UUID mapMovementToId(ArtObject entity) {
+        return entity.getMovement() != null ? entity.getMovement().getId() : null;
     }
 }

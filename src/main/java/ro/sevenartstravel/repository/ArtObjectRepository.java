@@ -29,6 +29,6 @@ public interface ArtObjectRepository extends JpaRepository<ArtObject, UUID>, Jpa
 
     Page<ArtObject> findByLocation(String location, Pageable pageable);
 
-    Page<ArtObject> findByYearsBetween(int startYear, int endYear, Pageable pageable);
+    Page<ArtObject> findByYearBetween(int startYear, int endYear, Pageable pageable);
 
 }

@@ -30,7 +30,7 @@ public class ArtObjectDTO {
     private Status status;
     private ArtObjectType artObjectType;
 
-    private Set<UUID> movementIds = new HashSet<>();
+    private UUID movementId;
     private Set<UUID> artistIds = new HashSet<>();
 
 }

@@ -1,4 +1,4 @@
-package ro.project.service.entity.impl;
+package ro.sevenartstravel.service.entity.impl;
 
 import com.opencsv.bean.CsvToBeanBuilder;
 import lombok.extern.slf4j.Slf4j;
@@ -7,17 +7,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ro.project.entity.Artist;
-import ro.project.enums.Nationality;
-import ro.project.exception.CsvProcessingException;
-import ro.project.model.ArtistCSV;
-import ro.project.model.ArtistDTO;
-import ro.project.model.mapper.ArtistMapper;
-import ro.project.repository.ArtistRepository;
-import ro.project.service.crud.CrudServiceImpl;
-import ro.project.service.entity.ArtistService;
-import ro.project.service.util.CsvService;
-import ro.project.service.util.SpecificationUtils;
+import ro.sevenartstravel.csv.ArtistCSV;
+import ro.sevenartstravel.dto.ArtistDTO;
+import ro.sevenartstravel.entity.Artist;
+import ro.sevenartstravel.enums.Nationality;
+import ro.sevenartstravel.exception.CsvProcessingException;
+import ro.sevenartstravel.mapper.ArtistMapper;
+import ro.sevenartstravel.repository.ArtistRepository;
+import ro.sevenartstravel.service.crud.CrudServiceImpl;
+import ro.sevenartstravel.service.entity.ArtistService;
+import ro.sevenartstravel.service.util.CsvService;
+import ro.sevenartstravel.service.util.SpecificationUtils;
 
 import java.io.File;
 import java.io.FileReader;
@@ -50,37 +50,29 @@ public class ArtistServiceImpl extends CrudServiceImpl<ArtistDTO, Artist, UUID> 
     @Transactional(readOnly = true)
     public Page<ArtistDTO> getAllArtists(String name, String biography, Integer birthYear, Integer deathYear, Nationality nationality, Pageable pageable) {
         Specification<Artist> specification = buildSpecification(name, biography, birthYear, deathYear, nationality);
-        log.debug("Listing artist with filters - Name: {}, Biography: {}, Birth year {}, Death year: {}, Nationality: {}, ", name, biography, birthYear, deathYear, nationality);
+        log.debug("Listing artists with filters - Name: {}, Biography: {}, Birth year {}, Death year: {}, Nationality: {}, ", name, biography, birthYear, deathYear, nationality);
         return artistRepository.findAll(specification, pageable).map(artistMapper::toDTO);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Page<ArtistDTO> getByName(String name, Pageable pageable) {
-        log.debug("Attempting to get Artist by name: {}", name);
-        return artistRepository.findByNameContainingIgnoreCase(name, pageable)
+        log.debug("Fetching artists by name: {}", name);
+        return artistRepository.findByNameIgnoreCase(name, pageable)
                 .map(artistMapper::toDTO);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Page<ArtistDTO> searchArtist(String keyword, Pageable pageable) {
-        log.debug("Searching Artist by keyword: {}", keyword);
+        log.debug("Searching artists with keyword: {}", keyword);
         return artistRepository.searchArtist(keyword, pageable).map(artistMapper::toDTO);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Page<ArtistDTO> getArtistByBirthYearAndDeathYear(Integer birthYear, Integer deathYear, Pageable pageable) {
-        log.debug("Attempting to get Artist by Birth Year and Death Year: {}", birthYear);
-        return artistRepository.findArtistByBirthYearAndDeathYear(birthYear, deathYear, pageable)
-                .map(artistMapper::toDTO);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
     public Page<ArtistDTO> getArtistByBirthYear(Integer birthYear, Pageable pageable) {
-        log.debug("Attempting to get Artist by Birth Year: {}", birthYear);
+        log.debug("Fetching artists by birth year: {}", birthYear);
         return artistRepository.findArtistByBirthYear(birthYear, pageable)
                 .map(artistMapper::toDTO);
     }
@@ -88,21 +80,21 @@ public class ArtistServiceImpl extends CrudServiceImpl<ArtistDTO, Artist, UUID> 
     @Override
     @Transactional(readOnly = true)
     public Page<ArtistDTO> getArtistByDeathYear(Integer deathYear, Pageable pageable) {
-        log.debug("Attempting to get Artist by Death Year: {}", deathYear);
+        log.debug("Fetching artists by death year: {}", deathYear);
         return artistRepository.findArtistByDeathYear(deathYear, pageable)
                 .map(artistMapper::toDTO);
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public Page<ArtistDTO> getArtistsAlive(Pageable pageable) {
-        log.debug("Fetching artists who are alive (deathYear = 0)");
-        return artistRepository.findArtistByDeathYear(0, pageable).map(artistMapper::toDTO);
+    public Page<ArtistDTO> getArtistByNationality(Nationality nationality, Pageable pageable) {
+        log.debug("Fetching artists by nationality: {}", nationality);
+        return artistRepository.findArtistByNationality(nationality, pageable)
+                .map(artistMapper::toDTO);
     }
 
     @Override
     public void convertCSV(File csvFile) {
-        log.debug("Processing CSV file: {}", csvFile);
+        log.debug("Processing artist CSV file: {}", csvFile);
 
         try (FileReader fileReader = new FileReader(csvFile)) {
             List<ArtistCSV> artistCSV = new CsvToBeanBuilder<ArtistCSV>(fileReader)
@@ -117,28 +109,28 @@ public class ArtistServiceImpl extends CrudServiceImpl<ArtistDTO, Artist, UUID> 
                     artistRepository.save(artistMapper.toEntity(dto));
                     log.info("Successfully saved artist: {}", dto.getName());
                 } catch (Exception e) {
-                    log.error("Error processing artist {}: {}", elem.getName(), e.getMessage());
+                    log.error("CSV error for artist {}: {}", elem.getName(), e.getMessage());
                 }
             });
         } catch (IOException e) {
-            log.error("Error processing CSV file: {}", csvFile, e);
-            throw new CsvProcessingException("Error processing CSV file", e);
+            log.error("Could not read CSV file: {}", csvFile, e);
+            throw new CsvProcessingException("CSV read failure", e);
         }
     }
 
     private ArtistDTO convertCsvToDto(ArtistCSV csv) {
         Artist existingArtist = artistRepository
-                .findByNameContainingIgnoreCase(csv.getName(), Pageable.unpaged())
+                .findByNameIgnoreCase(csv.getName(), Pageable.unpaged())
                 .stream()
-                .filter(artist -> artist.getNationality() == csv.getNationality() && artist.getBirthYear().equals(csv.getBirthYear()))
-                .findFirst().orElse(null);
+                .filter(artist -> artist.getNationality() == csv.getNationality()
+                        && artist.getBirthYear().equals(csv.getBirthYear()))
+                .findFirst()
+                .orElse(null);
 
         ArtistDTO dto = new ArtistDTO();
 
         if (existingArtist != null) {
             dto.setId(existingArtist.getId());
-        } else {
-            dto.setId(UUID.randomUUID());
         }
 
         dto.setName(csv.getName());
@@ -150,6 +142,8 @@ public class ArtistServiceImpl extends CrudServiceImpl<ArtistDTO, Artist, UUID> 
     }
 
     private void validateCsvFields(ArtistCSV csv) {
+        int currentYear = java.time.Year.now().getValue();
+
         if (csv.getBirthYear() == null) {
             csv.setBirthYear(0);
             log.warn("Birth year is unknown for artist: {}. Setting default: 0", csv.getName());
@@ -160,12 +154,17 @@ public class ArtistServiceImpl extends CrudServiceImpl<ArtistDTO, Artist, UUID> 
             log.info("Death year is unknown for artist: {}. Setting default: 0", csv.getName());
         }
 
-        if (csv.getBirthYear() > 0 && csv.getDeathYear() != null && csv.getBirthYear() > csv.getDeathYear()) {
-            log.warn("Birth year {} is greater than death year {} for artist: {}. Correcting it to match birth year.",
-                    csv.getBirthYear(), csv.getDeathYear(), csv.getName());
-
-            csv.setDeathYear(csv.getBirthYear());
+        if (csv.getBirthYear() > currentYear) {
+            throw new CsvProcessingException("Birth year cannot be in the future for artist: " + csv.getName());
         }
-    }
 
+        if (csv.getDeathYear() > currentYear) {
+            throw new CsvProcessingException("Death year cannot be in the future for artist: " + csv.getName());
+        }
+
+        if (csv.getBirthYear() > 0 && csv.getDeathYear() > 0 && csv.getBirthYear() > csv.getDeathYear()) {
+            throw new CsvProcessingException("Birth year cannot be after death year for artist: " + csv.getName());
+        }
+
+    }
 }
