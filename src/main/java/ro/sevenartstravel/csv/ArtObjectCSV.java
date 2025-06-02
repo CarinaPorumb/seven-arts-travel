@@ -1,7 +1,9 @@
 package ro.sevenartstravel.csv;
 
 import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvCustomBindByName;
 import lombok.Data;
+import ro.sevenartstravel.service.util.NullableIntegerConverter;
 
 @Data
 public class ArtObjectCSV {
@@ -18,7 +20,7 @@ public class ArtObjectCSV {
     @CsvBindByName
     private String location;
 
-    @CsvBindByName
+    @CsvCustomBindByName(converter = NullableIntegerConverter.class)
     private Integer year;
 
     @CsvBindByName

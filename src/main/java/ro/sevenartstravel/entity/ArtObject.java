@@ -22,14 +22,14 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "art_work")
+@Table(name = "art_object")
 @ToString
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class ArtObject extends Auditable implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "artwork_id", updatable = false, nullable = false)
+    @Column(name = "artobject_id", updatable = false, nullable = false)
     private UUID id;
 
     @NotBlank(message = "Name must not be blank")

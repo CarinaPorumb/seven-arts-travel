@@ -6,11 +6,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-import ro.sevenartstravel.dto.UserDTO;
 import ro.sevenartstravel.entity.Role;
 import ro.sevenartstravel.entity.User;
 import ro.sevenartstravel.exception.NotFoundException;
-import ro.sevenartstravel.mapper.UserMapper;
 import ro.sevenartstravel.service.entity.UserService;
 
 import java.util.ArrayList;
@@ -23,19 +21,22 @@ import java.util.Set;
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserService userService;
-    private final UserMapper userMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
 
-        UserDTO userDTO = userService.findUserByUsername(username)
-                .orElseThrow(() -> new NotFoundException("User not found"));
-
-        User user = userMapper.toEntity(userDTO);
+        User user = userService.findUserEntityByUsername(username)
+                .orElseThrow(() -> new NotFoundException("User", username));
 
         List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-                user.isEnabled(), user.isAccountNonExpired(), user.isCredentialsNonExpired(), user.isAccountNonLocked(), authorities);
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                user.isEnabled(),
+                user.isAccountNonExpired(),
+                user.isCredentialsNonExpired(),
+                user.isAccountNonLocked(),
+                authorities);
     }
 
     private List<GrantedAuthority> getUserAuthority(Set<Role> userRoles) {

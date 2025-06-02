@@ -16,12 +16,9 @@ public class RunAtStartup {
 
     @EventListener(ContextRefreshedEvent.class)
     public void contextRefreshedEvent() {
-        String artWorkPath = "ro/main/resources/csvdata/artwork.csv";
-        File artWorkFile = new File(artWorkPath);
+        String artObjectCsvPath = "src/main/resources/csvdata/artobject.csv";
+        File artWorkFile = new File(artObjectCsvPath);
         artObjectServiceImpl.convertCSV(artWorkFile);
 
     }
-
-
-
 }
