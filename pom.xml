@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>ro.sevenartstravel</groupId>
-    <artifactId>seven-arts-travel</artifactId>
+    <artifactId>seven-arts-travel-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Seven Arts Travel</name>
     <description>Backend API for the Seven Arts Travel frontend project</description>

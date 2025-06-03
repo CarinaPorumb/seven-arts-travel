@@ -55,18 +55,18 @@
                                        id="year" placeholder="Year"/>
                             </div>
                             <div class="form-group">
-                                <select class="form-control" placeholder="category" name="category"
-                                        th:field="*{category}">
+                                <select class="form-control" placeholder="artCategory" name="artCategory"
+                                        th:field="*{artCategory}">
                                     <option value="" disabled selected>Select Category</option>
-                                    <option th:each="category : ${T(ro.project.enums.Category).values()}"
-                                            th:value="${category}" th:text="${category}"></option>
+                                    <option th:each="artCategory : ${T(ro.sevenartstravel.enums.Category).values()}"
+                                            th:value="${artCategory}" th:text="${artCategory}"></option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <select class="form-control" placeholder="movement" name="movement"
                                         th:field="*{movement}">
                                     <option value="" disabled selected>Select Movement</option>
-                                    <option th:each="movement : ${T(ro.project.enums.Style).values()}"
+                                    <option th:each="movement : ${T(ro.sevenartstravel.enums.Style).values()}"
                                             th:value="${movement}" th:text="${movement}"></option>
                                 </select>
                             </div>

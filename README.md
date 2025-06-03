@@ -1,85 +1,70 @@
-# Seven Arts Travel
+# Seven Arts Travel — Backend  ![CircleCI](https://dl.circleci.com/status-badge/img/gh/CarinaPorumb/seven-arts-travel-backend/tree/main.svg?style=svg)
 
-Seven Arts Travel is an application that aims to become a cultural travel guide. It is designed for those who wish to
-discover the richness of cultural diversity through traveling. The seven arts - Architecture, Sculpture,
-Painting, Literature, Cinema, Music, Ballet and Theater - are the focus of this project.
+
+**Seven Arts Travel** is an application that aims to become a cultural travel guide. It is designed for those who wish to
+discover the richness of cultural diversity through traveling. The seven arts - **Architecture, Sculpture,
+Painting, Literature, Cinema, Music, Ballet and Theater** - are the focus of this project.
 This application provides information not only on places such as historical buildings, museums, art galleries, libraries
 and more, but also on events related to the seven arts, including exhibitions, performances, festivals and more.
 
----
+This backend application powers the [Seven Arts Travel - Frontend](https://github.com/CarinaPorumb/seven-arts-travel-frontend) by exposing a RESTful API.
 
-## Technologies Used
+--- 
 
-Seven Arts Travel was developed using several technologies, including:
+## Project Overview
 
-* Java 21
+Originally developed as a monolithic MVC app with Thymeleaf, this project is now being modernized to adopt a REST + SPA architecture.
 
-* Apache Maven 3.9.0
-
-* Spring Boot 3.2.3
-
-* Spring Data JPA
-
-* Spring Security
-
-* Spring Web MVC
-
-* MySQL
-
-* CSV
-
-* Thymeleaf
-
-* HTML
-
-* CSS
-
-* Bootstrap
-
-This project uses CircleCI for continuous integration. The build status is indicated by the badge below:
-
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/CarinaPorumb/SevenArtsTravel/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/CarinaPorumb/SevenArtsTravel/tree/main)
+- The backend is being migrated to a RESTful API structure.
+- The frontend is now implemented in React with Vite.
 
 ---
 
-## Getting Started
+## ⚠️ Notes
 
-To get started with Seven Arts Travel, you will need to download the source code from the project repository and open
-it.
+This backend is still under active development and may have temporary bugs or incomplete functionality.
 
-Once you have the source code open in your IDE, you can run the project by executing the `main` method in the
-`SevenArtsTravelApplication` class. The application will then start up and you can access it in your web browser
-at http://localhost:8080.
+---
+
+## Tech Stack
+
+- **Java 21**
+- **Spring Boot 3**
+- **Spring Data JPA**
+- **Spring Security**
+- **MySQL**
+- **MapStruct**, **Lombok**, **OpenCSV**
 
 ---
 
 ## Features
 
-Seven Arts Travel provides the following features:
+* REST API for managing art objects, artists, movements, locations, and events
+* DTO-based architecture with service and controller layers
+* CSV-based data import at application startup
+* Filtering, pagination, and search support
+* User authentication & role-based authorization (in progress)
 
-- Registration and login for users
+---
 
+## Getting Started
 
-- User authentication and authorization
+### 1. Clone the project
 
+```bash
+   git clone https://github.com/CarinaPorumb/seven-arts-travel-backend.git
+```
 
-- Displaying information about places related to the seven fine arts, including historical buildings, museums,
-  art galleries, libraries and more
+### 2. Configure MySQL
 
+Ensure you have a MySQL instance running and set the appropriate credentials in `application.properties` or use environment variables.
 
-- Filtering places by name, location and type
+### 3. Run the application
 
+```bash
+   ./mvnw spring-boot:run
+``` 
 
-- Viewing details of a place, including its history, significance and artworks on display
-
-
-- Displaying information about events related to the seven fine arts, including exhibitions, performances, festivals
-  and more
-
-
-- Filtering events by location, date and type
-
-
-- Viewing details of an event, including its schedule, performers.
+The API will be available at: `http://localhost:8080/api`
 
 ---
