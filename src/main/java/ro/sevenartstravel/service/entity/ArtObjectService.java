@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import ro.sevenartstravel.dto.ArtObjectDTO;
 import ro.sevenartstravel.enums.ArtCategory;
+import ro.sevenartstravel.enums.ArtObjectType;
 
 public interface ArtObjectService {
 
@@ -20,5 +21,7 @@ public interface ArtObjectService {
     Page<ArtObjectDTO> getByYearRange(int startYear, int endYear, Pageable pageable);
 
     Page<ArtObjectDTO> searchArtObject(String keyword, Pageable pageable);
+
+    Page<ArtObjectDTO> getByArtObjectType(ArtObjectType artObjectType, Pageable pageable);
 
 }

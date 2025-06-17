@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import ro.sevenartstravel.dto.ArtObjectDTO;
 import ro.sevenartstravel.enums.ArtCategory;
+import ro.sevenartstravel.enums.ArtObjectType;
 import ro.sevenartstravel.exception.NotFoundException;
 import ro.sevenartstravel.service.crud.CrudService;
 import ro.sevenartstravel.service.entity.ArtObjectService;
 
 import java.net.URI;
+import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
@@ -109,14 +111,20 @@ public class ArtObjectController {
 
     @GetMapping("/year")
     public ResponseEntity<Page<ArtObjectDTO>> getArtObjectsByYear(@RequestParam("year") int year, Pageable pageable) {
-        log.info("Request to get art objects by year: {}", year);
+        log.info("Request to get art objects by year: {}", Optional.of(year));
         return ResponseEntity.ok(artObjectService.getByYear(year, pageable));
     }
 
     @GetMapping("/year-range")
     public ResponseEntity<Page<ArtObjectDTO>> getArtObjectsByYearRange(@RequestParam("startYear") int startYear, @RequestParam("endYear") int endYear, Pageable pageable) {
-        log.info("Request to get art objects by year range: {} to {}", startYear, endYear);
+        log.info("Request to get art objects by year range: {} to {}", Optional.of(startYear), Optional.of(endYear));
         return ResponseEntity.ok(artObjectService.getByYearRange(startYear, endYear, pageable));
+    }
+
+    @GetMapping("/type")
+    public ResponseEntity<Page<ArtObjectDTO>> getByArtObjectType(@RequestParam("artObjectType") ArtObjectType artObjectType, Pageable pageable) {
+       log.info("Request to get art objects by artObjectType: {}", artObjectType);
+        return ResponseEntity.ok(artObjectService.getByArtObjectType(artObjectType, pageable));
     }
 
 }

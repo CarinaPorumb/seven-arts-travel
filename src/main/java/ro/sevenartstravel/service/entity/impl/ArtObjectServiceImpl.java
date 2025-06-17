@@ -116,6 +116,12 @@ public class ArtObjectServiceImpl extends CrudServiceImpl<ArtObjectDTO, ArtObjec
                 .map(artObjectMapper::toDTO);
     }
 
+    @Override
+    public Page<ArtObjectDTO> getByArtObjectType(ArtObjectType artObjectType, Pageable pageable) {
+        log.debug("Fetching art objects by type: {}", artObjectType);
+        return artObjectRepository.findByArtObjectType(artObjectType, pageable)
+                .map(artObjectMapper::toDTO);
+    }
 
     private void validateArtObjectFields(ArtObjectDTO dto) {
         ArtObjectType type = dto.getArtObjectType();
