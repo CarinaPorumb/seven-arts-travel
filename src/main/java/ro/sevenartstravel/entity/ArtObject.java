@@ -34,7 +34,9 @@ public class ArtObject extends Auditable implements Serializable {
 
     @NotBlank(message = "Name must not be blank")
     private String title;
-    private String description;
+    @Column(columnDefinition = "TEXT")
+    private String shortDescription;
+    private String longDescription;
     private Integer year;  // for artWork
     private String location;
     private String imageUrl;

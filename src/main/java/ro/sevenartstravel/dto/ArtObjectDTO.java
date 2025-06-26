@@ -18,7 +18,8 @@ public class ArtObjectDTO {
     private UUID id;
     @NotBlank(message = "Name must not be blank")
     private String title;
-    private String description;
+    private String shortDescription;
+    private String longDescription;
     private Integer year;
     private ArtCategory artCategory;
     private String location;

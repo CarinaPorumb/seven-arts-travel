@@ -8,7 +8,7 @@ import ro.sevenartstravel.enums.ArtObjectType;
 
 public interface ArtObjectService {
 
-    Page<ArtObjectDTO> getAll(String title, String description, String location, ArtCategory artCategory, Integer year, Pageable pageable);
+    Page<ArtObjectDTO> getAll(String title, String shortDescription, String longDescription, String location, ArtCategory artCategory, Integer year, Pageable pageable);
 
     Page<ArtObjectDTO> getByTitle(String title, Pageable pageable);
 

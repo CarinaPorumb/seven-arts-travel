@@ -19,7 +19,8 @@ public interface ArtObjectRepository extends JpaRepository<ArtObject, UUID>, Jpa
     //TODO: Extend search to include movement and status fields
     @Query(value = "SELECT * FROM art_object a WHERE " +
             "a.title LIKE CONCAT('%', :keyword, '%') " +
-            "OR a.description LIKE CONCAT('%', :keyword, '%') " +
+            "OR a.short_description LIKE CONCAT('%', :keyword, '%') " +
+            "OR a.long_description LIKE CONCAT('%', :keyword, '%') " +
             "OR a.location LIKE CONCAT('%', :keyword, '%')",
             nativeQuery = true)
     Page<ArtObject> searchArtObjects(@Param("keyword") String keyword, Pageable pageable);

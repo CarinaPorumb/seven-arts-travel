@@ -15,7 +15,10 @@ public class ArtObjectCSV {
     private String artistNames; // ex: "Leonardo da Vinci, Michelangelo"
 
     @CsvBindByName
-    private String description;
+    private String shortDescription;
+
+    @CsvBindByName
+    private String longDescription;
 
     @CsvBindByName
     private String location;

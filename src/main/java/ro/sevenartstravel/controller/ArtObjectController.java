@@ -32,7 +32,8 @@ public class ArtObjectController {
     public ResponseEntity<Page<ArtObjectDTO>> getArtObjects(
             @RequestParam(required = false) String search,
             @RequestParam(required = false) String title,
-            @RequestParam(required = false) String description,
+            @RequestParam(required = false) String shortDescription,
+            @RequestParam(required = false) String longDescription,
             @RequestParam(required = false) String location,
             @RequestParam(required = false) ArtCategory artCategory,
             @RequestParam(required = false) Integer year,
@@ -41,10 +42,16 @@ public class ArtObjectController {
         if (search != null && !search.isEmpty()) {
             log.info("Searching art objects with keyword: {}", search);
             return ResponseEntity.ok(artObjectService.searchArtObject(search, pageable));
-        } else if ((title != null && !title.isEmpty()) || year != null || (location != null && !location.isEmpty()) || artCategory != null) {
-            log.info("Listing art objects with filters: title='{}', description='{}', location='{}', artCategory='{}', year='{}'",
-                    title, description, location, artCategory, year);
-            return ResponseEntity.ok(artObjectService.getAll(title, description, location, artCategory, year, pageable));
+        } else if (
+                (title != null && !title.isEmpty()) ||
+                        year != null ||
+                        (location != null && !location.isEmpty())
+                        || artCategory != null ||
+                        (shortDescription != null && !shortDescription.isEmpty()) ||
+                        (longDescription != null && !longDescription.isEmpty())) {
+            log.info("Listing art objects with filters: title='{}', shortDescription='{}', longDescription='{}' location='{}', artCategory='{}', year='{}'",
+                    title, shortDescription, longDescription, location, artCategory, year);
+            return ResponseEntity.ok(artObjectService.getAll(title, shortDescription, longDescription, location, artCategory, year, pageable));
         } else {
             log.info("Returning all art objects without filters.");
             return ResponseEntity.ok(crudService.getAll(pageable));
@@ -123,7 +130,7 @@ public class ArtObjectController {
 
     @GetMapping("/type")
     public ResponseEntity<Page<ArtObjectDTO>> getByArtObjectType(@RequestParam("artObjectType") ArtObjectType artObjectType, Pageable pageable) {
-       log.info("Request to get art objects by artObjectType: {}", artObjectType);
+        log.info("Request to get art objects by artObjectType: {}", artObjectType);
         return ResponseEntity.ok(artObjectService.getByArtObjectType(artObjectType, pageable));
     }
 

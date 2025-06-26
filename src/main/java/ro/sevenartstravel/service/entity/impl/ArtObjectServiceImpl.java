@@ -53,9 +53,10 @@ public class ArtObjectServiceImpl extends CrudServiceImpl<ArtObjectDTO, ArtObjec
         this.artistRepository = artistRepository;
     }
 
-    private Specification<ArtObject> buildSpecification(String title, String description, String location, ArtCategory artCategory, Integer year) {
+    private Specification<ArtObject> buildSpecification(String title, String shortDescription, String longDescription, String location, ArtCategory artCategory, Integer year) {
         return Specification.where(SpecificationUtils.<ArtObject>attributeLike("title", title))
-                .and(SpecificationUtils.attributeLike("description", description))
+                .and(SpecificationUtils.attributeLike("shortDescription", shortDescription))
+                .and(SpecificationUtils.attributeLike("longDescription", longDescription))
                 .and(SpecificationUtils.attributeLike("location", location))
                 .and(SpecificationUtils.attributeEquals("artCategory", artCategory))
                 .and(SpecificationUtils.attributeEquals("year", year));
@@ -63,8 +64,8 @@ public class ArtObjectServiceImpl extends CrudServiceImpl<ArtObjectDTO, ArtObjec
 
     @Override
     @Transactional(readOnly = true)
-    public Page<ArtObjectDTO> getAll(String title, String description, String location, ArtCategory artCategory, Integer year, Pageable pageable) {
-        Specification<ArtObject> specification = buildSpecification(title, description, location, artCategory, year);
+    public Page<ArtObjectDTO> getAll(String title, String shortDescription, String longDescription, String location, ArtCategory artCategory, Integer year, Pageable pageable) {
+        Specification<ArtObject> specification = buildSpecification(title, shortDescription, longDescription, location, artCategory, year);
         log.debug("Listing art objects with filters - Name: {}, Year: {}, Location {}, ArtCategory: {},", title, year, location, artCategory);
         return artObjectRepository.findAll(specification, pageable).map(artObjectMapper::toDTO);
     }
@@ -196,7 +197,8 @@ public class ArtObjectServiceImpl extends CrudServiceImpl<ArtObjectDTO, ArtObjec
 
         ArtObjectDTO dto = new ArtObjectDTO();
         dto.setTitle(csv.getTitle());
-        dto.setDescription(csv.getDescription());
+        dto.setShortDescription(csv.getShortDescription());
+        dto.setLongDescription(csv.getLongDescription());
         dto.setLocation(csv.getLocation());
         dto.setYear(csv.getYear());
         dto.setImageUrl(csv.getImageUrl());
@@ -217,11 +219,19 @@ public class ArtObjectServiceImpl extends CrudServiceImpl<ArtObjectDTO, ArtObjec
         //Only parse event fields if the type is EVENT
         if (dto.getArtObjectType() == ArtObjectType.EVENT) {
             try {
+
                 if (csv.getStartTime() != null && !csv.getStartTime().isBlank()) {
                     dto.setStartTime(LocalDateTime.parse(csv.getStartTime()));
+                } else {
+                    log.warn("Missing startTime for event '{}'. Setting default now().", csv.getTitle());
+                    dto.setStartTime(LocalDateTime.now());
                 }
+
                 if (csv.getEndTime() != null && !csv.getEndTime().isBlank()) {
                     dto.setEndTime(LocalDateTime.parse(csv.getEndTime()));
+                } else {
+                    log.warn("Missing endTime for event '{}'. Setting default now() + 2 hours.", csv.getTitle());
+                    dto.setEndTime(LocalDateTime.now().plusHours(2));
                 }
             } catch (Exception e) {
                 throw new CsvProcessingException("Invalid date format for start/end time");
@@ -238,7 +248,7 @@ public class ArtObjectServiceImpl extends CrudServiceImpl<ArtObjectDTO, ArtObjec
             if (csv.getMovementName() != null && !csv.getMovementName().isBlank()) {
                 movementRepository.findByNameIgnoreCase(csv.getMovementName().trim())
                         .ifPresentOrElse(movement -> dto.setMovementId(movement.getId()),
-                () -> log.warn("Movement not found for name: {}", csv.getMovementName()));
+                                () -> log.warn("Movement not found for name: {}", csv.getMovementName()));
             }
 
             if (csv.getArtistNames() != null && !csv.getArtistNames().isBlank()) {
